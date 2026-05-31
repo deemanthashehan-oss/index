@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dee Academy | Cone Volume Calculator</title>
+    <title>Dee Academy | Learn Mathematics</title>
     <style>
         * {
             margin: 0;
@@ -14,394 +14,192 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
-        .card {
-            background: white;
-            border-radius: 25px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        .logo {
+        
+        /* Header with Logo - FIXED (no spreading) */
+        .header {
             text-align: center;
-            font-size: 28px;
+            margin-bottom: 50px;
+        }
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.95);
+            padding: 12px 30px;
+            border-radius: 60px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        .logo-img {
+            max-width: 55px;
+            height: auto;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+        .logo-text {
+            font-size: 32px;
             font-weight: bold;
             background: linear-gradient(135deg, #667eea, #764ba2);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
         .tagline {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 14px;
+            color: rgba(255,255,255,0.95);
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: 500;
         }
         
-        /* Two column layout for diagram + calculator */
-        .two-columns {
-            display: flex;
+        /* Grid of calculators */
+        .calculators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
+            margin-bottom: 50px;
         }
-        .diagram-box {
-            flex: 1;
-            min-width: 250px;
-            background: #f8fafc;
+        
+        .card {
+            background: white;
             border-radius: 20px;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
-        }
-        .calculator-box {
-            flex: 1;
-            min-width: 280px;
-        }
-        
-        .diagram-box h3 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        svg {
-            width: 100%;
-            max-width: 280px;
-            height: auto;
-            margin: 10px 0;
-        }
-        
-        .legend {
-            margin-top: 15px;
-            text-align: left;
-            font-size: 13px;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 8px 0;
-        }
-        .legend-color {
-            width: 25px;
-            height: 3px;
-            border-radius: 3px;
-        }
-        .legend-color.red { background: #ef4444; }
-        .legend-color.blue { background: #3b82f6; }
-        .legend-color.green { background: #10b981; }
-        
-        .pythagoras {
-            background: #fef3c7;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-        
-        .method-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .method-btn {
-            flex: 1;
-            padding: 10px;
-            background: #e0e0e0;
-            border: none;
-            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .card-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .card-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
             font-weight: bold;
             transition: all 0.3s;
         }
-        .method-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        .panel {
-            display: none;
-        }
-        .panel.active {
-            display: block;
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 6px;
-            color: #555;
-            font-size: 14px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 14px;
-        }
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 15px 0;
-        }
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .result {
-            background: #f0fdf4;
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 15px;
-            text-align: center;
-        }
-        .volume {
-            font-size: 22px;
-            font-weight: bold;
-            color: #166534;
-            margin-top: 8px;
-        }
-        .formula {
-            text-align: center;
-            font-size: 11px;
-            color: #888;
-            margin-top: 15px;
-            padding-top: 12px;
-            border-top: 1px solid #eee;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            color: rgba(255,255,255,0.8);
-            font-size: 11px;
+        
+        .card:hover .card-button {
+            background: linear-gradient(135deg, #764ba2, #667eea);
         }
         
-        @media (max-width: 700px) {
-            .two-columns {
-                flex-direction: column;
+        /* Coming Soon card */
+        .coming-soon {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .coming-soon:hover {
+            transform: none;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .logo-container {
+                padding: 8px 20px;
+                gap: 10px;
+            }
+            .logo-text {
+                font-size: 22px;
+            }
+            .logo-img {
+                max-width: 40px;
+            }
+            .tagline {
+                font-size: 14px;
+            }
+            .calculators-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="card">
-        <div class="logo">π DEE ACADEMY</div>
-        <div class="tagline">📐 Learn mathematics with Dee Academy ✨</div>
+    <div class="header">
+        <div class="logo-container">
+            <!-- Your Dee Academy Logo -->
+            <img src="logo.jpeg" alt="Dee Academy Logo" class="logo-img">
+            <div class="logo-text">π DEE ACADEMY</div>
+        </div>
+        <div class="tagline">📐 Learn Mathematics with Confidence ✨</div>
+    </div>
+    
+    <div class="calculators-grid">
+        <!-- Cone Calculator Card -->
+        <a href="/my-calculator/" class="card">
+            <div class="card-icon">🧁</div>
+            <h2>Cone Volume Calculator</h2>
+            <p>Calculate cone volume using:<br>
+            📏 Radius + Height<br>
+            📐 Radius + Slant Height<br>
+            📊 Includes Pythagoras theorem</p>
+            <div class="card-button">Launch Calculator →</div>
+        </a>
         
-        <div class="two-columns">
-            <!-- LEFT: Cone Diagram -->
-            <div class="diagram-box">
-                <h3>📐 Cone Geometry</h3>
-                <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Cone body (triangle) -->
-                    <polygon points="150,40 40,230 260,230" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
-                    <!-- Base ellipse (bottom) -->
-                    <ellipse cx="150" cy="230" rx="110" ry="22" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
-                    
-                    <!-- Radius line (from center of base to edge) - RED -->
-                    <line x1="150" y1="230" x2="260" y2="230" stroke="#ef4444" stroke-width="3"/>
-                    <text x="190" y="218" fill="#ef4444" font-size="12" font-weight="bold">r (radius)</text>
-                    
-                    <!-- Perpendicular height (vertical from apex to base center) - BLUE dashed -->
-                    <line x1="150" y1="40" x2="150" y2="230" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,4"/>
-                    <text x="155" y="135" fill="#3b82f6" font-size="12" font-weight="bold">h (height)</text>
-                    
-                    <!-- Slant height (from apex to base edge) - GREEN -->
-                    <line x1="150" y1="40" x2="260" y2="230" stroke="#10b981" stroke-width="2.5"/>
-                    <text x="215" y="120" fill="#10b981" font-size="12" font-weight="bold">L (slant)</text>
-                    
-                    <!-- Right angle symbol at base center -->
-                    <polyline points="150,230 160,230 160,220" fill="none" stroke="#6b7280" stroke-width="1.5"/>
-                    
-                    <!-- Apex point marker -->
-                    <circle cx="150" cy="40" r="3.5" fill="#d97706"/>
-                    <text x="138" y="30" fill="#92400e" font-size="10" font-weight="bold">Apex</text>
-                </svg>
-                
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-color red"></div>
-                        <span><strong style="color:#ef4444;">🔴 Radius (r)</strong> — distance from center to base edge</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color blue"></div>
-                        <span><strong style="color:#3b82f6;">🔵 Perpendicular Height (h)</strong> — vertical height from apex to base</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color green"></div>
-                        <span><strong style="color:#10b981;">🟢 Slant Height (L)</strong> — diagonal distance from apex to base edge</span>
-                    </div>
-                </div>
-                
-                <div class="pythagoras">
-                    📐 <strong>Pythagoras Theorem</strong><br>
-                    L² = r² + h²<br>
-                    h = √(L² - r²) &nbsp;&nbsp; r = √(L² - h²)
-                </div>
-            </div>
-            
-            <!-- RIGHT: Calculator -->
-            <div class="calculator-box">
-                <h1>🧮 Cone Volume Calculator</h1>
-                
-                <div class="method-buttons">
-                    <button class="method-btn active" onclick="showPanel('rh')">📏 Radius + Height</button>
-                    <button class="method-btn" onclick="showPanel('slant')">📐 Radius + Slant Height</button>
-                </div>
-                
-                <!-- Method 1: Radius + Perpendicular Height -->
-                <div id="panelRh" class="panel active">
-                    <div class="input-group">
-                        <label>📌 Radius (r):</label>
-                        <input type="number" id="radius1" value="5" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label>📏 Perpendicular Height (h):</label>
-                        <input type="number" id="height1" value="12" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label>📦 Unit:</label>
-                        <select id="unit1">
-                            <option value="cm³">cm³</option>
-                            <option value="m³">m³</option>
-                        </select>
-                    </div>
-                    <button onclick="calcMethod1()">Calculate Volume</button>
-                    <div class="result">
-                        <div>📦 Volume:</div>
-                        <div class="volume" id="vol1">---</div>
-                    </div>
-                </div>
-                
-                <!-- Method 2: Radius + Slant Height -->
-                <div id="panelSlant" class="panel">
-                    <div class="input-group">
-                        <label>📌 Radius (r):</label>
-                        <input type="number" id="radius2" value="5" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label>📐 Slant Height (L):</label>
-                        <input type="number" id="slant2" value="13" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label>📦 Unit:</label>
-                        <select id="unit2">
-                            <option value="cm³">cm³</option>
-                            <option value="m³">m³</option>
-                        </select>
-                    </div>
-                    <button onclick="calcMethod2()">Calculate Volume</button>
-                    <div class="result">
-                        <div>📐 Perpendicular Height (h):</div>
-                        <div class="volume" id="computedH" style="font-size: 18px;">---</div>
-                        <div style="margin-top: 12px;">📦 Volume:</div>
-                        <div class="volume" id="vol2">---</div>
-                    </div>
-                </div>
-                
-                <div class="formula">
-                    📐 Formula: V = ⅓ × π × r² × h
-                </div>
-            </div>
+        <!-- Sphere Calculator (Coming Soon) -->
+        <div class="card coming-soon">
+            <div class="card-icon">⚽</div>
+            <h2>Sphere Calculator</h2>
+            <p>Calculate sphere volume and surface area.<br>
+            <strong style="color:#999;">🚀 Coming Soon!</strong></p>
+            <div class="card-button" style="background: #ccc;">Coming Soon</div>
+        </div>
+        
+        <!-- Cylinder Calculator (Coming Soon) -->
+        <div class="card coming-soon">
+            <div class="card-icon">🥫</div>
+            <h2>Cylinder Calculator</h2>
+            <p>Calculate cylinder volume and surface area.<br>
+            <strong style="color:#999;">🚀 Coming Soon!</strong></p>
+            <div class="card-button" style="background: #ccc;">Coming Soon</div>
         </div>
     </div>
-    <footer>Dee Academy | Cone Volume Calculator | 📐 L² = r² + h²</footer>
+    
+    <div class="footer">
+        <p>© 2026 Dee Academy | Making Math Simple & Fun</p>
+        <p style="margin-top: 10px; font-size: 12px;">📐 Master Geometry with Interactive Tools</p>
+    </div>
 </div>
-
-<script>
-    function showPanel(panel) {
-        const panelRh = document.getElementById('panelRh');
-        const panelSlant = document.getElementById('panelSlant');
-        const btns = document.querySelectorAll('.method-btn');
-        
-        if (panel === 'rh') {
-            panelRh.classList.add('active');
-            panelSlant.classList.remove('active');
-            btns[0].classList.add('active');
-            btns[1].classList.remove('active');
-        } else {
-            panelRh.classList.remove('active');
-            panelSlant.classList.add('active');
-            btns[0].classList.remove('active');
-            btns[1].classList.add('active');
-        }
-    }
-    
-    function calcMethod1() {
-        let r = parseFloat(document.getElementById('radius1').value);
-        let h = parseFloat(document.getElementById('height1').value);
-        let unit = document.getElementById('unit1').value;
-        
-        if (isNaN(r)) r = 0;
-        if (isNaN(h)) h = 0;
-        if (r < 0) r = 0;
-        if (h < 0) h = 0;
-        
-        let volume = (1/3) * Math.PI * r * r * h;
-        document.getElementById('vol1').innerHTML = volume.toFixed(4) + ' ' + unit;
-    }
-    
-    function calcMethod2() {
-        let r = parseFloat(document.getElementById('radius2').value);
-        let L = parseFloat(document.getElementById('slant2').value);
-        let unit = document.getElementById('unit2').value;
-        
-        if (isNaN(r)) r = 0;
-        if (isNaN(L)) L = 0;
-        if (r < 0) r = 0;
-        if (L < 0) L = 0;
-        
-        if (L < r) {
-            document.getElementById('computedH').innerHTML = 'Error: L must be ≥ r';
-            document.getElementById('vol2').innerHTML = 'Invalid';
-            return;
-        }
-        
-        let h = Math.sqrt(L * L - r * r);
-        let volume = (1/3) * Math.PI * r * r * h;
-        
-        document.getElementById('computedH').innerHTML = h.toFixed(4) + ' ' + unit;
-        document.getElementById('vol2').innerHTML = volume.toFixed(4) + ' ' + unit;
-    }
-    
-    // Auto-calculate on input change
-    document.getElementById('radius1').addEventListener('input', calcMethod1);
-    document.getElementById('height1').addEventListener('input', calcMethod1);
-    document.getElementById('unit1').addEventListener('change', calcMethod1);
-    document.getElementById('radius2').addEventListener('input', calcMethod2);
-    document.getElementById('slant2').addEventListener('input', calcMethod2);
-    document.getElementById('unit2').addEventListener('change', calcMethod2);
-    
-    // Initial calculations
-    calcMethod1();
-    calcMethod2();
-</script>
 </body>
 </html>
