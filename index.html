@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dee Academy | Cone Volume Calculator</title>
+    <title>Dee Academy | Geometry Calculator Suite</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated background bubbles */
+        /* Animated background */
         body::before {
             content: '';
             position: fixed;
@@ -42,29 +42,81 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            border-radius: 60px;
+            padding: 15px 25px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        .coming-soon {
+            background: #fef3c7;
+            color: #92400e;
+            position: relative;
+        }
+
+        .coming-soon::after {
+            content: '🔜';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 12px;
+        }
+
+        /* Main Card */
         .card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 40px;
             padding: 35px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Welcome Banner */
+        /* Welcome Banner with Fun Facts */
         .welcome-banner {
             background: linear-gradient(135deg, #fef08a, #fde047);
-            padding: 15px 25px;
+            padding: 18px 30px;
             border-radius: 60px;
             text-align: center;
             margin-bottom: 25px;
@@ -78,7 +130,7 @@
         }
 
         .welcome-banner h2 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 800;
             color: #854d0e;
             letter-spacing: 2px;
@@ -90,23 +142,128 @@
             margin-top: 5px;
         }
 
-        /* Animated Logo */
-        .logo {
+        /* Fun Fact Section */
+        .fun-fact {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            border-radius: 30px;
+            padding: 15px 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .fun-fact:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .fun-fact-text {
+            flex: 1;
+        }
+
+        .fun-fact-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #4338ca;
+            letter-spacing: 2px;
+        }
+
+        .fun-fact-content {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e1b4b;
+            margin-top: 5px;
+        }
+
+        .fun-fact-icon {
+            font-size: 40px;
+            animation: rotate 3s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Quick Tips Section */
+        .tips-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tip-card {
+            flex: 1;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-radius: 20px;
+            padding: 12px;
             text-align: center;
-            font-size: 68px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-            letter-spacing: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tip-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: #991b1b;
+            font-size: 12px;
+        }
+
+        .tip-desc {
+            font-size: 11px;
+            color: #7f1d1d;
+            margin-top: 4px;
+        }
+
+        /* Logo Image Section */
+        .logo-container {
+            text-align: center;
+            margin: 20px 0;
             animation: glowPulse 2s ease-in-out infinite;
         }
 
+        .logo-img {
+            max-width: 180px;
+            height: auto;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            background: white;
+            padding: 10px;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+        }
+
         @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 5px rgba(102,126,234,0.3); }
-            50% { text-shadow: 0 0 25px rgba(102,126,234,0.6), 0 0 10px rgba(240,147,251,0.4); }
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(102,126,234,0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(102,126,234,0.6)); }
+        }
+
+        .logo-text {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 10px;
+            letter-spacing: 2px;
         }
 
         .tagline {
@@ -146,7 +303,6 @@
 
         .diagram-box:hover {
             transform: scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .diagram-box h3 {
@@ -163,7 +319,6 @@
             max-width: 280px;
             height: auto;
             margin: 15px 0;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
 
         .legend {
@@ -180,11 +335,6 @@
             align-items: center;
             gap: 12px;
             margin: 10px 0;
-            transition: transform 0.2s;
-        }
-
-        .legend-item:hover {
-            transform: translateX(5px);
         }
 
         .legend-color {
@@ -193,9 +343,9 @@
             border-radius: 4px;
         }
 
-        .legend-color.red { background: #ef4444; box-shadow: 0 0 5px #ef4444; }
-        .legend-color.blue { background: #3b82f6; box-shadow: 0 0 5px #3b82f6; }
-        .legend-color.green { background: #10b981; box-shadow: 0 0 5px #10b981; }
+        .legend-color.red { background: #ef4444; }
+        .legend-color.blue { background: #3b82f6; }
+        .legend-color.green { background: #10b981; }
 
         .pythagoras {
             background: linear-gradient(135deg, #fef3c7, #ffedd5);
@@ -218,19 +368,6 @@
             color: #333;
             margin-bottom: 25px;
             font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        h1::before {
-            content: '🧮';
-            font-size: 28px;
-        }
-        h1::after {
-            content: '📐';
-            font-size: 28px;
         }
 
         .method-buttons {
@@ -247,32 +384,13 @@
             border-radius: 60px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 14px;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .method-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .method-btn:hover::before {
-            left: 100%;
         }
 
         .method-btn.active {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             box-shadow: 0 8px 20px rgba(102,126,234,0.4);
-            transform: scale(1.02);
         }
 
         .panel {
@@ -285,14 +403,8 @@
         }
 
         @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .input-group {
@@ -304,7 +416,6 @@
             font-weight: 600;
             margin-bottom: 8px;
             color: #444;
-            font-size: 14px;
         }
 
         input, select {
@@ -314,17 +425,15 @@
             border-radius: 20px;
             font-size: 15px;
             transition: all 0.3s;
-            background: white;
         }
 
-        input:focus, select:focus {
+        input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 4px rgba(102,126,234,0.2);
-            transform: scale(1.01);
         }
 
-        button {
+        .calc-btn {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -336,22 +445,9 @@
             cursor: pointer;
             margin: 20px 0;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
-        button::after {
-            content: '→';
-            margin-left: 10px;
-            transition: margin 0.3s;
-            display: inline-block;
-        }
-
-        button:hover::after {
-            margin-left: 15px;
-        }
-
-        button:hover {
+        .calc-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(102,126,234,0.4);
         }
@@ -360,9 +456,7 @@
             background: linear-gradient(135deg, #ecfdf5, #d1fae5);
             padding: 20px;
             border-radius: 24px;
-            margin-top: 15px;
             text-align: center;
-            border: 1px solid #a7f3d0;
         }
 
         .volume {
@@ -370,7 +464,6 @@
             font-weight: 800;
             color: #065f46;
             margin-top: 8px;
-            word-break: break-word;
         }
 
         .formula {
@@ -387,45 +480,94 @@
             margin-top: 25px;
             color: rgba(255,255,255,0.9);
             font-size: 12px;
-            font-weight: 500;
         }
 
         @media (max-width: 750px) {
-            .two-columns {
-                flex-direction: column;
+            .two-columns { flex-direction: column; }
+            .logo-img { max-width: 120px; }
+            .welcome-banner h2 { font-size: 24px; }
+            .nav-bar { flex-direction: column; }
+            .tips-section { flex-direction: column; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            .logo {
-                font-size: 48px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            .volume {
-                font-size: 22px;
-            }
-            .card {
-                padding: 20px;
-            }
-            .welcome-banner h2 {
-                font-size: 22px;
-            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="card">
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div style="font-weight: bold; color: #667eea;">📐 Dee Academy</div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="showCalculator('cone')">🍦 Cone Calculator</button>
+            <button class="nav-btn coming-soon" onclick="showComingSoon('sphere')">⚪ Sphere Calculator</button>
+            <button class="nav-btn coming-soon" onclick="showComingSoon('cylinder')">🥫 Cylinder Calculator</button>
+        </div>
+    </div>
+
+    <!-- Cone Calculator Section -->
+    <div id="coneSection" class="card">
         <!-- Welcome Banner -->
         <div class="welcome-banner">
             <h2>✨ WELCOME TO DEE ACADEMY ✨</h2>
             <p>Your Journey to Mastering Mathematics Begins Here</p>
         </div>
 
-        <div class="logo">π DEE ACADEMY</div>
+        <!-- Fun Fact Section (Click to change) -->
+        <div class="fun-fact" onclick="changeFunFact()">
+            <div class="fun-fact-text">
+                <div class="fun-fact-label">🎉 DID YOU KNOW?</div>
+                <div class="fun-fact-content" id="funFactContent">A cone's volume is exactly 1/3 of a cylinder with the same base and height!</div>
+            </div>
+            <div class="fun-fact-icon" id="funFactIcon">📚</div>
+        </div>
+
+        <!-- Quick Tips Section -->
+        <div class="tips-section">
+            <div class="tip-card">
+                <div class="tip-icon">💡</div>
+                <div class="tip-title">Tip #1</div>
+                <div class="tip-desc">Always use same units for radius and height</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">⚡</div>
+                <div class="tip-title">Tip #2</div>
+                <div class="tip-desc">Slant height is always greater than radius</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🎯</div>
+                <div class="tip-title">Tip #3</div>
+                <div class="tip-desc">Volume increases with square of radius!</div>
+            </div>
+        </div>
+
+        <!-- Logo Image -->
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Dee Academy Logo" class="logo-img" 
+                 onerror="this.onerror=null; this.style.display='none'; document.getElementById('fallbackText').style.display='block';">
+            <div id="fallbackText" style="display: none; font-size: 48px; font-weight: bold; background: linear-gradient(135deg, #667eea, #764ba2); background-clip: text; -webkit-background-clip: text; color: transparent;">π DEE ACADEMY</div>
+        </div>
+        <div class="logo-text">π DEE ACADEMY</div>
         <div class="tagline">Learn mathematics with Dee Academy</div>
 
         <div class="two-columns">
-            <!-- LEFT: Cone Diagram -->
             <div class="diagram-box">
                 <h3>📐 Cone Geometry</h3>
-                <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 300 280">
                     <polygon points="150,40 40,230 260,230" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
                     <ellipse cx="150" cy="230" rx="110" ry="22" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
                     <line x1="150" y1="230" x2="260" y2="230" stroke="#ef4444" stroke-width="3"/>
@@ -434,36 +576,23 @@
                     <text x="155" y="135" fill="#3b82f6" font-size="12" font-weight="bold">h (height)</text>
                     <line x1="150" y1="40" x2="260" y2="230" stroke="#10b981" stroke-width="2.5"/>
                     <text x="215" y="120" fill="#10b981" font-size="12" font-weight="bold">L (slant)</text>
-                    <polyline points="150,230 160,230 160,220" fill="none" stroke="#6b7280" stroke-width="1.5"/>
                     <circle cx="150" cy="40" r="3.5" fill="#d97706"/>
-                    <text x="138" y="30" fill="#92400e" font-size="10" font-weight="bold">Apex</text>
                 </svg>
 
                 <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-color red"></div>
-                        <span><strong style="color:#ef4444;">🔴 Radius (r)</strong> — from center to base edge</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color blue"></div>
-                        <span><strong style="color:#3b82f6;">🔵 Perpendicular Height (h)</strong> — vertical height</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color green"></div>
-                        <span><strong style="color:#10b981;">🟢 Slant Height (L)</strong> — diagonal to base edge</span>
-                    </div>
+                    <div class="legend-item"><div class="legend-color red"></div><span>🔴 Radius (r)</span></div>
+                    <div class="legend-item"><div class="legend-color blue"></div><span>🔵 Perpendicular Height (h)</span></div>
+                    <div class="legend-item"><div class="legend-color green"></div><span>🟢 Slant Height (L)</span></div>
                 </div>
 
                 <div class="pythagoras">
                     📐 <strong>Pythagoras Theorem</strong><br>
-                    L² = r² + h²<br>
-                    h = √(L² - r²) &nbsp;&nbsp; r = √(L² - h²)
+                    L² = r² + h² &nbsp;&nbsp;→&nbsp;&nbsp; h = √(L² - r²)
                 </div>
             </div>
 
-            <!-- RIGHT: Calculator -->
             <div class="calculator-box">
-                <h1>Cone Volume Calculator</h1>
+                <h1>🧮 Cone Volume Calculator</h1>
 
                 <div class="method-buttons">
                     <button class="method-btn active" onclick="showPanel('rh')">📏 Radius + Height</button>
@@ -486,7 +615,7 @@
                             <option value="m³">m³</option>
                         </select>
                     </div>
-                    <button onclick="calcMethod1()">Calculate Volume</button>
+                    <button class="calc-btn" onclick="calcMethod1()">Calculate Volume 🧮</button>
                     <div class="result">
                         <div>📦 Volume:</div>
                         <div class="volume" id="vol1">---</div>
@@ -509,7 +638,7 @@
                             <option value="m³">m³</option>
                         </select>
                     </div>
-                    <button onclick="calcMethod2()">Calculate Volume</button>
+                    <button class="calc-btn" onclick="calcMethod2()">Calculate Volume 🧮</button>
                     <div class="result">
                         <div>📐 Perpendicular Height (h):</div>
                         <div class="volume" id="computedH" style="font-size: 20px;">---</div>
@@ -518,16 +647,66 @@
                     </div>
                 </div>
 
-                <div class="formula">
-                    📐 Formula: V = ⅓ × π × r² × h
-                </div>
+                <div class="formula">📐 Formula: V = ⅓ × π × r² × h</div>
             </div>
         </div>
     </div>
-    <footer>Dee Academy | Master Cone Geometry | L² = r² + h²</footer>
+
+    <!-- Coming Soon Message -->
+    <div id="comingSoonMsg" style="display: none; text-align: center; background: white; border-radius: 40px; padding: 60px;">
+        <h2 style="font-size: 48px; margin-bottom: 20px;">🚀 Coming Soon!</h2>
+        <p style="font-size: 18px; color: #666;">We're working hard to bring you more geometry calculators.</p>
+        <button class="calc-btn" onclick="closeComingSoon()" style="width: auto; padding: 12px 30px; margin-top: 30px;">← Back to Cone Calculator</button>
+    </div>
+
+    <footer>Dee Academy | Master Cone Geometry | 🎉 Click the fun fact for more interesting facts!</footer>
 </div>
 
 <script>
+    // Fun Facts Array
+    const funFacts = [
+        { fact: "A cone's volume is exactly 1/3 of a cylinder with the same base and height!", icon: "📚" },
+        { fact: "An ice cream cone is a real-life example of a cone shape!", icon: "🍦" },
+        { fact: "The Egyptian pyramids are actually square pyramids, not cones!", icon: "🛕" },
+        { fact: "A cone has only ONE face (not counting the base)!", icon: "🔺" },
+        { fact: "The Great Pyramid of Giza has a square base, but if it were a cone, it would be massive!", icon: "🏛️" },
+        { fact: "π (Pi) is approximately 3.14159 - it never ends!", icon: "π" },
+        { fact: "Cone is the shape of a party hat!", icon: "🎉" },
+        { fact: "A traffic cone is a great example of a cone shape!", icon: "🚧" }
+    ];
+    
+    let factIndex = 0;
+    
+    function changeFunFact() {
+        factIndex = (factIndex + 1) % funFacts.length;
+        document.getElementById('funFactContent').innerHTML = funFacts[factIndex].fact;
+        document.getElementById('funFactIcon').innerHTML = funFacts[factIndex].icon;
+    }
+    
+    // Auto-change fun fact every 8 seconds
+    setInterval(changeFunFact, 8000);
+    
+    function showCalculator(type) {
+        document.getElementById('coneSection').style.display = 'block';
+        document.getElementById('comingSoonMsg').style.display = 'none';
+        const btns = document.querySelectorAll('.nav-btn');
+        btns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+    
+    function showComingSoon(type) {
+        document.getElementById('coneSection').style.display = 'none';
+        document.getElementById('comingSoonMsg').style.display = 'block';
+    }
+    
+    function closeComingSoon() {
+        document.getElementById('coneSection').style.display = 'block';
+        document.getElementById('comingSoonMsg').style.display = 'none';
+        const btns = document.querySelectorAll('.nav-btn');
+        btns.forEach(btn => btn.classList.remove('active'));
+        btns[0].classList.add('active');
+    }
+    
     function showPanel(panel) {
         const panelRh = document.getElementById('panelRh');
         const panelSlant = document.getElementById('panelSlant');
@@ -550,12 +729,8 @@
         let r = parseFloat(document.getElementById('radius1').value);
         let h = parseFloat(document.getElementById('height1').value);
         let unit = document.getElementById('unit1').value;
-        
         if (isNaN(r)) r = 0;
         if (isNaN(h)) h = 0;
-        if (r < 0) r = 0;
-        if (h < 0) h = 0;
-        
         let volume = (1/3) * Math.PI * r * r * h;
         document.getElementById('vol1').innerHTML = volume.toFixed(4) + ' ' + unit;
     }
@@ -564,11 +739,8 @@
         let r = parseFloat(document.getElementById('radius2').value);
         let L = parseFloat(document.getElementById('slant2').value);
         let unit = document.getElementById('unit2').value;
-        
         if (isNaN(r)) r = 0;
         if (isNaN(L)) L = 0;
-        if (r < 0) r = 0;
-        if (L < 0) L = 0;
         
         if (L < r) {
             document.getElementById('computedH').innerHTML = 'Error: L must be ≥ r';
@@ -578,7 +750,6 @@
         
         let h = Math.sqrt(L * L - r * r);
         let volume = (1/3) * Math.PI * r * r * h;
-        
         document.getElementById('computedH').innerHTML = h.toFixed(4) + ' ' + unit;
         document.getElementById('vol2').innerHTML = volume.toFixed(4) + ' ' + unit;
     }
