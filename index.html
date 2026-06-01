@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dee Academy | Student Portal</title>
+    <title>Dee Academy | Student Portal with Certificate</title>
     <style>
         * {
             margin: 0;
@@ -31,9 +31,7 @@
             height: 100%;
             background-image: 
                 radial-gradient(2px 2px at 10% 20%, white, rgba(0,0,0,0)),
-                radial-gradient(3px 3px at 40% 60%, white, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 70% 30%, white, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 85% 80%, white, rgba(0,0,0,0));
+                radial-gradient(3px 3px at 40% 60%, white, rgba(0,0,0,0));
             background-size: 200px 200px;
             background-repeat: no-repeat;
             opacity: 0.6;
@@ -67,7 +65,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        /* Login/User Info Section */
         .user-info {
             display: flex;
             align-items: center;
@@ -90,15 +87,10 @@
             border-radius: 40px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
         }
 
         .logout-btn {
             background: #ef4444;
-        }
-
-        .login-btn:hover, .logout-btn:hover {
-            transform: translateY(-2px);
         }
 
         .nav-links {
@@ -124,7 +116,7 @@
             color: white;
         }
 
-        /* Login Modal */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -153,6 +145,43 @@
             margin: 10px 0;
             border: 2px solid #e2e8f0;
             border-radius: 20px;
+        }
+
+        /* Certificate Modal */
+        .certificate-content {
+            max-width: 600px;
+            background: linear-gradient(135deg, #fff9e6, #fff4d4);
+            border: 10px double #d4af37;
+        }
+
+        .certificate-title {
+            font-size: 28px;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .certificate-text {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .certificate-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .certificate-score {
+            font-size: 24px;
+            color: #667eea;
+            margin: 15px 0;
+        }
+
+        .download-cert-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            margin-top: 20px;
         }
 
         .welcome-banner {
@@ -203,7 +232,6 @@
             width: 0%;
             height: 100%;
             transition: width 0.5s;
-            border-radius: 30px;
         }
 
         .stats-grid {
@@ -227,124 +255,41 @@
             color: #667eea;
         }
 
-        /* Keep existing calculator styles */
-        .two-columns {
-            display: flex;
-            gap: 35px;
-            flex-wrap: wrap;
-        }
-
-        .diagram-box {
-            flex: 1;
-            min-width: 280px;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 28px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .calculator-box {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .input-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 20px;
-            font-size: 15px;
-        }
-
-        .calc-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 60px;
+        /* Certificate Badge */
+        .cert-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #f5cb5c);
+            padding: 8px 16px;
+            border-radius: 30px;
+            color: #333;
             font-weight: bold;
+            margin-top: 15px;
             cursor: pointer;
-            margin: 20px 0;
+            transition: all 0.3s;
         }
 
-        .result {
-            background: #ecfdf5;
-            padding: 20px;
-            border-radius: 24px;
-            text-align: center;
+        .cert-badge:hover {
+            transform: scale(1.05);
         }
 
-        .volume {
-            font-size: 28px;
-            font-weight: 800;
-            color: #065f46;
-        }
-
-        .quiz-container {
-            background: #f8fafc;
-            border-radius: 28px;
-            padding: 25px;
-        }
-
-        .quiz-question {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .feedback {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 12px;
-            display: none;
-        }
-
-        .feedback.correct {
-            background: #d1fae5;
-            color: #065f46;
-            display: block;
-        }
-
-        .feedback.wrong {
-            background: #fee2e2;
-            color: #991b1b;
-            display: block;
-        }
-
-        .score-area {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 15px 25px;
-            border-radius: 60px;
-            color: white;
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 25px;
-            color: rgba(255,255,255,0.9);
-            font-size: 12px;
-        }
+        /* Keep existing calculator styles */
+        .two-columns { display: flex; gap: 35px; flex-wrap: wrap; }
+        .diagram-box { flex: 1; min-width: 280px; background: #f8fafc; border-radius: 28px; padding: 25px; text-align: center; }
+        .calculator-box { flex: 1; min-width: 300px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 20px; }
+        .calc-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 60px; font-weight: bold; cursor: pointer; margin: 20px 0; }
+        .result { background: #ecfdf5; padding: 20px; border-radius: 24px; text-align: center; }
+        .volume { font-size: 28px; font-weight: 800; color: #065f46; }
+        .quiz-container { background: #f8fafc; border-radius: 28px; padding: 25px; }
+        .quiz-question { background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px; }
+        .option { display: flex; align-items: center; gap: 12px; padding: 10px; cursor: pointer; }
+        .feedback { margin-top: 10px; padding: 10px; border-radius: 12px; display: none; }
+        .feedback.correct { background: #d1fae5; color: #065f46; display: block; }
+        .feedback.wrong { background: #fee2e2; color: #991b1b; display: block; }
+        .score-area { background: linear-gradient(135deg, #667eea, #764ba2); padding: 15px 25px; border-radius: 60px; color: white; text-align: center; }
+        footer { text-align: center; margin-top: 25px; color: rgba(255,255,255,0.9); font-size: 12px; }
 
         @media (max-width: 750px) {
             .two-columns { flex-direction: column; }
@@ -378,7 +323,24 @@
             <h3>🔐 Student Login</h3>
             <input type="text" id="studentName" placeholder="Enter your name" autocomplete="off">
             <button class="calc-btn" onclick="login()" style="margin-top: 10px;">Start Learning</button>
-            <button class="close-modal" onclick="closeLoginModal()" style="margin-top: 10px; padding: 10px 20px; background: #e2e8f0; border: none; border-radius: 40px;">Cancel</button>
+            <button onclick="closeLoginModal()" style="margin-top: 10px; padding: 10px 20px; background: #e2e8f0; border: none; border-radius: 40px;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="certModal" class="modal" onclick="closeCertModal()">
+        <div class="modal-content certificate-content" onclick="event.stopPropagation()" id="certificateContent">
+            <div class="certificate-title">🎓 CERTIFICATE OF ACHIEVEMENT 🎓</div>
+            <div class="certificate-text">This certificate is proudly presented to</div>
+            <div class="certificate-name" id="certName">Student Name</div>
+            <div class="certificate-text">for successfully completing</div>
+            <div class="certificate-text"><strong>Geometry Mastery Quiz</strong></div>
+            <div class="certificate-score" id="certScore">Score: 5/5</div>
+            <div class="certificate-text">with outstanding performance in</div>
+            <div class="certificate-text">Cone • Sphere • Cylinder Geometry</div>
+            <div class="certificate-text" style="margin-top: 20px; font-size: 12px;">Date: <span id="certDate"></span></div>
+            <button class="calc-btn download-cert-btn" onclick="downloadCertificate()">📥 Download Certificate</button>
+            <button onclick="closeCertModal()" style="margin-top: 10px; padding: 10px 20px; background: #e2e8f0; border: none; border-radius: 40px;">Close</button>
         </div>
     </div>
 
@@ -386,7 +348,7 @@
     <div id="starPage" class="card active-calculator">
         <div class="welcome-banner">
             <h2>✨ WELCOME TO DEE ACADEMY ✨</h2>
-            <p id="welcomeMessage">Please login to track your progress!</p>
+            <p id="welcomeMessage">Please login to track your progress and earn certificates!</p>
         </div>
 
         <div id="progressSection" class="progress-section" style="display: none;">
@@ -397,7 +359,7 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number" id="quizScore">0</div>
-                    <div>Quiz Score</div>
+                    <div>Last Score</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="bestScore">0</div>
@@ -408,28 +370,29 @@
                     <div>Quizzes Taken</div>
                 </div>
             </div>
+            <div class="cert-badge" id="certBadge" style="display: none;" onclick="showCertificate()">🎓 View/Download Certificate 🎓</div>
         </div>
 
         <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div class="feature-card" onclick="showPage('cone')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+            <div onclick="showPage('cone')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
                 <div style="font-size: 64px;">🍦</div>
                 <h3>Cone Calculator</h3>
                 <p>Calculate volume using radius & height</p>
             </div>
-            <div class="feature-card" onclick="showPage('sphere')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+            <div onclick="showPage('sphere')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
                 <div style="font-size: 64px;">⚪</div>
                 <h3>Sphere Calculator</h3>
                 <p>Calculate volume and surface area</p>
             </div>
-            <div class="feature-card" onclick="showPage('cylinder')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+            <div onclick="showPage('cylinder')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
                 <div style="font-size: 64px;">🥫</div>
                 <h3>Cylinder Calculator</h3>
                 <p>Calculate volume, lateral & total area</p>
             </div>
-            <div class="feature-card" onclick="showPage('quiz')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+            <div onclick="showPage('quiz')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
                 <div style="font-size: 64px;">📝</div>
                 <h3>Self Assessment</h3>
-                <p>Test your knowledge with 5 questions</p>
+                <p>Test your knowledge & earn certificate!</p>
             </div>
         </div>
     </div>
@@ -523,10 +486,10 @@
             <button class="calc-btn" onclick="resetQuiz()" style="width: auto; padding: 10px 20px; margin: 0;">🔄 Reset Quiz</button>
         </div>
         <div class="quiz-container" id="quizContainer"></div>
-        <button class="calc-btn" onclick="saveQuizScore()" id="saveScoreBtn">💾 Save My Score</button>
+        <button class="calc-btn" onclick="saveQuizScore()" id="saveScoreBtn" style="background: linear-gradient(135deg, #10b981, #059669);">💾 Save My Score & Earn Certificate</button>
     </div>
 
-    <footer>⭐ Dee Academy | Student Login & Progress Tracking | Master Mathematics with Confidence ⭐</footer>
+    <footer>⭐ Dee Academy | Learn • Quiz • Earn Certificates | Master Mathematics with Confidence ⭐</footer>
 </div>
 
 <script>
@@ -534,13 +497,11 @@
     let currentStudent = null;
     let studentData = {};
 
-    // Load saved students from localStorage
     function loadStudentData() {
         const saved = localStorage.getItem('dee_academy_students');
         if (saved) {
             studentData = JSON.parse(saved);
         }
-        // Check if returning student
         const lastStudent = localStorage.getItem('dee_academy_current');
         if (lastStudent && studentData[lastStudent]) {
             currentStudent = lastStudent;
@@ -565,7 +526,9 @@
                 quizScore: 0,
                 bestScore: 0,
                 quizzesTaken: 0,
-                totalScore: 0
+                totalScore: 0,
+                lastScore: 0,
+                certificateEarned: false
             };
             saveStudentData();
         }
@@ -592,7 +555,7 @@
             authBtn.innerHTML = 'Logout';
             authBtn.className = 'logout-btn';
             authBtn.onclick = logout;
-            if (welcomeMessage) welcomeMessage.innerHTML = `Welcome back, ${currentStudent}! 👋 Continue your learning journey!`;
+            if (welcomeMessage) welcomeMessage.innerHTML = `Welcome back, ${currentStudent}! 👋 Earn your certificate by scoring 5/5! 🎓`;
             if (progressSection) progressSection.style.display = 'block';
             updateProgressDisplay();
         } else {
@@ -600,7 +563,7 @@
             authBtn.innerHTML = 'Login';
             authBtn.className = 'login-btn';
             authBtn.onclick = openLoginModal;
-            if (welcomeMessage) welcomeMessage.innerHTML = 'Please login to track your progress! 📊';
+            if (welcomeMessage) welcomeMessage.innerHTML = 'Please login to track your progress and earn certificates! 🎓';
             if (progressSection) progressSection.style.display = 'none';
         }
     }
@@ -608,29 +571,117 @@
     function updateProgressDisplay() {
         if (!currentStudent || !studentData[currentStudent]) return;
         const data = studentData[currentStudent];
-        document.getElementById('quizScore').innerHTML = data.quizScore || 0;
+        document.getElementById('quizScore').innerHTML = data.lastScore || 0;
         document.getElementById('bestScore').innerHTML = data.bestScore || 0;
         document.getElementById('quizzesTaken').innerHTML = data.quizzesTaken || 0;
-        const percent = data.quizzesTaken > 0 ? ((data.bestScore || 0) / 5) * 100 : 0;
+        const percent = data.bestScore ? (data.bestScore / 5) * 100 : 0;
         document.getElementById('progressBar').style.width = percent + '%';
+        
+        const certBadge = document.getElementById('certBadge');
+        if (data.bestScore === 5) {
+            certBadge.style.display = 'inline-block';
+        } else {
+            certBadge.style.display = 'none';
+        }
     }
 
     function saveQuizScore() {
         if (!currentStudent) {
-            alert('Please login first to save your score! 🔐');
+            alert('Please login first to save your score and earn certificates! 🎓');
             openLoginModal();
             return;
         }
         const currentScore = parseInt(document.getElementById('scoreDisplay').innerHTML);
         const data = studentData[currentStudent];
-        data.quizScore = currentScore;
+        data.lastScore = currentScore;
         data.quizzesTaken = (data.quizzesTaken || 0) + 1;
         if (currentScore > (data.bestScore || 0)) {
             data.bestScore = currentScore;
         }
         saveStudentData();
         updateProgressDisplay();
-        alert(`✅ Score saved! You scored ${currentScore}/5 on this attempt.`);
+        
+        if (currentScore === 5) {
+            alert(`🎉 PERFECT SCORE! ${currentStudent}, you have earned a Certificate of Achievement! 🎓`);
+        } else {
+            alert(`✅ Score saved! You scored ${currentScore}/5. Try for 5/5 to earn a certificate! 🎓`);
+        }
+    }
+
+    function showCertificate() {
+        if (!currentStudent) return;
+        const data = studentData[currentStudent];
+        if (data.bestScore !== 5) {
+            alert(`🎓 You need a perfect score (5/5) to earn the certificate! Your best score is ${data.bestScore}/5. Keep practicing! 💪`);
+            return;
+        }
+        document.getElementById('certName').innerHTML = currentStudent;
+        document.getElementById('certScore').innerHTML = `Score: ${data.bestScore}/5`;
+        const today = new Date();
+        document.getElementById('certDate').innerHTML = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('certModal').style.display = 'flex';
+    }
+
+    function closeCertModal() {
+        document.getElementById('certModal').style.display = 'none';
+    }
+
+    function downloadCertificate() {
+        const certContent = document.getElementById('certificateContent');
+        const originalContent = certContent.innerHTML;
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html>
+            <head>
+                <title>Dee Academy Certificate - ${currentStudent}</title>
+                <style>
+                    body {
+                        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                        background: #f0f0f0;
+                        margin: 0;
+                        padding: 20px;
+                    }
+                    .certificate {
+                        background: linear-gradient(135deg, #fff9e6, #fff4d4);
+                        border: 15px double #d4af37;
+                        border-radius: 20px;
+                        padding: 50px;
+                        max-width: 700px;
+                        text-align: center;
+                        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                    }
+                    .certificate h1 { color: #d4af37; font-size: 32px; margin-bottom: 30px; }
+                    .certificate h2 { font-size: 36px; margin: 20px 0; color: #333; }
+                    .certificate .score { font-size: 28px; color: #667eea; margin: 20px 0; }
+                    .certificate .date { margin-top: 30px; font-size: 14px; color: #666; }
+                    @media print {
+                        body { background: white; padding: 0; }
+                        .certificate { box-shadow: none; }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="certificate">
+                    <h1>🎓 CERTIFICATE OF ACHIEVEMENT 🎓</h1>
+                    <p>This certificate is proudly presented to</p>
+                    <h2>${currentStudent}</h2>
+                    <p>for successfully completing the</p>
+                    <h3>Geometry Mastery Quiz</h3>
+                    <div class="score">Score: ${studentData[currentStudent].bestScore}/5</div>
+                    <p>with outstanding performance in</p>
+                    <p><strong>Cone • Sphere • Cylinder Geometry</strong></p>
+                    <div class="date">Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <div style="margin-top: 30px;">⭐ Dee Academy ⭐</div>
+                </div>
+                <script>window.print();<\/script>
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
     }
 
     function openLoginModal() {
