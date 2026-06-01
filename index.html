@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dee Academy | Master Geometry</title>
+    <title>Dee Academy | Student Portal</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', 'Noto Sans Sinhala', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             min-height: 100vh;
             padding: 30px 20px;
@@ -20,7 +20,8 @@
             overflow-x: hidden;
         }
 
-        /* Animated Stars Background */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap');
+
         body::before {
             content: '';
             position: fixed;
@@ -32,8 +33,7 @@
                 radial-gradient(2px 2px at 10% 20%, white, rgba(0,0,0,0)),
                 radial-gradient(3px 3px at 40% 60%, white, rgba(0,0,0,0)),
                 radial-gradient(1px 1px at 70% 30%, white, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 85% 80%, white, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 25% 90%, white, rgba(0,0,0,0));
+                radial-gradient(2px 2px at 85% 80%, white, rgba(0,0,0,0));
             background-size: 200px 200px;
             background-repeat: no-repeat;
             opacity: 0.6;
@@ -67,6 +67,40 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
+        /* Login/User Info Section */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border-radius: 40px;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .login-btn, .logout-btn {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+        }
+
+        .login-btn:hover, .logout-btn:hover {
+            transform: translateY(-2px);
+        }
+
         .nav-links {
             display: flex;
             gap: 10px;
@@ -88,93 +122,59 @@
         .nav-btn.active {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
 
-        .nav-btn:hover:not(.active) {
-            background: #cbd5e1;
-            transform: translateY(-2px);
-        }
-
-        /* Header Section */
-        .header-section {
-            display: flex;
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
         }
 
-        .logo-header {
-            flex: 0 0 auto;
-            text-align: center;
-            background: rgba(255,255,255,0.95);
-            padding: 15px 25px;
+        .modal-content {
+            background: white;
             border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            animation: glowPulse 2s ease-in-out infinite;
+            padding: 35px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
         }
 
-        .logo-img {
-            max-width: 100px;
-            height: auto;
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e2e8f0;
             border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-text-small {
-            font-size: 14px;
-            font-weight: bold;
-            color: #667eea;
-            margin-top: 5px;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(102,126,234,0.3)); }
-            50% { filter: drop-shadow(0 0 15px rgba(102,126,234,0.6)); }
         }
 
         .welcome-banner {
-            flex: 1;
             background: linear-gradient(135deg, #fef08a, #fde047);
             padding: 18px 30px;
             border-radius: 60px;
             text-align: center;
-            animation: bounce 2s ease-in-out infinite;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            margin-bottom: 30px;
         }
 
         .welcome-banner h2 {
             font-size: 28px;
             font-weight: 800;
             color: #854d0e;
-            letter-spacing: 2px;
         }
 
-        .welcome-banner p {
-            font-size: 13px;
-            color: #a16207;
-            margin-top: 5px;
-        }
-
-        /* Main Card */
+        /* Cards */
         .card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 40px;
             padding: 35px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            animation: fadeInUp 0.6s ease-out;
             display: none;
         }
 
@@ -182,195 +182,119 @@
             display: block;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Progress Section */
+        .progress-section {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            border-radius: 28px;
+            padding: 25px;
+            margin-bottom: 30px;
         }
 
-        /* Star Page Styles */
-        .stars-container {
-            text-align: center;
-        }
-
-        .main-title {
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .sub-title {
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 18px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        .progress-bar-container {
+            background: #e2e8f0;
             border-radius: 30px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            height: 20px;
+            overflow: hidden;
+            margin: 15px 0;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 64px;
-            margin-bottom: 15px;
-        }
-
-        .feature-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
-
-        .feature-desc {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .feature-badge {
-            display: inline-block;
-            background: #10b981;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-top: 15px;
-        }
-
-        .stats-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .progress-bar {
+            background: linear-gradient(135deg, #10b981, #059669);
+            width: 0%;
+            height: 100%;
+            transition: width 0.5s;
             border-radius: 30px;
-            padding: 30px;
-            margin: 40px 0;
+        }
+
+        .stats-grid {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
-        .stat-item {
+        .stat-card {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
             text-align: center;
-            color: white;
         }
 
         .stat-number {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
+            color: #667eea;
         }
 
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #fef08a, #fde047);
-            border-radius: 30px;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .cta-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: #854d0e;
-            margin-bottom: 15px;
-        }
-
-        .cta-text {
-            color: #a16207;
-            margin-bottom: 25px;
-        }
-
-        .cta-buttons {
+        /* Keep existing calculator styles */
+        .two-columns {
             display: flex;
-            gap: 15px;
-            justify-content: center;
+            gap: 35px;
             flex-wrap: wrap;
         }
 
-        .cta-btn {
-            padding: 12px 30px;
-            background: #854d0e;
+        .diagram-box {
+            flex: 1;
+            min-width: 280px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 28px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .calculator-box {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 15px;
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
             border-radius: 60px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            margin: 20px 0;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .result {
+            background: #ecfdf5;
+            padding: 20px;
+            border-radius: 24px;
+            text-align: center;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .social-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        @media (max-width: 750px) {
-            .main-title { font-size: 32px; }
-            .header-section { flex-direction: column; }
-            .welcome-banner h2 { font-size: 20px; }
-            .nav-btn { padding: 8px 12px; font-size: 12px; }
-            .feature-grid { grid-template-columns: 1fr; }
-        }
-
-        /* Keep existing calculator styles */
-        .tagline, .two-columns, .diagram-box, .calculator-box, .result, .formula, footer {
-            /* Existing styles */
+        .volume {
+            font-size: 28px;
+            font-weight: 800;
+            color: #065f46;
         }
 
         .quiz-container {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            background: #f8fafc;
             border-radius: 28px;
             padding: 25px;
-            margin-bottom: 25px;
         }
 
         .quiz-question {
@@ -378,13 +302,6 @@
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .question-text {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
         }
 
         .option {
@@ -414,15 +331,6 @@
             display: block;
         }
 
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
         .score-area {
             background: linear-gradient(135deg, #667eea, #764ba2);
             padding: 15px 25px;
@@ -431,18 +339,16 @@
             text-align: center;
         }
 
-        .reset-quiz-btn {
-            background: #f97316;
-            padding: 12px 24px;
-            width: auto;
-            margin: 0;
-        }
-
         footer {
             text-align: center;
             margin-top: 25px;
             color: rgba(255,255,255,0.9);
             font-size: 12px;
+        }
+
+        @media (max-width: 750px) {
+            .two-columns { flex-direction: column; }
+            .welcome-banner h2 { font-size: 20px; }
         }
     </style>
 </head>
@@ -451,92 +357,85 @@
     <!-- Navigation Bar -->
     <div class="nav-bar">
         <div style="font-weight: bold; color: #667eea;">⭐ Dee Academy</div>
-        <div class="nav-links">
-            <button class="nav-btn active" onclick="showPage('star')">🏠 Home</button>
-            <button class="nav-btn" onclick="showPage('cone')">🍦 Cone</button>
-            <button class="nav-btn" onclick="showPage('sphere')">⚪ Sphere</button>
-            <button class="nav-btn" onclick="showPage('cylinder')">🥫 Cylinder</button>
-            <button class="nav-btn" onclick="showPage('quiz')">📝 Quiz</button>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <div class="nav-links">
+                <button class="nav-btn" onclick="showPage('star')">🏠 Home</button>
+                <button class="nav-btn" onclick="showPage('cone')">🍦 Cone</button>
+                <button class="nav-btn" onclick="showPage('sphere')">⚪ Sphere</button>
+                <button class="nav-btn" onclick="showPage('cylinder')">🥫 Cylinder</button>
+                <button class="nav-btn" onclick="showPage('quiz')">📝 Quiz</button>
+            </div>
+            <div id="userInfoSection" class="user-info">
+                <span id="userDisplay" class="user-name">Guest</span>
+                <button id="authBtn" class="login-btn" onclick="openLoginModal()">Login</button>
+            </div>
         </div>
     </div>
 
-    <!-- STAR PAGE (HOME) -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" onclick="closeLoginModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>🔐 Student Login</h3>
+            <input type="text" id="studentName" placeholder="Enter your name" autocomplete="off">
+            <button class="calc-btn" onclick="login()" style="margin-top: 10px;">Start Learning</button>
+            <button class="close-modal" onclick="closeLoginModal()" style="margin-top: 10px; padding: 10px 20px; background: #e2e8f0; border: none; border-radius: 40px;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- STAR PAGE -->
     <div id="starPage" class="card active-calculator">
-        <div class="stars-container">
-            <div class="main-title">⭐ DEE ACADEMY ⭐</div>
-            <div class="sub-title">Master Mathematics with Confidence</div>
+        <div class="welcome-banner">
+            <h2>✨ WELCOME TO DEE ACADEMY ✨</h2>
+            <p id="welcomeMessage">Please login to track your progress!</p>
+        </div>
 
-            <div class="feature-grid">
-                <div class="feature-card" onclick="showPage('cone')">
-                    <div class="feature-icon">🍦</div>
-                    <div class="feature-title">Cone Calculator</div>
-                    <div class="feature-desc">Calculate volume using radius & height or slant height. Learn Pythagoras theorem!</div>
-                    <div class="feature-badge">Try Now →</div>
+        <div id="progressSection" class="progress-section" style="display: none;">
+            <h3>📊 Your Learning Progress</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="quizScore">0</div>
+                    <div>Quiz Score</div>
                 </div>
-
-                <div class="feature-card" onclick="showPage('sphere')">
-                    <div class="feature-icon">⚪</div>
-                    <div class="feature-title">Sphere Calculator</div>
-                    <div class="feature-desc">Calculate volume and surface area. Perfect for balls, planets, and bubbles!</div>
-                    <div class="feature-badge">Try Now →</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="bestScore">0</div>
+                    <div>Best Score</div>
                 </div>
-
-                <div class="feature-card" onclick="showPage('cylinder')">
-                    <div class="feature-icon">🥫</div>
-                    <div class="feature-title">Cylinder Calculator</div>
-                    <div class="feature-desc">Calculate volume, lateral area, and total surface area. Real-world examples!</div>
-                    <div class="feature-badge">Try Now →</div>
-                </div>
-
-                <div class="feature-card" onclick="showPage('quiz')">
-                    <div class="feature-icon">📝</div>
-                    <div class="feature-title">Self Assessment Quiz</div>
-                    <div class="feature-desc">Test your knowledge with 5 questions. Get instant feedback and explanations!</div>
-                    <div class="feature-badge">Take Quiz →</div>
+                <div class="stat-card">
+                    <div class="stat-number" id="quizzesTaken">0</div>
+                    <div>Quizzes Taken</div>
                 </div>
             </div>
+        </div>
 
-            <div class="stats-section">
-                <div class="stat-item">
-                    <div class="stat-number">4+</div>
-                    <div class="stat-label">Interactive Tools</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Free to Use</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Real-time</div>
-                    <div class="stat-label">Calculations</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Student</div>
-                    <div class="stat-label">Friendly</div>
-                </div>
+        <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div class="feature-card" onclick="showPage('cone')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+                <div style="font-size: 64px;">🍦</div>
+                <h3>Cone Calculator</h3>
+                <p>Calculate volume using radius & height</p>
             </div>
-
-            <div class="cta-section">
-                <div class="cta-title">✨ Start Learning Now ✨</div>
-                <div class="cta-text">Choose any calculator above or test your knowledge with our quiz!</div>
-                <div class="cta-buttons">
-                    <button class="cta-btn" onclick="showPage('cone')">🍦 Cone Calculator</button>
-                    <button class="cta-btn" onclick="showPage('sphere')">⚪ Sphere Calculator</button>
-                    <button class="cta-btn" onclick="showPage('cylinder')">🥫 Cylinder Calculator</button>
-                    <button class="cta-btn" onclick="showPage('quiz')">📝 Take Quiz</button>
-                </div>
+            <div class="feature-card" onclick="showPage('sphere')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+                <div style="font-size: 64px;">⚪</div>
+                <h3>Sphere Calculator</h3>
+                <p>Calculate volume and surface area</p>
             </div>
-
-            <div class="social-links">
-                <div class="social-icon" onclick="alert('📧 Contact: deeacademy@example.com')">📧</div>
-                <div class="social-icon" onclick="alert('📱 Follow us on social media! Coming soon.')">📱</div>
-                <div class="social-icon" onclick="alert('⭐ Rate Dee Academy: 5 stars! Thank you!')">⭐</div>
+            <div class="feature-card" onclick="showPage('cylinder')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+                <div style="font-size: 64px;">🥫</div>
+                <h3>Cylinder Calculator</h3>
+                <p>Calculate volume, lateral & total area</p>
+            </div>
+            <div class="feature-card" onclick="showPage('quiz')" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 30px; padding: 30px; text-align: center; cursor: pointer;">
+                <div style="font-size: 64px;">📝</div>
+                <h3>Self Assessment</h3>
+                <p>Test your knowledge with 5 questions</p>
             </div>
         </div>
     </div>
 
-    <!-- CONE CALCULATOR SECTION (same as before) -->
+    <!-- CONE CALCULATOR -->
     <div id="coneSection" class="card">
-        <div class="tagline">Learn mathematics with Dee Academy</div>
         <div class="two-columns">
             <div class="diagram-box">
                 <h3>📐 Cone Geometry</h3>
@@ -544,11 +443,11 @@
                     <polygon points="150,40 40,230 260,230" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
                     <ellipse cx="150" cy="230" rx="110" ry="22" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
                     <line x1="150" y1="230" x2="260" y2="230" stroke="#ef4444" stroke-width="3"/>
-                    <text x="190" y="218" fill="#ef4444" font-size="12" font-weight="bold">r</text>
+                    <text x="190" y="218" fill="#ef4444" font-size="12">r</text>
                     <line x1="150" y1="40" x2="150" y2="230" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,4"/>
-                    <text x="155" y="135" fill="#3b82f6" font-size="12" font-weight="bold">h</text>
+                    <text x="155" y="135" fill="#3b82f6" font-size="12">h</text>
                     <line x1="150" y1="40" x2="260" y2="230" stroke="#10b981" stroke-width="2.5"/>
-                    <text x="215" y="120" fill="#10b981" font-size="12" font-weight="bold">L</text>
+                    <text x="215" y="120" fill="#10b981" font-size="12">L</text>
                 </svg>
             </div>
             <div class="calculator-box">
@@ -558,21 +457,19 @@
                 <div class="input-group"><label>📦 Unit:</label><select id="coneUnit"><option value="cm³">cm³</option><option value="m³">m³</option></select></div>
                 <button class="calc-btn" onclick="calcCone()">Calculate Volume 🧮</button>
                 <div class="result"><div>📦 Volume:</div><div class="volume" id="coneVolume">---</div></div>
-                <div class="formula">📐 Formula: V = ⅓ × π × r² × h</div>
             </div>
         </div>
     </div>
 
-    <!-- SPHERE CALCULATOR SECTION -->
+    <!-- SPHERE CALCULATOR -->
     <div id="sphereSection" class="card">
-        <div class="tagline">Learn mathematics with Dee Academy</div>
         <div class="two-columns">
             <div class="diagram-box">
                 <h3>⚪ Sphere Geometry</h3>
                 <svg viewBox="0 0 300 280" width="100%" height="auto">
                     <circle cx="150" cy="140" r="90" fill="#e0e7ff" stroke="#667eea" stroke-width="3"/>
                     <line x1="150" y1="50" x2="150" y2="230" stroke="#ef4444" stroke-width="3"/>
-                    <text x="155" y="145" fill="#ef4444" font-size="14" font-weight="bold">r</text>
+                    <text x="155" y="145" fill="#ef4444" font-size="14">r</text>
                 </svg>
             </div>
             <div class="calculator-box">
@@ -581,15 +478,13 @@
                 <div class="input-group"><label>📦 Unit:</label><select id="sphereUnit"><option value="cm³">cm³</option><option value="m³">m³</option></select></div>
                 <button class="calc-btn" onclick="calcSphere()">Calculate Volume & Area 🧮</button>
                 <div class="result"><div>📦 Volume:</div><div class="volume" id="sphereVolume">---</div>
-                <div style="margin-top: 12px;">🌀 Surface Area:</div><div class="volume" id="sphereArea">---</div></div>
-                <div class="formula">📐 Formulas: V = ⁴⁄₃ × π × r³ &nbsp;|&nbsp; A = 4 × π × r²</div>
+                <div style="margin-top:12px;">🌀 Surface Area:</div><div class="volume" id="sphereArea">---</div></div>
             </div>
         </div>
     </div>
 
-    <!-- CYLINDER CALCULATOR SECTION -->
+    <!-- CYLINDER CALCULATOR -->
     <div id="cylinderSection" class="card">
-        <div class="tagline">Learn mathematics with Dee Academy</div>
         <div class="two-columns">
             <div class="diagram-box">
                 <h3>🥫 Cylinder Geometry</h3>
@@ -598,9 +493,9 @@
                     <ellipse cx="150" cy="50" rx="90" ry="25" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
                     <ellipse cx="150" cy="220" rx="90" ry="25" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
                     <line x1="150" y1="50" x2="240" y2="50" stroke="#ef4444" stroke-width="3"/>
-                    <text x="180" y="45" fill="#ef4444" font-size="12" font-weight="bold">r</text>
+                    <text x="180" y="45" fill="#ef4444" font-size="12">r</text>
                     <line x1="150" y1="50" x2="150" y2="220" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,4"/>
-                    <text x="155" y="135" fill="#3b82f6" font-size="12" font-weight="bold">h</text>
+                    <text x="155" y="135" fill="#3b82f6" font-size="12">h</text>
                 </svg>
             </div>
             <div class="calculator-box">
@@ -610,188 +505,172 @@
                 <div class="input-group"><label>📦 Unit:</label><select id="cylinderUnit"><option value="cm³">cm³</option><option value="m³">m³</option></select></div>
                 <button class="calc-btn" onclick="calcCylinder()">Calculate Volume & Area 🧮</button>
                 <div class="result"><div>📦 Volume:</div><div class="volume" id="cylinderVolume">---</div>
-                <div style="margin-top: 12px;">🧾 Lateral Area:</div><div class="volume" id="cylinderLateral">---</div>
-                <div style="margin-top: 12px;">🔘 Total Area:</div><div class="volume" id="cylinderTotal">---</div></div>
-                <div class="formula">📐 Formulas: V = π × r² × h &nbsp;|&nbsp; A_total = 2πr(h + r)</div>
+                <div style="margin-top:12px;">🧾 Lateral Area:</div><div class="volume" id="cylinderLateral">---</div>
+                <div style="margin-top:12px;">🔘 Total Area:</div><div class="volume" id="cylinderTotal">---</div></div>
             </div>
         </div>
     </div>
 
     <!-- QUIZ SECTION -->
     <div id="quizSection" class="card">
-        <div class="quiz-header">
+        <div class="quiz-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;">
             <h1>📝 Self Assessment Quiz</h1>
             <div class="score-area">
                 <div>Your Score</div>
-                <div class="score-number" id="scoreDisplay">0</div>
+                <div class="score-number" id="scoreDisplay" style="font-size: 28px; font-weight: 800;">0</div>
                 <div>out of 5</div>
             </div>
-            <button class="calc-btn reset-quiz-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+            <button class="calc-btn" onclick="resetQuiz()" style="width: auto; padding: 10px 20px; margin: 0;">🔄 Reset Quiz</button>
         </div>
         <div class="quiz-container" id="quizContainer"></div>
-        <div class="formula">🎯 Test your knowledge! Select the correct answer for each question.</div>
+        <button class="calc-btn" onclick="saveQuizScore()" id="saveScoreBtn">💾 Save My Score</button>
     </div>
 
-    <footer>⭐ Dee Academy | Master Mathematics with Confidence | Cone • Sphere • Cylinder • Quiz ⭐</footer>
+    <footer>⭐ Dee Academy | Student Login & Progress Tracking | Master Mathematics with Confidence ⭐</footer>
 </div>
 
 <script>
+    // Student Data System
+    let currentStudent = null;
+    let studentData = {};
+
+    // Load saved students from localStorage
+    function loadStudentData() {
+        const saved = localStorage.getItem('dee_academy_students');
+        if (saved) {
+            studentData = JSON.parse(saved);
+        }
+        // Check if returning student
+        const lastStudent = localStorage.getItem('dee_academy_current');
+        if (lastStudent && studentData[lastStudent]) {
+            currentStudent = lastStudent;
+            updateUIForStudent();
+        }
+    }
+
+    function saveStudentData() {
+        localStorage.setItem('dee_academy_students', JSON.stringify(studentData));
+    }
+
+    function login() {
+        const name = document.getElementById('studentName').value.trim();
+        if (!name) {
+            alert('Please enter your name!');
+            return;
+        }
+        currentStudent = name;
+        localStorage.setItem('dee_academy_current', name);
+        if (!studentData[name]) {
+            studentData[name] = {
+                quizScore: 0,
+                bestScore: 0,
+                quizzesTaken: 0,
+                totalScore: 0
+            };
+            saveStudentData();
+        }
+        updateUIForStudent();
+        closeLoginModal();
+        showPage('star');
+    }
+
+    function logout() {
+        currentStudent = null;
+        localStorage.removeItem('dee_academy_current');
+        updateUIForStudent();
+        showPage('star');
+    }
+
+    function updateUIForStudent() {
+        const userDisplay = document.getElementById('userDisplay');
+        const authBtn = document.getElementById('authBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const progressSection = document.getElementById('progressSection');
+        
+        if (currentStudent) {
+            userDisplay.innerHTML = `👩‍🎓 ${currentStudent}`;
+            authBtn.innerHTML = 'Logout';
+            authBtn.className = 'logout-btn';
+            authBtn.onclick = logout;
+            if (welcomeMessage) welcomeMessage.innerHTML = `Welcome back, ${currentStudent}! 👋 Continue your learning journey!`;
+            if (progressSection) progressSection.style.display = 'block';
+            updateProgressDisplay();
+        } else {
+            userDisplay.innerHTML = '👤 Guest';
+            authBtn.innerHTML = 'Login';
+            authBtn.className = 'login-btn';
+            authBtn.onclick = openLoginModal;
+            if (welcomeMessage) welcomeMessage.innerHTML = 'Please login to track your progress! 📊';
+            if (progressSection) progressSection.style.display = 'none';
+        }
+    }
+
+    function updateProgressDisplay() {
+        if (!currentStudent || !studentData[currentStudent]) return;
+        const data = studentData[currentStudent];
+        document.getElementById('quizScore').innerHTML = data.quizScore || 0;
+        document.getElementById('bestScore').innerHTML = data.bestScore || 0;
+        document.getElementById('quizzesTaken').innerHTML = data.quizzesTaken || 0;
+        const percent = data.quizzesTaken > 0 ? ((data.bestScore || 0) / 5) * 100 : 0;
+        document.getElementById('progressBar').style.width = percent + '%';
+    }
+
+    function saveQuizScore() {
+        if (!currentStudent) {
+            alert('Please login first to save your score! 🔐');
+            openLoginModal();
+            return;
+        }
+        const currentScore = parseInt(document.getElementById('scoreDisplay').innerHTML);
+        const data = studentData[currentStudent];
+        data.quizScore = currentScore;
+        data.quizzesTaken = (data.quizzesTaken || 0) + 1;
+        if (currentScore > (data.bestScore || 0)) {
+            data.bestScore = currentScore;
+        }
+        saveStudentData();
+        updateProgressDisplay();
+        alert(`✅ Score saved! You scored ${currentScore}/5 on this attempt.`);
+    }
+
+    function openLoginModal() {
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('studentName').value = '';
+    }
+
+    function closeLoginModal() {
+        document.getElementById('loginModal').style.display = 'none';
+    }
+
     // Navigation
     function showPage(page) {
-        const pages = {
-            star: document.getElementById('starPage'),
-            cone: document.getElementById('coneSection'),
-            sphere: document.getElementById('sphereSection'),
-            cylinder: document.getElementById('cylinderSection'),
-            quiz: document.getElementById('quizSection')
-        };
+        const pages = ['starPage', 'coneSection', 'sphereSection', 'cylinderSection', 'quizSection'];
+        pages.forEach(p => {
+            const el = document.getElementById(p);
+            if (el) el.classList.remove('active-calculator');
+        });
+        document.getElementById(page + (page === 'star' ? 'Page' : 'Section')).classList.add('active-calculator');
         
         const btns = document.querySelectorAll('.nav-btn');
-        
-        Object.keys(pages).forEach(key => {
-            pages[key].classList.remove('active-calculator');
-        });
-        
-        pages[page].classList.add('active-calculator');
-        
         btns.forEach(btn => btn.classList.remove('active'));
         const index = ['star', 'cone', 'sphere', 'cylinder', 'quiz'].indexOf(page);
         if (btns[index]) btns[index].classList.add('active');
         
-        if (page === 'quiz') {
-            loadQuiz();
-        }
-    }
-
-    // Quiz Questions
-    const quizQuestions = [
-        {
-            question: "What is the formula for the volume of a cone?",
-            options: ["V = πr²h", "V = ⅓ × π × r² × h", "V = ⁴⁄₃ × π × r³", "V = 2πrh"],
-            correct: 1,
-            explanation: "A cone's volume is one-third of a cylinder with the same base and height!"
-        },
-        {
-            question: "What is the formula for the surface area of a sphere?",
-            options: ["A = πr²", "A = 2πr²", "A = 4πr²", "A = ⁴⁄₃πr³"],
-            correct: 2,
-            explanation: "A sphere's surface area is 4 × π × radius²!"
-        },
-        {
-            question: "What is the formula for the volume of a cylinder?",
-            options: ["V = πr²h", "V = ⅓πr²h", "V = ⁴⁄₃πr³", "V = 2πrh"],
-            correct: 0,
-            explanation: "A cylinder's volume is base area (πr²) times height!"
-        },
-        {
-            question: "What is the relationship between slant height (L), radius (r), and height (h) in a cone?",
-            options: ["L = r + h", "L² = r² + h²", "L = √(r × h)", "L = r × h"],
-            correct: 1,
-            explanation: "Pythagoras theorem: L² = r² + h²"
-        },
-        {
-            question: "What is the volume of a sphere with radius 3 cm? (Use π ≈ 3.14)",
-            options: ["37.68 cm³", "113.04 cm³", "84.78 cm³", "150.72 cm³"],
-            correct: 1,
-            explanation: "V = ⁴⁄₃ × 3.14 × 27 = 113.04 cm³"
-        }
-    ];
-
-    let userAnswers = new Array(quizQuestions.length).fill(null);
-    let quizInitialized = false;
-
-    function loadQuiz() {
-        const container = document.getElementById('quizContainer');
-        if (!container) return;
-        
-        container.innerHTML = '';
-        
-        quizQuestions.forEach((q, index) => {
-            const questionDiv = document.createElement('div');
-            questionDiv.className = 'quiz-question';
-            
-            questionDiv.innerHTML = `
-                <div class="question-text">${index + 1}. ${q.question}</div>
-                <div class="options">
-                    ${q.options.map((opt, optIndex) => `
-                        <div class="option" onclick="selectOption(${index}, ${optIndex})">
-                            <input type="radio" name="q${index}" value="${optIndex}" ${userAnswers[index] === optIndex ? 'checked' : ''}>
-                            <label>${String.fromCharCode(65 + optIndex)}. ${opt}</label>
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="feedback" id="feedback-${index}"></div>
-            `;
-            
-            container.appendChild(questionDiv);
-            
-            if (userAnswers[index] !== null) {
-                showFeedback(index);
-            }
-        });
-        
-        updateScore();
-        quizInitialized = true;
-    }
-
-    function selectOption(questionIndex, optionIndex) {
-        userAnswers[questionIndex] = optionIndex;
-        
-        const radios = document.querySelectorAll(`input[name="q${questionIndex}"]`);
-        radios.forEach((radio, idx) => {
-            radio.checked = (idx === optionIndex);
-        });
-        
-        showFeedback(questionIndex);
-        updateScore();
-    }
-
-    function showFeedback(questionIndex) {
-        const feedbackDiv = document.getElementById(`feedback-${questionIndex}`);
-        const isCorrect = (userAnswers[questionIndex] === quizQuestions[questionIndex].correct);
-        
-        if (isCorrect) {
-            feedbackDiv.className = 'feedback correct';
-            feedbackDiv.innerHTML = `✅ Correct! ${quizQuestions[questionIndex].explanation}`;
-        } else {
-            const correctLetter = String.fromCharCode(65 + quizQuestions[questionIndex].correct);
-            const correctAnswer = quizQuestions[questionIndex].options[quizQuestions[questionIndex].correct];
-            feedbackDiv.className = 'feedback wrong';
-            feedbackDiv.innerHTML = `❌ Incorrect. Correct: ${correctLetter}. ${correctAnswer}<br>💡 ${quizQuestions[questionIndex].explanation}`;
-        }
-    }
-
-    function updateScore() {
-        let score = 0;
-        for (let i = 0; i < quizQuestions.length; i++) {
-            if (userAnswers[i] === quizQuestions[i].correct) {
-                score++;
-            }
-        }
-        const scoreDisplay = document.getElementById('scoreDisplay');
-        if (scoreDisplay) scoreDisplay.innerHTML = score;
-    }
-
-    function resetQuiz() {
-        userAnswers = new Array(quizQuestions.length).fill(null);
-        loadQuiz();
+        if (page === 'quiz') loadQuiz();
     }
 
     // Calculator Functions
     function calcCone() {
-        let r = parseFloat(document.getElementById('coneRadius').value);
-        let h = parseFloat(document.getElementById('coneHeight').value);
+        let r = parseFloat(document.getElementById('coneRadius').value) || 0;
+        let h = parseFloat(document.getElementById('coneHeight').value) || 0;
         let unit = document.getElementById('coneUnit').value;
-        if (isNaN(r)) r = 0;
-        if (isNaN(h)) h = 0;
         let volume = (1/3) * Math.PI * r * r * h;
         document.getElementById('coneVolume').innerHTML = volume.toFixed(4) + ' ' + unit;
     }
 
     function calcSphere() {
-        let r = parseFloat(document.getElementById('sphereRadius').value);
+        let r = parseFloat(document.getElementById('sphereRadius').value) || 0;
         let unit = document.getElementById('sphereUnit').value;
-        if (isNaN(r)) r = 0;
         let volume = (4/3) * Math.PI * Math.pow(r, 3);
         let area = 4 * Math.PI * Math.pow(r, 2);
         document.getElementById('sphereVolume').innerHTML = volume.toFixed(4) + ' ' + unit;
@@ -799,11 +678,9 @@
     }
 
     function calcCylinder() {
-        let r = parseFloat(document.getElementById('cylinderRadius').value);
-        let h = parseFloat(document.getElementById('cylinderHeight').value);
+        let r = parseFloat(document.getElementById('cylinderRadius').value) || 0;
+        let h = parseFloat(document.getElementById('cylinderHeight').value) || 0;
         let unit = document.getElementById('cylinderUnit').value;
-        if (isNaN(r)) r = 0;
-        if (isNaN(h)) h = 0;
         let volume = Math.PI * r * r * h;
         let lateralArea = 2 * Math.PI * r * h;
         let totalArea = 2 * Math.PI * r * (h + r);
@@ -812,22 +689,75 @@
         document.getElementById('cylinderTotal').innerHTML = totalArea.toFixed(4) + ' ' + unit.replace('³', '²');
     }
 
-    // Event listeners
-    if (document.getElementById('coneRadius')) {
-        document.getElementById('coneRadius').addEventListener('input', calcCone);
-        document.getElementById('coneHeight').addEventListener('input', calcCone);
-        document.getElementById('coneUnit').addEventListener('change', calcCone);
-        document.getElementById('sphereRadius').addEventListener('input', calcSphere);
-        document.getElementById('sphereUnit').addEventListener('change', calcSphere);
-        document.getElementById('cylinderRadius').addEventListener('input', calcCylinder);
-        document.getElementById('cylinderHeight').addEventListener('input', calcCylinder);
-        document.getElementById('cylinderUnit').addEventListener('change', calcCylinder);
+    // Quiz Functions
+    const quizQuestions = [
+        { q: "What is the formula for the volume of a cone?", options: ["V = πr²h", "V = ⅓ × π × r² × h", "V = ⁴⁄₃ × π × r³", "V = 2πrh"], correct: 1, exp: "A cone's volume is one-third of a cylinder!" },
+        { q: "What is the formula for the surface area of a sphere?", options: ["A = πr²", "A = 2πr²", "A = 4πr²", "A = ⁴⁄₃πr³"], correct: 2, exp: "A sphere's surface area is 4 × π × radius²!" },
+        { q: "What is the formula for the volume of a cylinder?", options: ["V = πr²h", "V = ⅓πr²h", "V = ⁴⁄₃πr³", "V = 2πrh"], correct: 0, exp: "Volume = base area × height!" },
+        { q: "Pythagoras theorem in a cone: L² = ?", options: ["r² + h²", "r + h", "r × h", "r² - h²"], correct: 0, exp: "L² = r² + h²" },
+        { q: "Volume of sphere with radius 3cm? (π≈3.14)", options: ["37.68 cm³", "113.04 cm³", "84.78 cm³", "150.72 cm³"], correct: 1, exp: "V = ⁴⁄₃ × 3.14 × 27 = 113.04" }
+    ];
+    let userAnswers = new Array(5).fill(null);
+
+    function loadQuiz() {
+        const container = document.getElementById('quizContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        quizQuestions.forEach((q, idx) => {
+            let div = document.createElement('div');
+            div.className = 'quiz-question';
+            div.innerHTML = `<div class="question-text">${idx+1}. ${q.q}</div>
+                <div class="options">${q.options.map((opt, oidx) => `<div class="option" onclick="selectOption(${idx}, ${oidx})"><input type="radio" name="q${idx}" ${userAnswers[idx]===oidx ? 'checked' : ''}><label>${String.fromCharCode(65+oidx)}. ${opt}</label></div>`).join('')}</div>
+                <div class="feedback" id="fb-${idx}"></div>`;
+            container.appendChild(div);
+            if (userAnswers[idx] !== null) showFeedback(idx);
+        });
+        updateScore();
     }
 
+    function selectOption(qIdx, optIdx) {
+        userAnswers[qIdx] = optIdx;
+        document.querySelectorAll(`input[name="q${qIdx}"]`).forEach((r, i) => r.checked = (i === optIdx));
+        showFeedback(qIdx);
+        updateScore();
+    }
+
+    function showFeedback(qIdx) {
+        let fb = document.getElementById(`fb-${qIdx}`);
+        let isCorrect = userAnswers[qIdx] === quizQuestions[qIdx].correct;
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = `✅ Correct! ${quizQuestions[qIdx].exp}`;
+        } else {
+            let correctAns = String.fromCharCode(65 + quizQuestions[qIdx].correct);
+            fb.className = 'feedback wrong';
+            fb.innerHTML = `❌ Incorrect. Correct: ${correctAns}. ${quizQuestions[qIdx].options[quizQuestions[qIdx].correct]}<br>💡 ${quizQuestions[qIdx].exp}`;
+        }
+    }
+
+    function updateScore() {
+        let score = userAnswers.reduce((s, a, i) => s + (a === quizQuestions[i].correct ? 1 : 0), 0);
+        document.getElementById('scoreDisplay').innerHTML = score;
+    }
+
+    function resetQuiz() {
+        userAnswers = new Array(5).fill(null);
+        loadQuiz();
+    }
+
+    // Event listeners
+    document.getElementById('coneRadius').addEventListener('input', calcCone);
+    document.getElementById('coneHeight').addEventListener('input', calcCone);
+    document.getElementById('coneUnit').addEventListener('change', calcCone);
+    document.getElementById('sphereRadius').addEventListener('input', calcSphere);
+    document.getElementById('sphereUnit').addEventListener('change', calcSphere);
+    document.getElementById('cylinderRadius').addEventListener('input', calcCylinder);
+    document.getElementById('cylinderHeight').addEventListener('input', calcCylinder);
+    document.getElementById('cylinderUnit').addEventListener('change', calcCylinder);
+
     // Initialize
-    calcCone();
-    calcSphere();
-    calcCylinder();
+    loadStudentData();
+    calcCone(); calcSphere(); calcCylinder();
 </script>
 </body>
 </html>
