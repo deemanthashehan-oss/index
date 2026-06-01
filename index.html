@@ -89,12 +89,6 @@
             transform: translateY(-2px);
         }
 
-        .coming-soon {
-            background: #fef3c7;
-            color: #92400e;
-            position: relative;
-        }
-
         /* Header Section */
         .header-section {
             display: flex;
@@ -423,9 +417,9 @@
     <div class="nav-bar">
         <div style="font-weight: bold; color: #667eea;">📐 Dee Academy</div>
         <div class="nav-links">
-            <button class="nav-btn" onclick="showCalculator('cone')">🍦 Cone Calculator</button>
-            <button class="nav-btn active" onclick="showCalculator('sphere')">⚪ Sphere Calculator</button>
-            <button class="nav-btn coming-soon" onclick="showComingSoon('cylinder')">🥫 Cylinder Calculator</button>
+            <button class="nav-btn" onclick="showCalculator('cone')">🍦 Cone</button>
+            <button class="nav-btn" onclick="showCalculator('sphere')">⚪ Sphere</button>
+            <button class="nav-btn active" onclick="showCalculator('cylinder')">🥫 Cylinder</button>
         </div>
     </div>
 
@@ -452,15 +446,12 @@
             </div>
             <div class="fun-fact-icon" id="coneFunIcon">📚</div>
         </div>
-
         <div class="tips-section">
             <div class="tip-card"><div class="tip-icon">💡</div><div class="tip-title">Tip #1</div><div class="tip-desc">Always use same units for radius and height</div></div>
             <div class="tip-card"><div class="tip-icon">⚡</div><div class="tip-title">Tip #2</div><div class="tip-desc">Slant height is always greater than radius</div></div>
             <div class="tip-card"><div class="tip-icon">🎯</div><div class="tip-title">Tip #3</div><div class="tip-desc">Volume increases with square of radius!</div></div>
         </div>
-
         <div class="tagline">Learn mathematics with Dee Academy</div>
-
         <div class="two-columns">
             <div class="diagram-box">
                 <h3>📐 Cone Geometry</h3>
@@ -480,7 +471,6 @@
                 <div class="legend-item"><div class="legend-color green"></div><span>🟢 Slant Height (L)</span></div></div>
                 <div class="pythagoras">📐 <strong>Pythagoras Theorem</strong><br>L² = r² + h² &nbsp;&nbsp;→&nbsp;&nbsp; h = √(L² - r²)</div>
             </div>
-
             <div class="calculator-box">
                 <h1>🧮 Cone Volume Calculator</h1>
                 <div class="input-group"><label>📌 Radius (r):</label><input type="number" id="coneRadius" value="5" step="0.1"></div>
@@ -494,7 +484,7 @@
     </div>
 
     <!-- SPHERE CALCULATOR SECTION -->
-    <div id="sphereSection" class="card active-calculator">
+    <div id="sphereSection" class="card">
         <div class="fun-fact" onclick="changeFunFactSphere()">
             <div class="fun-fact-text">
                 <div class="fun-fact-label">🌍 DID YOU KNOW?</div>
@@ -502,15 +492,12 @@
             </div>
             <div class="fun-fact-icon" id="sphereFunIcon">⚽</div>
         </div>
-
         <div class="tips-section">
             <div class="tip-card"><div class="tip-icon">💡</div><div class="tip-title">Tip #1</div><div class="tip-desc">Radius is half the diameter</div></div>
             <div class="tip-card"><div class="tip-icon">⚡</div><div class="tip-title">Tip #2</div><div class="tip-desc">Earth is almost a perfect sphere!</div></div>
             <div class="tip-card"><div class="tip-icon">🎯</div><div class="tip-title">Tip #3</div><div class="tip-desc">Volume grows with cube of radius</div></div>
         </div>
-
         <div class="tagline">Learn mathematics with Dee Academy</div>
-
         <div class="two-columns">
             <div class="diagram-box">
                 <h3>⚪ Sphere Geometry</h3>
@@ -518,20 +505,18 @@
                     <circle cx="150" cy="140" r="90" fill="#e0e7ff" stroke="#667eea" stroke-width="3"/>
                     <ellipse cx="150" cy="140" rx="90" ry="30" fill="none" stroke="#667eea" stroke-width="2" stroke-dasharray="5,5"/>
                     <line x1="150" y1="50" x2="150" y2="230" stroke="#ef4444" stroke-width="3"/>
-                    <text x="155" y="145" fill="#ef4444" font-size="14" font-weight="bold">r (radius)</text>
+                    <text x="155" y="145" fill="#ef4444" font-size="14" font-weight="bold">r</text>
                     <circle cx="150" cy="50" r="4" fill="#d97706"/>
                     <circle cx="150" cy="230" r="4" fill="#d97706"/>
                 </svg>
-                <div class="legend"><div class="legend-item"><div class="legend-color red"></div><span>🔴 Radius (r) - from center to surface</span></div>
-                <div class="legend-item"><div class="legend-color blue"></div><span>🔵 Diameter = 2 × radius</span></div></div>
+                <div class="legend"><div class="legend-item"><div class="legend-color red"></div><span>🔴 Radius (r) - from center to surface</span></div></div>
                 <div class="pythagoras">🌍 <strong>Amazing Fact</strong><br>Of all 3D shapes, sphere has the largest volume for the smallest surface area!</div>
             </div>
-
             <div class="calculator-box">
                 <h1>🧮 Sphere Calculator</h1>
                 <div class="input-group"><label>📌 Radius (r):</label><input type="number" id="sphereRadius" value="5" step="0.1"></div>
                 <div class="input-group"><label>📦 Unit:</label><select id="sphereUnit"><option value="cm³">cm³</option><option value="m³">m³</option></select></div>
-                <button class="calc-btn" onclick="calcSphere()">Calculate Volume & Surface Area 🧮</button>
+                <button class="calc-btn" onclick="calcSphere()">Calculate Volume & Area 🧮</button>
                 <div class="result"><div>📦 Volume:</div><div class="volume" id="sphereVolume">---</div>
                 <div style="margin-top: 12px;">🌀 Surface Area:</div><div class="volume" id="sphereArea">---</div></div>
                 <div class="formula">📐 Formulas: V = ⁴⁄₃ × π × r³ &nbsp;|&nbsp; A = 4 × π × r²</div>
@@ -539,7 +524,52 @@
         </div>
     </div>
 
-    <footer>Dee Academy | Master Geometry | Cone • Sphere • Cylinder (Coming Soon)</footer>
+    <!-- CYLINDER CALCULATOR SECTION -->
+    <div id="cylinderSection" class="card active-calculator">
+        <div class="fun-fact" onclick="changeFunFactCylinder()">
+            <div class="fun-fact-text">
+                <div class="fun-fact-label">🥫 DID YOU KNOW?</div>
+                <div class="fun-fact-content" id="cylinderFunFact">A cylinder's volume is π × r² × h - it's like stacking circles!</div>
+            </div>
+            <div class="fun-fact-icon" id="cylinderFunIcon">🥫</div>
+        </div>
+        <div class="tips-section">
+            <div class="tip-card"><div class="tip-icon">💡</div><div class="tip-title">Tip #1</div><div class="tip-desc">A soda can is a real cylinder!</div></div>
+            <div class="tip-card"><div class="tip-icon">⚡</div><div class="tip-title">Tip #2</div><div class="tip-desc">Surface area includes 2 circular bases</div></div>
+            <div class="tip-card"><div class="tip-icon">🎯</div><div class="tip-title">Tip #3</div><div class="tip-desc">Volume = Base Area × Height</div></div>
+        </div>
+        <div class="tagline">Learn mathematics with Dee Academy</div>
+        <div class="two-columns">
+            <div class="diagram-box">
+                <h3>🥫 Cylinder Geometry</h3>
+                <svg viewBox="0 0 300 280" width="100%" height="auto">
+                    <rect x="60" y="50" width="180" height="170" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+                    <ellipse cx="150" cy="50" rx="90" ry="25" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+                    <ellipse cx="150" cy="220" rx="90" ry="25" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+                    <line x1="150" y1="50" x2="240" y2="50" stroke="#ef4444" stroke-width="3"/>
+                    <text x="180" y="45" fill="#ef4444" font-size="12" font-weight="bold">r</text>
+                    <line x1="150" y1="50" x2="150" y2="220" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,4"/>
+                    <text x="155" y="135" fill="#3b82f6" font-size="12" font-weight="bold">h</text>
+                </svg>
+                <div class="legend"><div class="legend-item"><div class="legend-color red"></div><span>🔴 Radius (r)</span></div>
+                <div class="legend-item"><div class="legend-color blue"></div><span>🔵 Height (h)</span></div></div>
+                <div class="pythagoras">🥫 <strong>Real Life Examples</strong><br>Cans, pipes, glasses, batteries, and drums are cylinders!</div>
+            </div>
+            <div class="calculator-box">
+                <h1>🧮 Cylinder Calculator</h1>
+                <div class="input-group"><label>📌 Radius (r):</label><input type="number" id="cylinderRadius" value="5" step="0.1"></div>
+                <div class="input-group"><label>📏 Height (h):</label><input type="number" id="cylinderHeight" value="12" step="0.1"></div>
+                <div class="input-group"><label>📦 Unit:</label><select id="cylinderUnit"><option value="cm³">cm³</option><option value="m³">m³</option></select></div>
+                <button class="calc-btn" onclick="calcCylinder()">Calculate Volume & Area 🧮</button>
+                <div class="result"><div>📦 Volume:</div><div class="volume" id="cylinderVolume">---</div>
+                <div style="margin-top: 12px;">🧾 Lateral Surface Area:</div><div class="volume" id="cylinderLateral">---</div>
+                <div style="margin-top: 12px;">🔘 Total Surface Area:</div><div class="volume" id="cylinderTotal">---</div></div>
+                <div class="formula">📐 Formulas: V = π × r² × h &nbsp;|&nbsp; A_total = 2πr(h + r)</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>Dee Academy | Master Geometry | Cone • Sphere • Cylinder</footer>
 </div>
 
 <script>
@@ -557,10 +587,19 @@
         { fact: "Earth is almost a perfect sphere (it bulges slightly at the equator)!", icon: "🌎" },
         { fact: "Bubbles are spherical because it's the most efficient shape!", icon: "🫧" },
         { fact: "All points on a sphere are the same distance from the center!", icon: "⚽" },
-        { fact: "A sphere's volume grows with the CUBE of the radius - double the radius = 8x volume!", icon: "📈" }
+        { fact: "A sphere's volume grows with the CUBE of the radius!", icon: "📈" }
     ];
     
-    let coneIndex = 0, sphereIndex = 0;
+    // Cylinder Fun Facts
+    const cylinderFacts = [
+        { fact: "A cylinder's volume = Base Area × Height = πr²h!", icon: "🥫" },
+        { fact: "Soda cans, water tanks, and pipes are all cylinders!", icon: "🥤" },
+        { fact: "A cylinder has 2 circular faces and 1 curved face!", icon: "🔘" },
+        { fact: "The Great Bell (Big Ben) has a cylindrical shape!", icon: "🕰️" },
+        { fact: "Cylinder surface area = 2πr(h + r) - both bases included!", icon: "📐" }
+    ];
+    
+    let coneIndex = 0, sphereIndex = 0, cylinderIndex = 0;
     
     function changeFunFactCone() {
         coneIndex = (coneIndex + 1) % coneFacts.length;
@@ -574,29 +613,42 @@
         document.getElementById('sphereFunIcon').innerHTML = sphereFacts[sphereIndex].icon;
     }
     
+    function changeFunFactCylinder() {
+        cylinderIndex = (cylinderIndex + 1) % cylinderFacts.length;
+        document.getElementById('cylinderFunFact').innerHTML = cylinderFacts[cylinderIndex].fact;
+        document.getElementById('cylinderFunIcon').innerHTML = cylinderFacts[cylinderIndex].icon;
+    }
+    
     setInterval(changeFunFactCone, 8000);
     setInterval(changeFunFactSphere, 8000);
+    setInterval(changeFunFactCylinder, 8000);
     
     function showCalculator(type) {
         const coneSection = document.getElementById('coneSection');
         const sphereSection = document.getElementById('sphereSection');
+        const cylinderSection = document.getElementById('cylinderSection');
         const btns = document.querySelectorAll('.nav-btn');
+        
+        coneSection.classList.remove('active-calculator');
+        sphereSection.classList.remove('active-calculator');
+        cylinderSection.classList.remove('active-calculator');
         
         if (type === 'cone') {
             coneSection.classList.add('active-calculator');
-            sphereSection.classList.remove('active-calculator');
             btns[0].classList.add('active');
             btns[1].classList.remove('active');
+            btns[2].classList.remove('active');
         } else if (type === 'sphere') {
-            coneSection.classList.remove('active-calculator');
             sphereSection.classList.add('active-calculator');
             btns[0].classList.remove('active');
             btns[1].classList.add('active');
+            btns[2].classList.remove('active');
+        } else if (type === 'cylinder') {
+            cylinderSection.classList.add('active-calculator');
+            btns[0].classList.remove('active');
+            btns[1].classList.remove('active');
+            btns[2].classList.add('active');
         }
-    }
-    
-    function showComingSoon() {
-        alert("🚀 Cylinder Calculator coming soon! Stay tuned with Dee Academy!");
     }
     
     // Cone Calculation
@@ -616,12 +668,29 @@
         let unit = document.getElementById('sphereUnit').value;
         if (isNaN(r)) r = 0;
         if (r < 0) r = 0;
-        
         let volume = (4/3) * Math.PI * Math.pow(r, 3);
         let area = 4 * Math.PI * Math.pow(r, 2);
-        
         document.getElementById('sphereVolume').innerHTML = volume.toFixed(4) + ' ' + unit;
         document.getElementById('sphereArea').innerHTML = area.toFixed(4) + ' ' + unit.replace('³', '²');
+    }
+    
+    // Cylinder Calculation
+    function calcCylinder() {
+        let r = parseFloat(document.getElementById('cylinderRadius').value);
+        let h = parseFloat(document.getElementById('cylinderHeight').value);
+        let unit = document.getElementById('cylinderUnit').value;
+        if (isNaN(r)) r = 0;
+        if (isNaN(h)) h = 0;
+        if (r < 0) r = 0;
+        if (h < 0) h = 0;
+        
+        let volume = Math.PI * r * r * h;
+        let lateralArea = 2 * Math.PI * r * h;
+        let totalArea = 2 * Math.PI * r * (h + r);
+        
+        document.getElementById('cylinderVolume').innerHTML = volume.toFixed(4) + ' ' + unit;
+        document.getElementById('cylinderLateral').innerHTML = lateralArea.toFixed(4) + ' ' + unit.replace('³', '²');
+        document.getElementById('cylinderTotal').innerHTML = totalArea.toFixed(4) + ' ' + unit.replace('³', '²');
     }
     
     // Event listeners
@@ -630,10 +699,14 @@
     document.getElementById('coneUnit').addEventListener('change', calcCone);
     document.getElementById('sphereRadius').addEventListener('input', calcSphere);
     document.getElementById('sphereUnit').addEventListener('change', calcSphere);
+    document.getElementById('cylinderRadius').addEventListener('input', calcCylinder);
+    document.getElementById('cylinderHeight').addEventListener('input', calcCylinder);
+    document.getElementById('cylinderUnit').addEventListener('change', calcCylinder);
     
     // Initial calculations
     calcCone();
     calcSphere();
+    calcCylinder();
 </script>
 </body>
 </html>
