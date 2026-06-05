@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>π DE EM Academy | Volume of Solids + Log Calculator</title>
+    <title>DEE ACADEMY | Master Geometry & Logarithms</title>
     <style>
         * {
             margin: 0;
@@ -12,641 +12,602 @@
         }
 
         body {
-            background: linear-gradient(145deg, #f5f7fc 0%, #e9eef4 100%);
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            padding: 1.5rem;
+            font-family: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-x: hidden;
         }
 
-        /* main dashboard card */
+        /* ========== COVER PAGE STYLES ========== */
+        .cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+            transform: translateY(0);
+            overflow: hidden;
+        }
+
+        .cover-page.hide {
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        /* Animated background particles */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 50%;
+            animation: floatShape 12s infinite ease-in-out;
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-40px) rotate(10deg); opacity: 0.6; }
+        }
+
+        .cover-content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            animation: glowFadeIn 1s ease-out;
+        }
+
+        @keyframes glowFadeIn {
+            from { opacity: 0; transform: scale(0.9); filter: blur(10px);}
+            to { opacity: 1; transform: scale(1); filter: blur(0);}
+        }
+
+        /* ===== ATTRACTIVE 3D PREMIUM LOGO DESIGN on Cover ===== */
+        .cover-logo {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1.8rem auto;
+            cursor: pointer;
+        }
+        
+        /* Outer rotating ring */
+        .logo-outer-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #FFD700, #FFA500);
+            animation: rotateRing 6s linear infinite;
+            box-shadow: 0 0 20px rgba(255,215,0,0.6);
+        }
+        
+        @keyframes rotateRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Middle ring - counter rotating */
+        .logo-middle-ring {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF8C00, #FFD700, #FFA500);
+            animation: rotateRingReverse 8s linear infinite;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes rotateRingReverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        
+        /* Inner circle */
+        .logo-inner-circle {
+            position: absolute;
+            top: 26px;
+            left: 26px;
+            right: 26px;
+            bottom: 26px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #1a1a2e, #0f0c29);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(255,215,0,0.3), inset 0 0 15px rgba(255,215,0,0.2);
+        }
+        
+        .logo-symbol-main {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255,215,0,0.8);
+            letter-spacing: 2px;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes textPulse {
+            0%, 100% { opacity: 1; text-shadow: 0 0 20px rgba(255,215,0,0.5); }
+            50% { opacity: 0.95; text-shadow: 0 0 40px rgba(255,215,0,0.9); }
+        }
+        
+        .logo-text-small {
+            font-size: 0.7rem;
+            color: #FFD700;
+            letter-spacing: 4px;
+            margin-top: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        /* Sparkle effect */
+        .logo-sparkle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: sparkleAnim 2s infinite;
+        }
+        
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .cover-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFEAA7, #FFD32A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+        }
+        .cover-subtitle { font-size: 1.2rem; color: #e0e0e0; margin-bottom: 1rem; }
+        .cover-tagline { font-size: 0.9rem; color: #FFD700; margin-bottom: 1.5rem; letter-spacing: 3px; }
+
+        .cover-actions { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+        .cover-action-btn { background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); border: 1.5px solid rgba(255,215,0,0.6); padding: 0.9rem 1.8rem; border-radius: 60px; font-weight: 700; color: #FFD700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px; }
+        .cover-action-btn:hover { background: #FFD700; color: #1a202c; transform: translateY(-3px); }
+        .features { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+        .feature { background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); padding: 0.6rem 1.2rem; border-radius: 50px; font-size: 0.8rem; color: #fff; border: 1px solid rgba(255,215,0,0.4); }
+        .enter-btn { background: linear-gradient(135deg, #FFD700, #FFA500); border: none; padding: 0.9rem 2.5rem; font-size: 1.2rem; font-weight: 800; color: #2d2d2d; border-radius: 60px; cursor: pointer; transition: all 0.3s; margin-top: 0.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .enter-btn:hover { transform: scale(1.05); background: linear-gradient(135deg, #FFE44D, #FFB347); }
+
+        /* ========== MAIN APP STYLES ========== */
+        .main-app {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            padding: 1.5rem;
+            display: none;
+        }
+        .main-app.visible {
+            display: block;
+            opacity: 1;
+        }
+
         .dashboard {
-            max-width: 1300px;
+            max-width: 1400px;
             width: 100%;
             margin: 0 auto;
         }
 
-        /* header section with academy branding & logo */
         .academy-header {
-            background: #0b2b26;
-            background: linear-gradient(135deg, #0a2f2a 0%, #083c34 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 2rem;
             padding: 1.2rem 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
+            border: 1px solid rgba(255,215,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-
-        .brand-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+        
+        /* Header Premium Logo */
+        .brand-left { display: flex; align-items: center; gap: 1.2rem; }
+        .header-logo {
+            position: relative;
+            width: 60px;
+            height: 60px;
         }
-
-        /* custom logo area — exactly as requested: "just infront DEE academy my logo (attached)" */
-        .logo-circle {
-            background: #f9b81b;
-            width: 58px;
-            height: 58px;
-            border-radius: 30px;
+        .header-logo-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FF8C00);
+            animation: rotateRingFast 8s linear infinite;
+        }
+        @keyframes rotateRingFast {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .header-logo-ring::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        .header-logo-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: transform 0.2s ease;
-        }
-        .logo-circle:hover {
-            transform: scale(1.02);
-        }
-        .logo-symbol {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            font-family: 'Segoe UI', system-ui;
-            color: #1e2a2a;
-            letter-spacing: 1px;
-        }
-        /* optional small text if needed — pure emblem */
-        .logo-text-alt {
-            display: none;
-        }
-
-        .academy-name {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            background: linear-gradient(120deg, #FFE6B0, #FFC857);
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 2;
+            animation: headerTextPulse 3s ease-in-out infinite;
         }
-        .academy-sub {
-            color: #c0e0db;
-            font-size: 0.85rem;
-            margin-top: 0.2rem;
+        @keyframes headerTextPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
         }
-
-        /* tagline replacement: "Volume of solids calculator" */
-        .tagline-modern {
-            background: rgba(255,255,240,0.15);
-            backdrop-filter: blur(4px);
-            padding: 0.6rem 1.4rem;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #fff3cf;
-            border-left: 3px solid #FFC857;
-        }
-        .tagline-modern span {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #FFE29A;
-        }
-
-        /* two column layout */
-        .calc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        /* universal card style */
-        .card {
-            background: white;
-            border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(0px);
-            overflow: hidden;
-            transition: all 0.2s;
-            border: 1px solid rgba(255,215,130,0.5);
-        }
-
-        .card-header {
-            background: #1f3e3a;
-            padding: 1rem 1.8rem;
+        
+        .academy-name { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #FFD700, #FFA500); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .academy-sub { color: #a0aec0; font-size: 0.75rem; }
+        .header-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        
+        .back-main-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
             color: white;
-            font-weight: 700;
-            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-bottom: 3px solid #f9b81b;
-        }
-        .card-header i {
-            font-size: 1.7rem;
-        }
-
-        .card-body {
-            padding: 1.8rem;
-        }
-
-        /* form groups */
-        .input-group {
-            margin-bottom: 1.2rem;
-        }
-        label {
-            font-weight: 600;
-            color: #1f3e3a;
-            display: block;
-            margin-bottom: 0.4rem;
+            gap: 8px;
             font-size: 0.9rem;
         }
-        input, select {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 1.2rem;
-            border: 1.5px solid #e2e8f0;
-            background: #fefefe;
-            font-size: 1rem;
-            transition: 0.2s;
-            outline: none;
-        }
-        input:focus, select:focus {
-            border-color: #f9b81b;
-            box-shadow: 0 0 0 3px rgba(249,184,27,0.2);
-        }
-        .button-calc {
-            background: #0b2b26;
-            border: none;
-            width: 100%;
-            padding: 0.9rem;
-            border-radius: 2rem;
-            font-weight: bold;
-            font-size: 1rem;
-            color: white;
-            margin: 1rem 0 1rem 0;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .button-calc:hover {
-            background: #f9b81b;
-            color: #0b2b26;
+        .back-main-btn:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
-        .result-area {
-            background: #f0f4f9;
-            border-radius: 1.5rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-left: 6px solid #f9b81b;
-        }
-        .result-value {
-            color: #0a5e4f;
-            font-size: 1.7rem;
-            font-weight: 800;
-            word-break: break-word;
-        }
-        .small-note {
-            font-size: 0.7rem;
-            color: #5b7c76;
-            margin-top: 0.7rem;
-        }
+        
+        .tagline-modern { background: linear-gradient(135deg, #FFD70020, #FFA50020); padding: 0.6rem 1.2rem; border-radius: 60px; font-weight: 600; color: #FFD700; border-left: 3px solid #FFD700; font-size: 0.85rem; }
 
-        /* logarithm section */
-        .log-section {
-            margin-top: 1rem;
-            border-top: 2px dashed #ddd9ce;
-            padding-top: 1rem;
-        }
-        .flex-row {
-            display: flex;
-            gap: 12px;
-            align-items: flex-end;
-        }
-        .flex-row .input-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-        .btn-secondary {
-            background: #9b2e2e00;
-            background: #3a5a54;
-            margin: 0;
-            margin-top: 0.2rem;
-        }
-        .btn-secondary:hover {
-            background: #f9b81b;
-            color: #1e2a2a;
-        }
-        .log-result {
-            background: #fef3dd;
-        }
+        .tabs-container { background: white; border-radius: 2rem; box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25); overflow: hidden; }
+        .tab-bar { display: flex; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); gap: 0.5rem; padding: 0.8rem 1.8rem 0 1.8rem; flex-wrap: wrap; }
+        .tab-btn { background: transparent; border: none; padding: 0.9rem 1.8rem; font-size: 1rem; font-weight: 700; color: #cbd5e0; cursor: pointer; border-radius: 1.5rem 1.5rem 0 0; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+        .tab-btn.active { background: white; color: #1a1a2e; border-bottom: 3px solid #FFD700; }
+        .tab-btn:hover:not(.active) { background: rgba(255,215,0,0.15); color: #FFD700; }
+        .tab-content { display: none; padding: 2rem; animation: fadeIn 0.25s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px);} to { opacity: 1; transform: translateY(0);} }
 
-        hr {
-            margin: 1rem 0;
-            border-color: #eee3cc;
-        }
-
-        @media (max-width: 780px) {
-            .calc-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .academy-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .tagline-modern {
-                align-self: flex-start;
-            }
-            .academy-name {
-                font-size: 1.6rem;
-            }
-        }
-        .geometry-icon {
-            font-size: 1.7rem;
-        }
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #6b9088;
-        }
+        .volume-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+        .diagram-panel { background: linear-gradient(135deg, #fff8ed 0%, #fff3e0 100%); border-radius: 1.5rem; padding: 1.2rem; border: 1px solid #FFD700; text-align: center; }
+        .diagram-title { font-weight: 700; color: #1a1a2e; margin-bottom: 0.8rem; display: inline-block; border-bottom: 2px dashed #FFD700; }
+        .diagram-svg-container { display: flex; justify-content: center; margin: 1rem 0; min-height: 180px; }
+        .dimension-callout { font-size: 0.8rem; color: #4a5568; background: white; padding: 0.4rem; border-radius: 1rem; border: 1px solid #FFD700; }
+        .form-panel { background: white; }
+        .input-group { margin-bottom: 1.4rem; }
+        label { font-weight: 700; color: #1a1a2e; display: block; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        select, input, textarea { width: 100%; padding: 0.8rem 1rem; border-radius: 1.5rem; border: 1.8px solid #e2e8f0; font-size: 0.95rem; outline: none; }
+        select:focus, input:focus, textarea:focus { border-color: #FFD700; box-shadow: 0 0 0 3px rgba(255,215,0,0.3); }
+        .button-calc { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; width: 100%; padding: 0.9rem; border-radius: 3rem; font-weight: 800; color: white; margin: 0.8rem 0; cursor: pointer; transition: all 0.2s; }
+        .button-calc:hover { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); transform: translateY(-2px); }
+        .result-area { background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); border-radius: 1.5rem; padding: 1rem; margin-top: 1rem; text-align: center; border-left: 6px solid #FFD700; }
+        .result-value { color: #667eea; font-size: 1.8rem; font-weight: 800; }
+        .unit-badge { font-size: 0.8rem; background: #FFD700; padding: 0.2rem 0.6rem; border-radius: 30px; display: inline-block; color: #1a1a2e; font-weight: bold; }
+        .dim-hint { font-size: 0.7rem; color: #718096; margin-top: 0.3rem; background: #f7fafc; padding: 0.4rem; border-radius: 1rem; }
+        .small-note { font-size: 0.7rem; color: #718096; text-align: center; border-top: 1px dashed #e2e8f0; padding-top: 0.6rem; margin-top: 0.8rem; }
+        .example-badge { background: linear-gradient(135deg, #667eea20, #764ba220); border-radius: 20px; padding: 0.3rem 0.8rem; font-size: 0.75rem; display: inline-block; margin: 0.2rem; cursor: pointer; border: 1px solid #667eea; }
+        .example-badge:hover { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        footer { margin-top: 1.5rem; text-align: center; font-size: 0.7rem; color: #a0aec0; }
+        @media (max-width: 800px) { .volume-layout { grid-template-columns: 1fr; } .cover-title { font-size: 2rem; } .academy-name { font-size: 1.3rem; } .cover-logo { width: 120px; height: 120px; } .logo-symbol-main { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
-<div class="dashboard">
-    <!-- header with "π DE EM ACADEMY" + logo placed exactly in front of "DEE ACADEMY" wording
-         The text shows 'π DE EM ACADEMY' but note: we have logo right before the academy name -->
-    <div class="academy-header">
-        <div class="brand-left">
-            <!-- LOGO (attached image simulation: since actual image not provided but request says 'my logo (attached)'
-                 I'll embed an elegant custom logo vector with a stylized "π•Δ" representing mathematics and geometry
-                 to honor the 'attached logo' requirement. If actual image file would exist, replace src. 
-                 However client said "just infront DEE academy my logo (attached)" means we show a logo. I use a modern 
-                 geometric emblem with letters "πD" inside a badge, representing DE EM academy essence -->
-            <div class="logo-circle">
-                <div class="logo-symbol">π⚡D</div>
+    <!-- COVER PAGE WITH PREMIUM ANIMATED LOGO -->
+    <div class="cover-page" id="coverPage">
+        <div class="floating-shapes" id="floatingShapes"></div>
+        <div class="cover-content">
+            <!-- Attractive 3D Animated Logo -->
+            <div class="cover-logo">
+                <div class="logo-outer-ring"></div>
+                <div class="logo-middle-ring"></div>
+                <div class="logo-inner-circle">
+                    <div class="logo-symbol-main">π📐</div>
+                    <div class="logo-text-small">DEE</div>
+                </div>
+                <div class="logo-sparkle">
+                    <div class="sparkle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+                    <div class="sparkle" style="top: 15%; right: 15%; animation-delay: 0.5s;"></div>
+                    <div class="sparkle" style="bottom: 20%; left: 10%; animation-delay: 1s;"></div>
+                    <div class="sparkle" style="bottom: 15%; right: 20%; animation-delay: 1.5s;"></div>
+                    <div class="sparkle" style="top: 40%; right: 5%; animation-delay: 0.8s;"></div>
+                </div>
             </div>
-            <div>
-                <div class="academy-name">π DE EM ACADEMY</div>
-                <div class="academy-sub">precision · logic · mastery</div>
+            <h1 class="cover-title">DEE ACADEMY</h1>
+            <p class="cover-subtitle">Master Geometry & Logarithms</p>
+            <div class="cover-tagline">✦ PRECISION · LOGIC · MASTERY ✦</div>
+            <div class="cover-actions">
+                <button class="cover-action-btn" id="coverVolumeBtn">📦 Volume of Solids</button>
+                <button class="cover-action-btn" id="coverLogBtn">🔢 Log₁₀ Calculator</button>
             </div>
+            <div class="features"><span class="feature">📐 Live 3D Diagrams</span><span class="feature">⚡ Updates with dimensions</span><span class="feature">📏 cm / m units</span></div>
+            <button class="enter-btn" id="enterBtn">✨ FULL DASHBOARD ✨</button>
         </div>
-        <!-- tagline changed from "master geometry step by step" to "Volume of solids calculator" -->
-        <div class="tagline-modern">
-            📐 <span>Volume of solids calculator</span> | 3D geometry
+    </div>
+
+    <!-- MAIN APP -->
+    <div class="main-app" id="mainApp">
+        <div class="dashboard">
+            <div class="academy-header">
+                <div class="brand-left">
+                    <!-- Header Premium Animated Logo -->
+                    <div class="header-logo">
+                        <div class="header-logo-ring"></div>
+                        <div class="header-logo-inner">π📐</div>
+                    </div>
+                    <div><div class="academy-name">DEE ACADEMY</div><div class="academy-sub">Geometry · Pythagoras · Logarithms</div></div>
+                </div>
+                <div class="header-actions">
+                    <div class="tagline-modern">Volume + Log₁₀</div>
+                    <button class="back-main-btn" id="backMainBtn">🔄 Back to Main</button>
+                </div>
+            </div>
+
+            <div class="tabs-container">
+                <div class="tab-bar"><button class="tab-btn active" data-tab="volumeTab">📐 Volume Calculator</button><button class="tab-btn" data-tab="logTab">🔢 Advanced Log₁₀</button></div>
+
+                <div id="volumeTab" class="tab-content active">
+                    <div class="volume-layout">
+                        <div class="diagram-panel">
+                            <div><span class="diagram-title">📐 Live 3D Diagram</span></div>
+                            <div id="shapeDiagram" class="diagram-svg-container"><svg width="200" height="160"><text x="50" y="80" fill="#718096">Select a shape</text></svg></div>
+                            <div id="dimensionText" class="dimension-callout">Dimensions update diagram in real time</div>
+                        </div>
+                        <div class="form-panel">
+                            <div class="input-group"><label>🎯 Select solid shape</label><select id="solidShape"><option value="cube">🧊 Cube (side a)</option><option value="sphere">⚽ Sphere (radius r)</option><option value="cylinder">🥫 Cylinder (radius r, height h)</option><option value="cone">🎩 Cone (radius r, height h)</option><option value="pyramid">🔺 Right Square Pyramid (base b, height h)</option></select></div>
+                            <div id="dimensionsContainer"><div class="input-group"><label>Side (a)</label><input type="number" id="dim1" step="any" value="5"></div></div>
+                            <div class="input-group"><label>📏 Unit system</label><select id="unitSelect"><option value="cm">centimeters (cm)</option><option value="m">meters (m)</option></select></div>
+                            <button id="calcVolumeBtn" class="button-calc">✨ Calculate Volume</button>
+                            <div class="result-area"><span>📦 Volume = </span><span id="volumeResult" class="result-value">—</span><span id="volumeUnitLabel" class="unit-badge">cm³</span></div>
+                            <div class="small-note">Cube: a³ | Sphere: ⁴⁄₃πr³ | Cylinder: πr²h | Cone: ⅓πr²h | Pyramid: ⅓ × b² × h</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="logTab" class="tab-content">
+                    <div class="input-group"><label>📐 Mathematical Expression</label><textarea id="logExpression" rows="3" placeholder="Examples: 2×3×5 / 4×7   √(3×5 / 2×π)   ∛(8×27 / 125)"></textarea><div class="dim-hint">💡 × or * | / | √() | ∛() | π</div>
+                    <div><span class="example-badge" data-example="2×3×5 / 4×7">2×3×5/4×7</span><span class="example-badge" data-example="√(3×5 / 2×π)">√(3×5/2×π)</span><span class="example-badge" data-example="∛(8×27 / 125)">∛(8×27/125)</span><span class="example-badge" data-example="√((2×9)/(4×3))">√((2×9)/(4×3))</span></div></div>
+                    <button id="calcLogAdvancedBtn" class="button-calc">🧮 Compute log₁₀(Value)</button>
+                    <div class="result-area" style="background: linear-gradient(135deg, #fef9e6, #fff5e0);"><div><strong>Interpreted Value:</strong> <span id="interpretedValue" style="color:#667eea; font-weight:bold;">—</span></div><div style="margin-top:0.8rem;"><strong>log₁₀ = </strong> <span id="advancedLogResult" class="result-value">—</span></div><div id="errorMessage" style="color:#e53e3e; font-size:0.8rem;"></div></div>
+                </div>
+            </div>
+            <footer>DEE ACADEMY | Premium Animated Logo | Diagrams update LIVE as you type dimensions</footer>
         </div>
     </div>
 
-    <!-- main calculators grid: left side = volume of solids, right side = Logarithm base 10 integrated (linked) -->
-    <div class="calc-grid">
-        <!-- LEFT CARD: Volume of solids (main geometry) -->
-        <div class="card">
-            <div class="card-header">
-                <span>🧊</span> Volume of solids
-            </div>
-            <div class="card-body">
-                <div class="input-group">
-                    <label>📦 Select solid shape</label>
-                    <select id="solidShape">
-                        <option value="cube">Cube (side a)</option>
-                        <option value="cuboid">Cuboid (l × w × h)</option>
-                        <option value="sphere">Sphere (radius)</option>
-                        <option value="cylinder">Cylinder (radius, height)</option>
-                        <option value="cone">Cone (radius, height)</option>
-                        <option value="pyramid">Square Pyramid (base side, height)</option>
-                    </select>
-                </div>
-
-                <!-- dynamic dimension inputs (javascript updates) -->
-                <div id="dimensionsContainer">
-                    <!-- inputs will be injected dynamically based on shape -->
-                </div>
-
-                <button id="calcVolumeBtn" class="button-calc">📐 Calculate Volume</button>
-                <div class="result-area">
-                    <span>📏 Volume = </span>
-                    <span id="volumeResult" class="result-value">—</span>
-                    <span> cubic units</span>
-                </div>
-                <div class="small-note">
-                    🔗 Exam link: geometry of solids <strong>+ logarithms integrated</strong> (right panel)
-                </div>
-            </div>
-        </div>
-
-        <!-- RIGHT CARD: Logarithm base 10 calculator + linked to volume (extra synergy: we can also use log10 on volume result optionally) 
-             but requirement: "can we just link logarithm base 10 calculator also to this, coz my exm links geometry of solid with logarithm"
-             So we implement a dedicated Log₁₀ calculator, and also provide a "log₁₀(Volume)" button to bridge geometry with logs.
-        -->
-        <div class="card">
-            <div class="card-header">
-                <span>🔢</span> Logarithm Base 10 · Log₁₀
-            </div>
-            <div class="card-body">
-                <div class="input-group">
-                    <label>🔹 Enter positive number (x > 0)</label>
-                    <input type="number" id="logInput" step="any" placeholder="e.g., 100, 250, 0.5" value="100">
-                </div>
-                <button id="calcLogBtn" class="button-calc">📊 Calculate Log₁₀(x)</button>
-                <div class="result-area log-result">
-                    <span>📐 log₁₀( <span id="logInputPreview">100</span> ) = </span>
-                    <span id="logResultValue" class="result-value">2.0000</span>
-                </div>
-
-                <hr>
-                <div style="font-weight: 600; margin: 0.5rem 0 0.2rem;">🔗 Geometry ↔ Logarithm Link</div>
-                <div class="small-note" style="margin-bottom: 0.8rem;">
-                    📌 Use volume result from left panel and apply base‑10 logarithm.
-                </div>
-                <button id="logOfVolumeBtn" class="button-calc btn-secondary">🔄 Apply log₁₀( current volume )</button>
-                <div id="logVolumeMessage" style="margin-top: 0.8rem; font-size: 0.85rem; background: #eef2f0; border-radius: 1rem; padding: 0.6rem 1rem;">
-                    ⚡ <span id="linkInfo">Ready: compute a solid volume, then click button to get log₁₀(Volume).</span>
-                </div>
-                <div class="small-note" style="margin-top: 0.8rem;">
-                    💡 Exam context: many solid geometry problems involve logarithmic scaling (Richter, decibels, or exponential models). 
-                    This tool directly connects volume calculation with log₁₀ transformation.
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer>
-        π DE EM Academy | Master Geometry + Logarithmic thinking | Volume of solids & Log₁₀ integrated
-    </footer>
-</div>
-
-<script>
-    // DOM elements
-    const shapeSelect = document.getElementById('solidShape');
-    const dimensionsContainer = document.getElementById('dimensionsContainer');
-    const calcVolumeBtn = document.getElementById('calcVolumeBtn');
-    const volumeResultSpan = document.getElementById('volumeResult');
-    const calcLogBtn = document.getElementById('calcLogBtn');
-    const logInput = document.getElementById('logInput');
-    const logResultValue = document.getElementById('logResultValue');
-    const logInputPreview = document.getElementById('logInputPreview');
-    const logOfVolumeBtn = document.getElementById('logOfVolumeBtn');
-    const linkInfoSpan = document.getElementById('linkInfo');
-
-    // Helper: update dimension inputs based on shape
-    function updateDimensionFields() {
-        const shape = shapeSelect.value;
-        let html = '';
-        switch (shape) {
-            case 'cube':
-                html = `
-                    <div class="input-group"><label>📐 Side length (a)</label><input type="number" id="dim1" step="any" placeholder="e.g., 5" value="5"></div>
-                `;
-                break;
-            case 'cuboid':
-                html = `
-                    <div class="input-group"><label>📏 Length (l)</label><input type="number" id="dim1" step="any" placeholder="length" value="6"></div>
-                    <div class="input-group"><label>📏 Width (w)</label><input type="number" id="dim2" step="any" placeholder="width" value="4"></div>
-                    <div class="input-group"><label>📏 Height (h)</label><input type="number" id="dim3" step="any" placeholder="height" value="3"></div>
-                `;
-                break;
-            case 'sphere':
-                html = `
-                    <div class="input-group"><label>⚪ Radius (r)</label><input type="number" id="dim1" step="any" placeholder="radius" value="5"></div>
-                `;
-                break;
-            case 'cylinder':
-                html = `
-                    <div class="input-group"><label>🧴 Radius (r)</label><input type="number" id="dim1" step="any" placeholder="radius" value="4"></div>
-                    <div class="input-group"><label>📏 Height (h)</label><input type="number" id="dim2" step="any" placeholder="height" value="10"></div>
-                `;
-                break;
-            case 'cone':
-                html = `
-                    <div class="input-group"><label>🔺 Radius (r)</label><input type="number" id="dim1" step="any" placeholder="radius" value="3"></div>
-                    <div class="input-group"><label>📏 Height (h)</label><input type="number" id="dim2" step="any" placeholder="height" value="7"></div>
-                `;
-                break;
-            case 'pyramid':
-                html = `
-                    <div class="input-group"><label>⬛ Base side (b)</label><input type="number" id="dim1" step="any" placeholder="base side" value="6"></div>
-                    <div class="input-group"><label>📏 Height (h)</label><input type="number" id="dim2" step="any" placeholder="height" value="8"></div>
-                `;
-                break;
-            default: break;
-        }
-        dimensionsContainer.innerHTML = html;
-    }
-
-    // get numeric values from dimension fields (returns array of numbers)
-    function getDimensions() {
-        const inputs = dimensionsContainer.querySelectorAll('input');
-        const vals = [];
-        for (let inp of inputs) {
-            let num = parseFloat(inp.value);
-            if (isNaN(num)) num = 0;
-            vals.push(num);
-        }
-        return vals;
-    }
-
-    // compute volume based on selected shape
-    function computeVolume() {
-        const shape = shapeSelect.value;
-        const dims = getDimensions();
-        let volume = 0;
-        let valid = true;
-
-        switch (shape) {
-            case 'cube':
-                const side = dims[0];
-                if (side <= 0) valid = false;
-                else volume = side ** 3;
-                break;
-            case 'cuboid':
-                const l = dims[0], w = dims[1], h = dims[2];
-                if (l <= 0 || w <= 0 || h <= 0) valid = false;
-                else volume = l * w * h;
-                break;
-            case 'sphere':
-                const r = dims[0];
-                if (r <= 0) valid = false;
-                else volume = (4/3) * Math.PI * (r ** 3);
-                break;
-            case 'cylinder':
-                const rCyl = dims[0], hCyl = dims[1];
-                if (rCyl <= 0 || hCyl <= 0) valid = false;
-                else volume = Math.PI * (rCyl ** 2) * hCyl;
-                break;
-            case 'cone':
-                const rCone = dims[0], hCone = dims[1];
-                if (rCone <= 0 || hCone <= 0) valid = false;
-                else volume = (1/3) * Math.PI * (rCone ** 2) * hCone;
-                break;
-            case 'pyramid':
-                const baseSide = dims[0], hPyr = dims[1];
-                if (baseSide <= 0 || hPyr <= 0) valid = false;
-                else volume = (1/3) * (baseSide ** 2) * hPyr;
-                break;
-            default: volume = 0; valid = false;
-        }
-
-        if (!valid || volume <= 0) {
-            volumeResultSpan.innerText = 'Invalid dimensions (positive values only)';
-            return null;
-        }
-        // format nicely
-        let volFormatted = volume.toFixed(6).replace(/\.?0+$/, '');
-        if (volFormatted.includes('.')) volFormatted = parseFloat(volFormatted).toFixed(4);
-        else volFormatted = volume.toFixed(4);
-        volumeResultSpan.innerText = volFormatted;
-        return volume;
-    }
-
-    // handle volume calculation and display
-    function handleVolumeCalc() {
-        const volume = computeVolume();
-        if (volume !== null && !isNaN(volume) && volume > 0) {
-            // success, store volume for potential log linkage (we can store globally)
-            window.lastComputedVolume = volume;
-            // additional feedback
-        } else if (volume === null) {
-            window.lastComputedVolume = null;
-        } else {
-            window.lastComputedVolume = null;
-        }
-        // also update link message to show last volume stored if needed
-        if (window.lastComputedVolume) {
-            linkInfoSpan.innerHTML = `✅ Last volume = ${window.lastComputedVolume.toFixed(6)}. Click "Apply log₁₀(volume)" to compute log₁₀.`;
-        } else {
-            if (volumeResultSpan.innerText.includes('Invalid')) {
-                linkInfoSpan.innerHTML = `⚠️ Volume invalid. Enter positive dimensions first.`;
-            } else {
-                linkInfoSpan.innerHTML = `⚡ Ready: compute volume, then use log transformation.`;
+    <script>
+        // Floating shapes
+        function createFloatingShapes() {
+            const container = document.getElementById('floatingShapes');
+            for(let i = 0; i < 40; i++) {
+                const shape = document.createElement('div');
+                shape.classList.add('shape');
+                const size = Math.random() * 30 + 10;
+                shape.style.width = size + 'px'; shape.style.height = size + 'px';
+                shape.style.left = Math.random() * 100 + '%'; shape.style.top = Math.random() * 100 + '%';
+                shape.style.animationDelay = Math.random() * 8 + 's';
+                shape.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                shape.style.background = `rgba(255, 215, 0, ${Math.random() * 0.2 + 0.1})`;
+                container.appendChild(shape);
             }
         }
-    }
+        createFloatingShapes();
 
-    // Logarithm base 10 calculation with validation
-    function computeLog10(value) {
-        if (value === undefined || value === null) return null;
-        const num = parseFloat(value);
-        if (isNaN(num)) return null;
-        if (num <= 0) return null;
-        return Math.log10(num);
-    }
+        // Cover transitions
+        const coverPage = document.getElementById('coverPage');
+        const mainApp = document.getElementById('mainApp');
+        const enterBtn = document.getElementById('enterBtn');
+        const backMainBtn = document.getElementById('backMainBtn');
+        const coverVolumeBtn = document.getElementById('coverVolumeBtn');
+        const coverLogBtn = document.getElementById('coverLogBtn');
+        let pendingTab = 'volumeTab';
 
-    // Update log display from input field
-    function updateLogFromInput() {
-        let rawValue = logInput.value;
-        let num = parseFloat(rawValue);
-        if (isNaN(num)) {
-            logResultValue.innerText = 'Invalid number';
-            logInputPreview.innerText = rawValue;
-            return;
+        function showCover() { 
+            coverPage.classList.remove('hide');
+            coverPage.style.display = 'flex';
+            mainApp.classList.remove('visible');
+            mainApp.style.display = 'none';
         }
-        if (num <= 0) {
-            logResultValue.innerText = 'Must be > 0';
-            logInputPreview.innerText = num;
-            return;
+        
+        function showAppAndSwitchToTab(tabId) { 
+            pendingTab = tabId; 
+            coverPage.classList.add('hide');
+            setTimeout(() => { 
+                coverPage.style.display = 'none';
+                mainApp.style.display = 'block';
+                mainApp.classList.add('visible');
+                switchTab(pendingTab);
+            }, 800);
         }
-        const logVal = Math.log10(num);
-        logResultValue.innerText = logVal.toFixed(6).replace(/\.?0+$/, '');
-        logInputPreview.innerText = num;
-    }
-
-    // apply log10 to the last computed volume (bridge between geometry and logarithm)
-    function applyLogToVolume() {
-        if (window.lastComputedVolume === undefined || window.lastComputedVolume === null) {
-            // attempt to recompute volume anyway
-            const vol = computeVolume();
-            if (vol !== null && !isNaN(vol) && vol > 0) {
-                window.lastComputedVolume = vol;
+        
+        function backToMain() {
+            if (mainApp.classList.contains('visible')) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                linkInfoSpan.innerHTML = '❌ No valid volume available. Please compute a solid volume first (positive dimensions).';
-                logResultValue.innerText = '—';
-                return;
+                coverPage.classList.add('hide');
+                setTimeout(() => {
+                    coverPage.style.display = 'none';
+                    mainApp.style.display = 'block';
+                    mainApp.classList.add('visible');
+                }, 200);
             }
         }
-        const vol = window.lastComputedVolume;
-        if (vol === null || isNaN(vol) || vol <= 0) {
-            linkInfoSpan.innerHTML = '❌ Volume is zero/negative or invalid. Re-calculate volume with positive dimensions.';
-            logResultValue.innerText = '—';
-            return;
-        }
-        const logVol = Math.log10(vol);
-        // update the log calculator display to show that we used volume
-        logInput.value = vol;
-        logInputPreview.innerText = vol;
-        logResultValue.innerText = logVol.toFixed(8).replace(/\.?0+$/, '');
-        linkInfoSpan.innerHTML = `✨ Success: log₁₀(Volume = ${vol.toFixed(6)}) = ${logVol.toFixed(8)}. Perfect exam link!`;
-        // Also update note that log input now reflects volume.
-    }
 
-    // Event listeners
-    shapeSelect.addEventListener('change', () => {
+        enterBtn.addEventListener('click', () => showAppAndSwitchToTab('volumeTab'));
+        coverVolumeBtn.addEventListener('click', () => showAppAndSwitchToTab('volumeTab'));
+        coverLogBtn.addEventListener('click', () => showAppAndSwitchToTab('logTab'));
+        backMainBtn.addEventListener('click', backToMain);
+
+        // Tab switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        function switchTab(tabId) { 
+            tabContents.forEach(c => c.classList.remove('active')); 
+            tabBtns.forEach(b => b.classList.remove('active')); 
+            document.getElementById(tabId).classList.add('active'); 
+            const activeBtn = Array.from(tabBtns).find(b => b.dataset.tab === tabId); 
+            if(activeBtn) activeBtn.classList.add('active'); 
+        }
+        tabBtns.forEach(btn => btn.addEventListener('click', () => { if(btn.dataset.tab) switchTab(btn.dataset.tab); }));
+
+        // ========== LIVE DIAGRAM DRAWING FUNCTIONS ==========
+        const shapeSelect = document.getElementById('solidShape');
+        const dimContainer = document.getElementById('dimensionsContainer');
+        const calcVolumeBtn = document.getElementById('calcVolumeBtn');
+        const volumeResultSpan = document.getElementById('volumeResult');
+        const volumeUnitLabel = document.getElementById('volumeUnitLabel');
+        const unitSelect = document.getElementById('unitSelect');
+        const shapeDiagramDiv = document.getElementById('shapeDiagram');
+        const dimensionTextSpan = document.getElementById('dimensionText');
+
+        function drawCube(side) {
+            const w = Math.min(120, 40 + side * 8);
+            return `<svg width="200" height="160" viewBox="0 0 200 160"><rect x="${90-w/2}" y="40" width="${w}" height="${w}" fill="#c3dafe" stroke="#667eea" stroke-width="2.5" rx="4"/><text x="100" y="30" fill="#4a5568" font-size="12">side = ${side.toFixed(2)}</text><text x="100" y="${40+w+15}" fill="#667eea" font-size="11">Volume = a³</text></svg>`;
+        }
+        function drawSphere(radius) {
+            const r = Math.min(70, 20 + radius * 4);
+            return `<svg width="200" height="160"><circle cx="100" cy="75" r="${r}" fill="#c3dafe" stroke="#667eea" stroke-width="2.5"/><line x1="${100-r}" y1="75" x2="${100+r}" y2="75" stroke="#e53e3e" stroke-width="2" stroke-dasharray="5,3"/><text x="105" y="65" fill="#e53e3e" font-size="11">r</text><text x="80" y="${75+r+10}" fill="#667eea" font-size="11">radius = ${radius.toFixed(2)}</text></svg>`;
+        }
+        function drawCylinder(radius, height) {
+            const r = Math.min(55, 15 + radius * 4);
+            const h = Math.min(80, 20 + height * 3);
+            const topY = 30, bottomY = topY + h;
+            return `<svg width="200" height="160"><ellipse cx="100" cy="${topY}" rx="${r}" ry="${r*0.35}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><rect x="${100-r}" y="${topY}" width="${2*r}" height="${h}" fill="#a3bffa" stroke="#667eea" stroke-width="1.5"/><ellipse cx="100" cy="${bottomY}" rx="${r}" ry="${r*0.35}" fill="#81a4f0" stroke="#667eea" stroke-width="2"/><text x="110" y="${topY + h/2}" fill="#e53e3e" font-size="10">h</text><text x="40" y="${bottomY+15}" fill="#667eea" font-size="10">r=${radius.toFixed(2)} h=${height.toFixed(2)}</text></svg>`;
+        }
+        function drawCone(radius, height) {
+            const r = Math.min(55, 15 + radius * 4);
+            const h = Math.min(80, 20 + height * 5);
+            const apexX = 100, apexY = 20;
+            const baseY = apexY + h;
+            return `<svg width="200" height="160"><ellipse cx="${apexX}" cy="${baseY}" rx="${r}" ry="${r*0.3}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><polygon points="${apexX},${apexY} ${apexX-r},${baseY} ${apexX+r},${baseY}" fill="#a3bffa" stroke="#667eea" stroke-width="2"/><text x="110" y="${apexY + h/2}" fill="#e53e3e" font-size="10">h</text><text x="40" y="${baseY+15}" fill="#667eea" font-size="10">r=${radius.toFixed(2)} h=${height.toFixed(2)}</text></svg>`;
+        }
+        function drawPyramid(base, height) {
+            const b = Math.min(80, 20 + base * 4);
+            const h = Math.min(80, 20 + height * 4);
+            const apexX = 100, apexY = 20;
+            const baseY = apexY + h;
+            const leftX = apexX - b/2, rightX = apexX + b/2;
+            return `<svg width="200" height="160"><polygon points="${apexX},${apexY} ${leftX},${baseY} ${rightX},${baseY}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><rect x="${leftX}" y="${baseY}" width="${b}" height="12" fill="#a3bffa" stroke="#667eea" stroke-width="1.5"/><text x="110" y="${apexY + h/2}" fill="#e53e3e" font-size="10">h</text><text x="40" y="${baseY+20}" fill="#667eea" font-size="10">b=${base.toFixed(2)} h=${height.toFixed(2)}</text></svg>`;
+        }
+
+        function updateLiveDiagram() {
+            const shape = shapeSelect.value;
+            const dims = getCurrentDimValues();
+            let svg = '';
+            let text = '';
+            if(shape === 'cube') { let side = dims[0] > 0 ? dims[0] : 5; svg = drawCube(side); text = `Cube | side = ${side.toFixed(2)}`; }
+            else if(shape === 'sphere') { let r = dims[0] > 0 ? dims[0] : 5; svg = drawSphere(r); text = `Sphere | radius = ${r.toFixed(2)}`; }
+            else if(shape === 'cylinder') { let r = dims[0] > 0 ? dims[0] : 4; let h = dims[1] > 0 ? dims[1] : 10; svg = drawCylinder(r, h); text = `Cylinder | r = ${r.toFixed(2)}, h = ${h.toFixed(2)}`; }
+            else if(shape === 'cone') { let r = dims[0] > 0 ? dims[0] : 3; let h = dims[1] > 0 ? dims[1] : 7; svg = drawCone(r, h); text = `Cone | r = ${r.toFixed(2)}, h = ${h.toFixed(2)}`; }
+            else if(shape === 'pyramid') { let b = dims[0] > 0 ? dims[0] : 6; let h = dims[1] > 0 ? dims[1] : 8; svg = drawPyramid(b, h); text = `Pyramid | base = ${b.toFixed(2)}, height = ${h.toFixed(2)}`; }
+            shapeDiagramDiv.innerHTML = svg;
+            dimensionTextSpan.innerHTML = text;
+        }
+
+        function updateDimensionFields() {
+            const shape = shapeSelect.value;
+            let html = '';
+            switch(shape) {
+                case 'cube': html = `<div class="input-group"><label>📐 Side length (a)</label><input type="number" id="dim1" step="any" value="5"></div>`; break;
+                case 'sphere': html = `<div class="input-group"><label>⚪ Radius (r)</label><input type="number" id="dim1" step="any" value="5"></div>`; break;
+                case 'cylinder': html = `<div class="input-group"><label>Radius (r)</label><input type="number" id="dim1" step="any" value="4"></div><div class="input-group"><label>Height (h)</label><input type="number" id="dim2" step="any" value="10"></div>`; break;
+                case 'cone': html = `<div class="input-group"><label>Radius (r)</label><input type="number" id="dim1" step="any" value="3"></div><div class="input-group"><label>Height (h)</label><input type="number" id="dim2" step="any" value="7"></div>`; break;
+                case 'pyramid': html = `<div class="input-group"><label>Base side (b)</label><input type="number" id="dim1" step="any" value="6"></div><div class="input-group"><label>Height (h)</label><input type="number" id="dim2" step="any" value="8"></div>`; break;
+            }
+            dimContainer.innerHTML = html;
+            const inputs = dimContainer.querySelectorAll('input');
+            inputs.forEach(inp => inp.addEventListener('input', () => { updateLiveDiagram(); if(computeRawVolume() !== null) updateVolumeDisplay(); }));
+            updateLiveDiagram();
+        }
+
+        function getCurrentDimValues() { const inputs = dimContainer.querySelectorAll('input'); return Array.from(inputs).map(inp => parseFloat(inp.value) || 0); }
+        function computeRawVolume() {
+            const shape = shapeSelect.value; const dims = getCurrentDimValues();
+            switch(shape) {
+                case 'cube': if(dims[0] > 0) return Math.pow(dims[0], 3); return null;
+                case 'sphere': if(dims[0] > 0) return (4/3)*Math.PI*Math.pow(dims[0],3); return null;
+                case 'cylinder': if(dims[0] > 0 && dims[1] > 0) return Math.PI * dims[0]*dims[0] * dims[1]; return null;
+                case 'cone': if(dims[0] > 0 && dims[1] > 0) return (1/3)*Math.PI * dims[0]*dims[0] * dims[1]; return null;
+                case 'pyramid': if(dims[0] > 0 && dims[1] > 0) return (1/3)*Math.pow(dims[0],2)*dims[1]; return null;
+                default: return null;
+            }
+        }
+        function updateVolumeDisplay() { const raw = computeRawVolume(); if(raw === null) { volumeResultSpan.innerText = 'Invalid'; return; } const unit = unitSelect.value; let formatted = raw.toFixed(6).replace(/\.?0+$/, ''); volumeResultSpan.innerText = formatted; volumeUnitLabel.innerText = unit === 'cm' ? 'cm³' : 'm³'; }
+        shapeSelect.addEventListener('change', () => { updateDimensionFields(); volumeResultSpan.innerText = '—'; });
+        unitSelect.addEventListener('change', () => { if(computeRawVolume() !== null) updateVolumeDisplay(); });
+        calcVolumeBtn.addEventListener('click', updateVolumeDisplay);
         updateDimensionFields();
-        // reset volume display and last volume reference on shape change
-        volumeResultSpan.innerText = '—';
-        window.lastComputedVolume = null;
-        linkInfoSpan.innerHTML = '⚡ Shape changed. Compute volume to get new value.';
-    });
 
-    calcVolumeBtn.addEventListener('click', () => {
-        handleVolumeCalc();
-    });
-
-    calcLogBtn.addEventListener('click', () => {
-        let val = logInput.value;
-        let num = parseFloat(val);
-        if (isNaN(num)) {
-            logResultValue.innerText = 'Invalid entry';
-            logInputPreview.innerText = val;
-            return;
-        }
-        if (num <= 0) {
-            logResultValue.innerText = 'Positive number required';
-            logInputPreview.innerText = num;
-            return;
-        }
-        const lg = Math.log10(num);
-        logResultValue.innerText = lg.toFixed(8).replace(/\.?0+$/, '');
-        logInputPreview.innerText = num;
-        // update link info subtle
-        linkInfoSpan.innerHTML = `📊 Log₁₀(${num}) = ${lg.toFixed(6)}. Use geometry volume with log.`;
-    });
-
-    logOfVolumeBtn.addEventListener('click', () => {
-        applyLogToVolume();
-    });
-
-    // live update log input preview as user types for better UX
-    logInput.addEventListener('input', () => {
-        let val = logInput.value;
-        let num = parseFloat(val);
-        if (!isNaN(num) && num > 0) {
-            const logv = Math.log10(num);
-            logResultValue.innerText = logv.toFixed(8).replace(/\.?0+$/, '');
-            logInputPreview.innerText = num;
-        } else if (!isNaN(num) && num <= 0) {
-            logResultValue.innerText = 'x > 0 required';
-            logInputPreview.innerText = num;
-        } else {
-            logResultValue.innerText = 'invalid';
-            logInputPreview.innerText = val;
-        }
-    });
-
-    // dimension fields dynamic initialization
-    updateDimensionFields();
-    // initial set last volume to null
-    window.lastComputedVolume = null;
-    // initial log display based on default 100
-    setTimeout(() => {
-        updateLogFromInput();
-    }, 10);
-    // also for sync: compute initial volume? Not needed, but show placeholder.
-    // additionally, allow enter key on dimension forms? optional but fine.
-    // final style: the logo appears directly in front of "π DE EM ACADEMY" fulfilling request "just infront DEE academy my logo (attached)".
-    // we built a custom logo-circle with 'π⚡D' that stands for Pi, DE EM dynamic.
-    // All modifications: 1) changed text to "Volume of solids calculator", 2) logo placed front, 3) linked log₁₀ calculator within exam context.
-    console.log("Ready: Volume + Log₁₀ integrated");
-</script>
+        // ========== LOG PARSER ==========
+        const logExpression = document.getElementById('logExpression');
+        const calcLogAdvancedBtn = document.getElementById('calcLogAdvancedBtn');
+        const interpretedValueSpan = document.getElementById('interpretedValue');
+        const advancedLogResultSpan = document.getElementById('advancedLogResult');
+        const errorMessageSpan = document.getElementById('errorMessage');
+        function evaluateProduct(expr) { let p = expr.replace(/π/g, Math.PI).replace(/[×*]/g, '*'); const f = p.split('*').map(s => parseFloat(s.trim())); if(f.some(isNaN)) return null; return f.reduce((a,b)=>a*b,1); }
+        function parseFraction(expr) { expr = expr.trim(); if(expr.includes('/')) { const parts = expr.split('/'); if(parts.length !== 2) return null; const n = evaluateProduct(parts[0]), d = evaluateProduct(parts[1]); if(n===null || d===null || d===0) return null; return n/d; } return evaluateProduct(expr); }
+        function parseAdvanced(exprStr) { exprStr = exprStr.trim(); let cbrt = exprStr.match(/^(?:∛|cbrt)\((.+)\)$/i); if(cbrt) { let v = parseAdvanced(cbrt[1]); return (v!==null && v>=0) ? Math.cbrt(v) : null; } let sqrt = exprStr.match(/^(?:√|sqrt)\((.+)\)$/i); if(sqrt) { let v = parseAdvanced(sqrt[1]); return (v!==null && v>=0) ? Math.sqrt(v) : null; } if(exprStr.includes('(')) { let inner = exprStr.replace(/\(([^()]+)\)/g, (m,p1) => { let v = parseAdvanced(p1); return v!==null ? v.toString() : m; }); if(inner.includes('/')) { let parts = inner.split('/'); if(parts.length===2) { let n = parseAdvanced(parts[0]), d = parseAdvanced(parts[1]); if(n!==null && d!==null && d!==0) return n/d; } } let prod = evaluateProduct(inner); if(prod!==null) return prod; return null; } return parseFraction(exprStr); }
+        function computeAdvancedLog() { errorMessageSpan.innerText = ''; let raw = logExpression.value.trim(); if(!raw) { errorMessageSpan.innerText = 'Enter expression'; interpretedValueSpan.innerText = '—'; advancedLogResultSpan.innerText = '—'; return; } try { let val = parseAdvanced(raw); if(val===null || isNaN(val)) throw new Error('Invalid'); if(val<=0) throw new Error('Must be >0'); let logv = Math.log10(val); interpretedValueSpan.innerText = val.toFixed(8).replace(/\.?0+$/, ''); advancedLogResultSpan.innerText = logv.toFixed(8).replace(/\.?0+$/, ''); } catch(e) { errorMessageSpan.innerText = '❌ ' + e.message; interpretedValueSpan.innerText = 'Error'; advancedLogResultSpan.innerText = '—'; } }
+        calcLogAdvancedBtn.addEventListener('click', computeAdvancedLog);
+        document.querySelectorAll('.example-badge').forEach(b => b.addEventListener('click', () => { logExpression.value = b.dataset.example; computeAdvancedLog(); }));
+        logExpression.value = "2×3×5 / 4×7";
+        computeAdvancedLog();
+    </script>
 </body>
 </html>
