@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>DEE ACADEMY | Geometry & Logs for O/L Students</title>
+    <title>DEE ACADEMY | O/L Mathematics - Area of Plane Figures</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,6 @@
             overflow-x: hidden;
         }
 
-        /* ========== COVER PAGE ========== */
         .cover-page {
             position: fixed;
             top: 0;
@@ -35,351 +34,94 @@
             overflow-y: auto;
         }
 
-        .cover-page.hide {
-            transform: translateY(-100%);
-            pointer-events: none;
-        }
+        .cover-page.hide { transform: translateY(-100%); pointer-events: none; }
+        .floating-shapes { position: fixed; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+        .shape { position: absolute; background: rgba(255, 215, 0, 0.08); border-radius: 50%; animation: floatShape 15s infinite ease-in-out; }
+        @keyframes floatShape { 0%, 100% { transform: translateY(0); opacity: 0.2; } 50% { transform: translateY(-30px); opacity: 0.4; } }
 
-        .cover-page::-webkit-scrollbar {
-            width: 4px;
-        }
-        .cover-page::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-        }
-        .cover-page::-webkit-scrollbar-thumb {
-            background: #FFD700;
-            border-radius: 10px;
-        }
-
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .shape {
-            position: absolute;
-            background: rgba(255, 215, 0, 0.08);
-            border-radius: 50%;
-            animation: floatShape 15s infinite ease-in-out;
-        }
-
-        @keyframes floatShape {
-            0%, 100% { transform: translateY(0); opacity: 0.2; }
-            50% { transform: translateY(-30px); opacity: 0.4; }
-        }
-
-        .cover-content {
-            text-align: center;
-            z-index: 10;
-            padding: 2rem 1.5rem;
-            max-width: 900px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .cover-logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.2rem auto;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .cover-logo span {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #1a1a2e;
-        }
-
-        .cover-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FFEAA7, #FFD32A);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+        .cover-content { text-align: center; z-index: 10; padding: 2rem 1.5rem; max-width: 900px; width: 100%; margin: 0 auto; }
+        .cover-logo { width: 120px; height: 120px; margin: 0 auto 1.2rem auto; background: white; border-radius: 30px; display: flex; align-items: center; justify-content: center; animation: bounce 2s infinite; overflow: hidden; padding: 10px; }
+        .cover-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 20px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .cover-title { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #FFEAA7, #FFD32A); background-clip: text; -webkit-background-clip: text; color: transparent; }
         .cover-subtitle { font-size: 1rem; color: #ddd; margin-bottom: 0.5rem; }
         .cover-tagline { font-size: 0.8rem; color: #FFD700; margin-bottom: 1.5rem; letter-spacing: 2px; }
 
-        .topic-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        .topic-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 1rem;
-            padding: 0.8rem 1.2rem;
-            width: 160px;
-            border: 1px solid rgba(255,215,0,0.3);
-            transition: all 0.3s;
-        }
-        .topic-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255,215,0,0.15);
-            border-color: #FFD700;
-        }
+        .topic-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
+        .topic-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border-radius: 1rem; padding: 0.8rem 1.2rem; width: 160px; border: 1px solid rgba(255,215,0,0.3); transition: all 0.3s; }
+        .topic-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.15); border-color: #FFD700; }
         .topic-emoji { font-size: 1.8rem; margin-bottom: 0.3rem; }
         .topic-name { font-weight: 700; color: #FFD700; font-size: 0.9rem; }
         .topic-desc { font-size: 0.7rem; color: #ccc; margin-top: 0.2rem; }
 
-        .formula-strip {
-            background: rgba(0,0,0,0.3);
-            border-radius: 2rem;
-            padding: 0.6rem 1rem;
-            margin: 1rem 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-        .formula-item {
-            font-family: monospace;
-            font-size: 0.75rem;
-            color: #FFE0A3;
-            background: rgba(255,215,0,0.1);
-            padding: 0.2rem 0.6rem;
-            border-radius: 1rem;
-        }
+        .btn-group { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+        .btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,215,0,0.5); padding: 0.7rem 1.5rem; border-radius: 2rem; font-weight: 700; color: #FFD700; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
+        .btn:hover { background: #FFD700; color: #1a1a2e; transform: translateY(-2px); }
+        .btn-primary { background: #FFD700; color: #1a1a2e; border: none; }
+        .btn-primary:hover { background: #FFA500; transform: scale(1.02); }
 
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-        .btn {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,215,0,0.5);
-            padding: 0.7rem 1.5rem;
-            border-radius: 2rem;
-            font-weight: 700;
-            color: #FFD700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        .btn:hover {
-            background: #FFD700;
-            color: #1a1a2e;
-            transform: translateY(-2px);
-        }
-        .btn-primary {
-            background: #FFD700;
-            color: #1a1a2e;
-            border: none;
-        }
-        .btn-primary:hover {
-            background: #FFA500;
-            transform: scale(1.02);
-        }
+        .main-app { opacity: 0; transition: opacity 0.5s ease; padding: 1rem; display: none; }
+        .main-app.visible { display: block; opacity: 1; }
+        .dashboard { max-width: 1400px; width: 100%; margin: 0 auto; }
 
-        /* ========== MAIN APP ========== */
-        .main-app {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            padding: 1rem;
-            display: none;
-        }
-        .main-app.visible {
-            display: block;
-            opacity: 1;
-        }
-        .dashboard {
-            max-width: 1300px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .app-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 1.5rem;
-            padding: 0.8rem 1.2rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.8rem;
-        }
-        .logo-small {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-small span { font-size: 1.5rem; font-weight: bold; color: #1a1a2e; }
+        .app-header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 1.5rem; padding: 0.8rem 1.2rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
+        .logo-small { width: 50px; height: 50px; background: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 5px; }
+        .logo-small img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
         .app-title { font-size: 1.2rem; font-weight: 700; color: #FFD700; }
         .back-btn { background: rgba(255,215,0,0.2); border: 1px solid #FFD700; padding: 0.3rem 1rem; border-radius: 2rem; color: #FFD700; cursor: pointer; font-size: 0.8rem; }
 
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            background: #1a1a2e;
-            border-radius: 1.5rem 1.5rem 0 0;
-            padding: 0.6rem 1.2rem 0 1.2rem;
-        }
-        .tab {
-            background: transparent;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            font-weight: 700;
-            color: #cbd5e0;
-            cursor: pointer;
-            border-radius: 1rem 1rem 0 0;
-            font-size: 0.85rem;
-        }
-        .tab.active {
-            background: white;
-            color: #1a1a2e;
-            border-bottom: 3px solid #FFD700;
-        }
-        .panel {
-            background: white;
-            border-radius: 0 0 1.5rem 1.5rem;
-            padding: 1.2rem;
-            display: none;
-        }
-        .panel.active {
-            display: block;
-        }
+        .tabs { display: flex; gap: 0.5rem; background: #1a1a2e; border-radius: 1.5rem 1.5rem 0 0; padding: 0.6rem 1.2rem 0 1.2rem; flex-wrap: wrap; }
+        .tab { background: transparent; border: none; padding: 0.6rem 1.2rem; font-weight: 700; color: #cbd5e0; cursor: pointer; border-radius: 1rem 1rem 0 0; font-size: 0.85rem; }
+        .tab.active { background: white; color: #1a1a2e; border-bottom: 3px solid #FFD700; }
+        .panel { background: white; border-radius: 0 0 1.5rem 1.5rem; padding: 1.2rem; display: none; }
+        .panel.active { display: block; }
 
-        .calc-row {
+        /* 2D Area Grid */
+        .area-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
-        .diagram-box {
+        .area-card {
             background: #fef9e6;
             border-radius: 1rem;
             padding: 1rem;
-            text-align: center;
             border: 1px solid #FFD700;
+            transition: all 0.3s;
         }
+        .area-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .area-title { font-size: 1.1rem; font-weight: bold; color: #1a1a2e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .area-diagram { text-align: center; margin: 0.5rem 0; }
+        .area-formula { font-family: monospace; background: #e8f0fe; padding: 0.3rem; border-radius: 0.5rem; font-size: 0.8rem; text-align: center; margin: 0.5rem 0; }
+        .area-input { margin: 0.5rem 0; }
+        .area-input input { width: 100%; padding: 0.5rem; border-radius: 0.5rem; border: 1.5px solid #e2e8f0; font-size: 0.85rem; }
+        .area-input input:focus { border-color: #FFD700; outline: none; }
+        .area-result { font-weight: bold; color: #667eea; margin-top: 0.5rem; text-align: center; font-size: 1.1rem; }
+        .area-calc-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 2rem; cursor: pointer; margin-top: 0.5rem; width: 100%; font-weight: bold; }
+
+        /* 3D Styles */
+        .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .diagram-box { background: #fef9e6; border-radius: 1rem; padding: 1rem; text-align: center; border: 1px solid #FFD700; }
         .form-box { background: white; }
         .input-field { margin-bottom: 1rem; }
         .input-field label { font-weight: 600; color: #1a1a2e; display: block; margin-bottom: 0.2rem; font-size: 0.8rem; }
-        .input-field input, .input-field select, textarea {
-            width: 100%;
-            padding: 0.6rem;
-            border-radius: 1rem;
-            border: 1.5px solid #e2e8f0;
-            font-size: 0.85rem;
-        }
-        .input-field input:focus, .input-field select:focus, textarea:focus {
-            border-color: #FFD700;
-            outline: none;
-        }
-        .input-field input[readonly] {
-            background: #f0f2f5;
-            cursor: default;
-        }
-        .choice-box {
-            background: #e8f0fe;
-            border-radius: 0.8rem;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            text-align: center;
-        }
-        .choice-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 0.5rem;
-        }
-        .choice-btn {
-            background: #1a1a2e;
-            color: #FFD700;
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .choice-btn.active {
-            background: #FFD700;
-            color: #1a1a2e;
-        }
-        .choice-btn:hover {
-            transform: scale(1.02);
-        }
-        .pythagoras-result {
-            background: #d4e4fc;
-            border-radius: 0.8rem;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
-            font-size: 0.75rem;
-            text-align: center;
-            border-left: 4px solid #FF8C00;
-        }
-        .calc-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            width: 100%;
-            padding: 0.7rem;
-            border: none;
-            border-radius: 2rem;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            margin: 0.5rem 0;
-        }
-        .result {
-            background: #f0f4f9;
-            border-radius: 1rem;
-            padding: 0.8rem;
-            text-align: center;
-            border-left: 5px solid #FFD700;
-            margin-top: 0.8rem;
-        }
-        .result-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-        .example-badge {
-            background: #e9ecef;
-            border-radius: 20px;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin: 0.15rem;
-            cursor: pointer;
-        }
-        .example-badge:hover {
-            background: #667eea;
-            color: white;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.65rem;
-            color: #a0aec0;
-            margin-top: 1rem;
-        }
+        .input-field input, .input-field select, textarea { width: 100%; padding: 0.6rem; border-radius: 1rem; border: 1.5px solid #e2e8f0; font-size: 0.85rem; }
+        .formula-card { background: #e8f0fe; border-radius: 1rem; padding: 0.8rem; margin: 0.8rem 0; text-align: center; border-left: 5px solid #FFD700; }
+        .choice-box { background: #e8f0fe; border-radius: 0.8rem; padding: 0.8rem; margin: 0.5rem 0; text-align: center; }
+        .choice-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+        .choice-btn { background: #1a1a2e; color: #FFD700; border: none; padding: 0.4rem 1rem; border-radius: 2rem; cursor: pointer; font-weight: 600; }
+        .choice-btn.active { background: #FFD700; color: #1a1a2e; }
+        .pythagoras-result { background: #d4e4fc; border-radius: 0.8rem; padding: 0.5rem; margin: 0.5rem 0; font-size: 0.75rem; text-align: center; border-left: 4px solid #FF8C00; }
+        .calc-btn { background: linear-gradient(135deg, #667eea, #764ba2); width: 100%; padding: 0.7rem; border: none; border-radius: 2rem; font-weight: bold; color: white; cursor: pointer; margin: 0.5rem 0; }
+        .result { background: #f0f4f9; border-radius: 1rem; padding: 0.8rem; text-align: center; border-left: 5px solid #FFD700; margin-top: 0.8rem; }
+        .result-value { font-size: 1.3rem; font-weight: bold; color: #667eea; }
+        .example-badge { background: #e9ecef; border-radius: 20px; padding: 0.2rem 0.6rem; font-size: 0.7rem; display: inline-block; margin: 0.15rem; cursor: pointer; }
+        footer { text-align: center; font-size: 0.65rem; color: #a0aec0; margin-top: 1rem; }
+
         @media (max-width: 700px) {
             .calc-row { grid-template-columns: 1fr; }
-            .topic-card { width: 140px; }
+            .tabs { gap: 0.3rem; }
+            .tab { padding: 0.4rem 0.8rem; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -388,39 +130,21 @@
     <div class="cover-page" id="coverPage">
         <div class="floating-shapes" id="floatingShapes"></div>
         <div class="cover-content">
-            <div class="cover-logo"><span>π📐</span></div>
+            <div class="cover-logo"><img src="logo.jpeg" alt="Dee Academy Logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>'"></div>
             <h1 class="cover-title">DEE ACADEMY</h1>
-            <p class="cover-subtitle">Learn Geometry & Logarithms</p>
-            <div class="cover-tagline">✦ SIMPLE · CLEAR · FUN ✦</div>
+            <p class="cover-subtitle">O/L Mathematics - Complete Geometry Guide</p>
+            <div class="cover-tagline">✦ AREA · VOLUME · SURFACE AREA · LOGARITHMS ✦</div>
 
             <div class="topic-grid">
-                <div class="topic-card">
-                    <div class="topic-emoji">📦</div>
-                    <div class="topic-name">Volume of Solids</div>
-                    <div class="topic-desc">Cube, Sphere, Cylinder, Cone, Pyramid</div>
-                </div>
-                <div class="topic-card">
-                    <div class="topic-emoji">🔢</div>
-                    <div class="topic-name">Logarithms</div>
-                    <div class="topic-desc">log₁₀ with fractions & roots</div>
-                </div>
-                <div class="topic-card">
-                    <div class="topic-emoji">📐</div>
-                    <div class="topic-name">Pythagoras</div>
-                    <div class="topic-desc">For Cone: l² = r² + h²</div>
-                </div>
-            </div>
-
-            <div class="formula-strip">
-                <span class="formula-item">Sphere Volume = ⁴⁄₃πr³</span>
-                <span class="formula-item">Cylinder Volume = πr²h</span>
-                <span class="formula-item">Cone Volume = ⅓πr²h</span>
-                <span class="formula-item">Cone: l² = r² + h²</span>
+                <div class="topic-card"><div class="topic-emoji">📐</div><div class="topic-name">Area of Plane Figures</div><div class="topic-desc">Square, Rectangle, Triangle, Parallelogram, Trapezium, Circle</div></div>
+                <div class="topic-card"><div class="topic-emoji">📦</div><div class="topic-name">Volume & Surface Area</div><div class="topic-desc">Cube, Sphere, Cylinder, Cone, Pyramid</div></div>
+                <div class="topic-card"><div class="topic-emoji">🔢</div><div class="topic-name">Logarithm 10</div><div class="topic-desc">log₁₀ with fractions & roots</div></div>
             </div>
 
             <div class="btn-group">
-                <button class="btn" id="coverVolumeBtn">📦 Volume Calculator</button>
-                <button class="btn" id="coverLogBtn">🔢 Log Calculator</button>
+                <button class="btn" id="coverAreaBtn">📐 Area of Plane Figures</button>
+                <button class="btn" id="coverVolumeBtn">📦 Volume & Surface Area of Solids</button>
+                <button class="btn" id="coverLogBtn">🔢 Logarithm 10 Calculator</button>
                 <button class="btn btn-primary" id="enterBtn">✨ Start Learning ✨</button>
             </div>
         </div>
@@ -431,57 +155,186 @@
         <div class="dashboard">
             <div class="app-header">
                 <div style="display: flex; align-items: center; gap: 0.8rem;">
-                    <div class="logo-small"><span>π📐</span></div>
-                    <div><span class="app-title">DEE ACADEMY</span><div style="font-size: 0.65rem; color: #a0aec0;">Geometry & Logarithms</div></div>
+                    <div class="logo-small"><img src="logo.jpeg" alt="Dee Academy Logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>'"></div>
+                    <div><span class="app-title">DEE ACADEMY</span><div style="font-size: 0.65rem; color: #a0aec0;">O/L Mathematics - Complete Geometry</div></div>
                 </div>
                 <button class="back-btn" id="homeCoverBtn">🏠 Back to Home</button>
             </div>
 
             <div class="tabs">
-                <button class="tab active" data-tab="vol">📦 Volume Calculator</button>
-                <button class="tab" data-tab="log">🔢 Log₁₀ Calculator</button>
+                <button class="tab active" data-tab="area2d">📐 Area of Plane Figures</button>
+                <button class="tab" data-tab="vol">📦 Volume & Surface Area of Solids</button>
+                <button class="tab" data-tab="log">🔢 Logarithm 10 Calculator</button>
             </div>
 
-            <!-- Volume Panel -->
-            <div id="volPanel" class="panel active">
+            <!-- 2D AREA OF PLANE FIGURES TAB -->
+            <div id="area2dPanel" class="panel active">
+                <h3 style="margin-bottom: 1rem; color: #1a1a2e; text-align: center;">📐 Area of Plane Figures</h3>
+                <div class="area-grid">
+                    <!-- Square -->
+                    <div class="area-card">
+                        <div class="area-title"><span>⬛</span> Square</div>
+                        <div class="area-diagram">
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                                <rect x="15" y="15" width="90" height="90" fill="#c3dafe" stroke="#ef4444" stroke-width="3"/>
+                                <line x1="15" y1="15" x2="105" y2="15" stroke="#ef4444" stroke-width="2"/>
+                                <text x="45" y="10" fill="#ef4444" font-size="11">a (side)</text>
+                                <text x="20" y="70" fill="#ef4444" font-size="11">a</text>
+                            </svg>
+                        </div>
+                        <div class="area-formula">📖 Formula: A = a²</div>
+                        <div class="area-input"><input type="number" id="squareSide" placeholder="Side (a) in cm/m" value="5" step="any"></div>
+                        <button class="area-calc-btn" onclick="calcSquareArea()">Calculate Area</button>
+                        <div class="area-result" id="squareResult">Area: —</div>
+                    </div>
+
+                    <!-- Rectangle -->
+                    <div class="area-card">
+                        <div class="area-title"><span>📏</span> Rectangle</div>
+                        <div class="area-diagram">
+                            <svg width="140" height="100" viewBox="0 0 140 100">
+                                <rect x="15" y="15" width="110" height="70" fill="#c3dafe" stroke="#3b82f6" stroke-width="3"/>
+                                <line x1="15" y1="15" x2="125" y2="15" stroke="#3b82f6" stroke-width="2"/>
+                                <text x="55" y="10" fill="#3b82f6" font-size="10">l (length)</text>
+                                <line x1="125" y1="15" x2="125" y2="85" stroke="#ef4444" stroke-width="2"/>
+                                <text x="128" y="50" fill="#ef4444" font-size="10">w (width)</text>
+                            </svg>
+                        </div>
+                        <div class="area-formula">📖 Formula: A = l × w</div>
+                        <div class="area-input"><input type="number" id="rectLength" placeholder="Length (l) in cm/m" value="8" step="any"></div>
+                        <div class="area-input"><input type="number" id="rectWidth" placeholder="Width (w) in cm/m" value="5" step="any"></div>
+                        <button class="area-calc-btn" onclick="calcRectangleArea()">Calculate Area</button>
+                        <div class="area-result" id="rectResult">Area: —</div>
+                    </div>
+
+                    <!-- Triangle -->
+                    <div class="area-card">
+                        <div class="area-title"><span>🔺</span> Triangle</div>
+                        <div class="area-diagram">
+                            <svg width="140" height="110" viewBox="0 0 140 110">
+                                <polygon points="70,15 15,95 125,95" fill="#c3dafe" stroke="#10b981" stroke-width="3"/>
+                                <line x1="70" y1="15" x2="70" y2="95" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+                                <text x="72" y="55" fill="#3b82f6" font-size="10">h (height)</text>
+                                <line x1="15" y1="95" x2="125" y2="95" stroke="#ef4444" stroke-width="2"/>
+                                <text x="55" y="110" fill="#ef4444" font-size="10">b (base)</text>
+                            </svg>
+                        </div>
+                        <div class="area-formula">📖 Formula: A = ½ × b × h</div>
+                        <div class="area-input"><input type="number" id="triBase" placeholder="Base (b) in cm/m" value="8" step="any"></div>
+                        <div class="area-input"><input type="number" id="triHeight" placeholder="Height (h) in cm/m" value="6" step="any"></div>
+                        <button class="area-calc-btn" onclick="calcTriangleArea()">Calculate Area</button>
+                        <div class="area-result" id="triResult">Area: —</div>
+                    </div>
+
+                    <!-- Parallelogram -->
+                    <div class="area-card">
+                        <div class="area-title"><span>🔷</span> Parallelogram</div>
+                        <div class="area-diagram">
+                            <svg width="140" height="100" viewBox="0 0 140 100">
+                                <polygon points="25,85 115,85 95,15 5,15" fill="#c3dafe" stroke="#f59e0b" stroke-width="3"/>
+                                <line x1="5" y1="15" x2="95" y2="15" stroke="#ef4444" stroke-width="2"/>
+                                <text x="30" y="10" fill="#ef4444" font-size="10">b (base)</text>
+                                <line x1="25" y1="85" x2="25" y2="15" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+                                <text x="5" y="50" fill="#3b82f6" font-size="10">h</text>
+                            </svg>
+                        </div>
+                        <div class="area-formula">📖 Formula: A = b × h</div>
+                        <div class="area-input"><input type="number" id="paraBase" placeholder="Base (b) in cm/m" value="8" step="any"></div>
+                        <div class="area-input"><input type="number" id="paraHeight" placeholder="Height (h) in cm/m" value="5" step="any"></div>
+                        <button class="area-calc-btn" onclick="calcParallelogramArea()">Calculate Area</button>
+                        <div class="area-result" id="paraResult">Area: —</div>
+                    </div>
+
+                    <!-- Trapezium -->
+                    <div class="area-card">
+                        <div class="area-title"><span>📐</span> Trapezium (Trapezoid)</div>
+                        <div class="area-diagram">
+                            <svg width="140" height="100" viewBox="0 0 140 100">
+                                <polygon points="25,85 115,85 95,15 45,15" fill="#c3dafe" stroke="#ec489a" stroke-width="3"/>
+                                <line x1="45" y1="15" x2="95" y2="15" stroke="#ef4444" stroke-width="2"/>
+                                <text x="55" y="10" fill="#ef4444" font-size="10">a</text>
+                                <line x1="25" y1="85" x2="115" y2="85" stroke="#10b981" stroke-width="2"/>
+                                <text x="55" y="100" fill="#10b981" font-size="10">b</text>
+                                <line x1="45" y1="15" x2="45" y2="85" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+                                <text x="25" y="50" fill="#3b82f6" font-size="10">h</text>
+                            </svg>
+                        </div>
+                        <div class="area-formula">📖 Formula: A = ½ × (a + b) × h</div>
+                        <div class="area-input"><input type="number" id="trapA" placeholder="Parallel side a (cm/m)" value="8" step="any"></div>
+                        <div class="area-input"><input type="number" id="trapB" placeholder="Parallel side b (cm/m)" value="5" step="any"></div>
+                        <div class="area-input"><input type="number" id="trapH" placeholder="Height (h) in cm/m" value="4" step="any"></div>
+                        <button class="area-calc-btn" onclick="calcTrapeziumArea()">Calculate Area</button>
+                        <div class="area-result" id="trapResult">Area: —</div>
+                    </div>
+
+                    <!-- Circle -->
+                    <div class="area-card">
+                        <div class="area-title"><span>⚪</span> Circle</div>
+                        <div class="area-diagram">
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="45" fill="#c3dafe" stroke="#ef4444" stroke-width="3"/>
+                                <line x1="60" y1="15" x2="60" y2="105" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                                <text x="62" y="60" fill="#ef4444" font-size="10">r</text>
+                            </svg>
+                        </div>
+                        <div class="area-formula">📖 Formula: A = π × r²</div>
+                        <div class="area-input"><input type="number" id="circleRadius" placeholder="Radius (r) in cm/m" value="5" step="any"></div>
+                        <button class="area-calc-btn" onclick="calcCircleArea()">Calculate Area</button>
+                        <div class="area-result" id="circleResult">Area: —</div>
+                    </div>
+                </div>
+                <div class="formula-card" style="margin-top: 1rem;">
+                    <h4>📖 O/L Formula Reference - Area of Plane Figures</h4>
+                    <div class="formula-text">Square: a² | Rectangle: l×w | Triangle: ½×b×h | Parallelogram: b×h | Trapezium: ½(a+b)h | Circle: πr²</div>
+                    <div style="margin-top: 0.5rem; font-size: 0.7rem;">📐 Units: cm² or m² only</div>
+                </div>
+            </div>
+
+            <!-- 3D VOLUME & SURFACE AREA OF SOLIDS TAB -->
+            <div id="volPanel" class="panel">
                 <div class="calc-row">
                     <div class="diagram-box">
-                        <div style="font-weight: bold; margin-bottom: 0.5rem;">📐 3D Shape</div>
+                        <div style="font-weight: bold; margin-bottom: 0.5rem;">📐 3D Solid</div>
                         <div id="shapeDiagram"><svg width="160" height="120"><text x="40" y="60" fill="#718096">Select shape</text></svg></div>
-                        <div id="dimText" style="font-size: 0.7rem; margin-top: 0.3rem;">Choose a shape</div>
+                        <div id="dimText" style="font-size: 0.7rem; margin-top: 0.3rem;">Choose a solid</div>
+                        <div id="formulaDisplay" class="formula-card" style="margin-top: 0.8rem;"><h4>📖 Formula</h4><div class="formula-text" id="formulaText">Select a shape</div></div>
                     </div>
                     <div class="form-box">
-                        <div class="input-field"><label>Shape</label><select id="shapeSelect">
-                            <option value="cube">Cube (side a)</option>
-                            <option value="sphere">Sphere (radius r)</option>
-                            <option value="cylinder">Cylinder (r, h)</option>
-                            <option value="cone">Cone (radius r, height h or slant l)</option>
-                            <option value="pyramid">Square Pyramid (base, height)</option>
+                        <div class="input-field"><label>Solid Shape</label><select id="shapeSelect">
+                            <option value="cube">🧊 Cube (side a)</option>
+                            <option value="sphere">⚽ Sphere (radius r)</option>
+                            <option value="cylinder">🥫 Cylinder (radius r, height h)</option>
+                            <option value="cone">🎩 Cone (radius r, height h or slant l)</option>
+                            <option value="pyramid">🔺 Square Pyramid (base b, height h)</option>
                         </select></div>
                         <div id="dimsContainer"></div>
-                        <div class="input-field"><label>Unit</label><select id="unitSelect"><option value="cm">cm</option><option value="m">m</option></select></div>
-                        <button class="calc-btn" id="calcVolBtn">📐 Calculate Volume</button>
-                        <div class="result"><span>Volume = </span><span id="volResult" class="result-value">—</span> <span id="volUnit">cm³</span></div>
+                        <div class="input-field"><label>Unit</label><select id="unitSelect"><option value="cm">cm (cm³/cm²)</option><option value="m">m (m³/m²)</option></select></div>
+                        <button class="calc-btn" id="calcVolBtn">📐 Calculate Volume & Surface Area</button>
+                        <div class="result"><div><strong>📦 Volume:</strong> <span id="volResult" class="result-value">—</span> <span id="volUnit">cm³</span></div>
+                        <div style="margin-top: 0.5rem; font-size: 0.7rem; color: #666;" id="volFormula">V = ?</div>
+                        <div style="margin-top: 0.8rem;"><strong>🌀 Surface Area:</strong> <span id="areaResult" class="result-value">—</span> <span id="areaUnit">cm²</span></div>
+                        <div style="margin-top: 0.5rem; font-size: 0.7rem; color: #666;" id="areaFormula">A = ?</div></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Log Panel -->
+            <!-- LOGARITHM 10 CALCULATOR TAB -->
             <div id="logPanel" class="panel">
                 <div class="input-field"><label>Enter Expression (or number)</label><textarea id="logExpr" rows="2" placeholder="Examples: 2×3×5/4×7  or  √(3×5/2×π)  or  100"></textarea>
-                <div style="margin-top: 0.5rem;">
-                    <span class="example-badge" data-ex="2×3×5/4×7">2×3×5/4×7</span>
-                    <span class="example-badge" data-ex="√(3×5/2×π)">√(3×5/2×π)</span>
-                    <span class="example-badge" data-ex="∛(8×27/125)">∛(8×27/125)</span>
-                    <span class="example-badge" data-ex="100">100</span>
-                    <span class="example-badge" data-ex="0.01">0.01</span>
-                </div>
+                <div style="margin-top: 0.5rem;"><span class="example-badge" data-ex="2×3×5/4×7">2×3×5/4×7</span>
+                <span class="example-badge" data-ex="√(3×5/2×π)">√(3×5/2×π)</span>
+                <span class="example-badge" data-ex="∛(8×27/125)">∛(8×27/125)</span>
+                <span class="example-badge" data-ex="100">100</span>
+                <span class="example-badge" data-ex="0.01">0.01</span></div>
                 </div>
                 <button class="calc-btn" id="calcLogBtn">🧮 Calculate log₁₀</button>
-                <div class="result"><div><strong>Value:</strong> <span id="logValue" class="result-value">—</span></div><div style="margin-top: 0.3rem;"><strong>log₁₀ =</strong> <span id="logResult" class="result-value">—</span></div><div id="logError" style="color: #e53e3e; font-size: 0.7rem;"></div></div>
-                <div style="font-size: 0.7rem; text-align: center; margin-top: 0.5rem; color: #718096;">💡 Tip: Use × for multiplication, / for division, √() for square root, ∛() for cube root</div>
+                <div class="result"><div><strong>💡 Definition:</strong> log₁₀(x) = power to which 10 must be raised to get x</div>
+                <div style="margin-top: 0.5rem;"><strong>Value:</strong> <span id="logValue" class="result-value">—</span></div>
+                <div style="margin-top: 0.3rem;"><strong>log₁₀ =</strong> <span id="logResult" class="result-value">—</span></div>
+                <div id="logError" style="color: #e53e3e; font-size: 0.7rem;"></div></div>
+                <div style="font-size: 0.7rem; text-align: center; margin-top: 0.5rem; color: #718096;">📐 Example: log₁₀(100) = 2 because 10² = 100</div>
             </div>
-            <footer>DEE ACADEMY | Cone: Choose what you know (Height OR Slant) — the other is calculated using Pythagoras!</footer>
+            <footer>DEE ACADEMY | O/L Mathematics: Area of Plane Figures | Volume & Surface Area of Solids | Logarithm 10 Calculator</footer>
         </div>
     </div>
 
@@ -504,6 +357,7 @@
         const mainApp = document.getElementById('mainApp');
         const enterBtn = document.getElementById('enterBtn');
         const homeCoverBtn = document.getElementById('homeCoverBtn');
+        const coverAreaBtn = document.getElementById('coverAreaBtn');
         const coverVolumeBtn = document.getElementById('coverVolumeBtn');
         const coverLogBtn = document.getElementById('coverLogBtn');
 
@@ -514,15 +368,14 @@
                 coverPage.style.display = 'none'; 
                 mainApp.style.display = 'block'; 
                 mainApp.classList.add('visible');
-                if(tab === 'log') {
-                    document.querySelector('.tab[data-tab="log"]').click();
-                } else {
-                    document.querySelector('.tab[data-tab="vol"]').click();
-                }
+                if(tab === 'area') { document.querySelector('.tab[data-tab="area2d"]').click(); }
+                else if(tab === 'log') { document.querySelector('.tab[data-tab="log"]').click(); }
+                else { document.querySelector('.tab[data-tab="vol"]').click(); }
             }, 500);
         }
 
-        enterBtn.addEventListener('click', () => showApp('vol'));
+        enterBtn.addEventListener('click', () => showApp('area'));
+        coverAreaBtn.addEventListener('click', () => showApp('area'));
         coverVolumeBtn.addEventListener('click', () => showApp('vol'));
         coverLogBtn.addEventListener('click', () => showApp('log'));
         homeCoverBtn.addEventListener('click', showCover);
@@ -539,47 +392,102 @@
             });
         });
 
-        // ========== VOLUME CALCULATOR WITH CONE CHOICE ==========
+        // ========== 2D AREA CALCULATIONS ==========
+        function formatArea(value) {
+            return value.toFixed(4).replace(/\.?0+$/, '');
+        }
+
+        function calcSquareArea() {
+            let a = parseFloat(document.getElementById('squareSide').value) || 0;
+            let area = a * a;
+            document.getElementById('squareResult').innerHTML = `Area: ${formatArea(area)} ${a !== 0 ? 'cm²' : '—'}`;
+        }
+        function calcRectangleArea() {
+            let l = parseFloat(document.getElementById('rectLength').value) || 0;
+            let w = parseFloat(document.getElementById('rectWidth').value) || 0;
+            let area = l * w;
+            document.getElementById('rectResult').innerHTML = `Area: ${formatArea(area)} ${l !== 0 && w !== 0 ? 'cm²' : '—'}`;
+        }
+        function calcTriangleArea() {
+            let b = parseFloat(document.getElementById('triBase').value) || 0;
+            let h = parseFloat(document.getElementById('triHeight').value) || 0;
+            let area = 0.5 * b * h;
+            document.getElementById('triResult').innerHTML = `Area: ${formatArea(area)} ${b !== 0 && h !== 0 ? 'cm²' : '—'}`;
+        }
+        function calcParallelogramArea() {
+            let b = parseFloat(document.getElementById('paraBase').value) || 0;
+            let h = parseFloat(document.getElementById('paraHeight').value) || 0;
+            let area = b * h;
+            document.getElementById('paraResult').innerHTML = `Area: ${formatArea(area)} ${b !== 0 && h !== 0 ? 'cm²' : '—'}`;
+        }
+        function calcTrapeziumArea() {
+            let a = parseFloat(document.getElementById('trapA').value) || 0;
+            let b = parseFloat(document.getElementById('trapB').value) || 0;
+            let h = parseFloat(document.getElementById('trapH').value) || 0;
+            let area = 0.5 * (a + b) * h;
+            document.getElementById('trapResult').innerHTML = `Area: ${formatArea(area)} ${a !== 0 && b !== 0 && h !== 0 ? 'cm²' : '—'}`;
+        }
+        function calcCircleArea() {
+            let r = parseFloat(document.getElementById('circleRadius').value) || 0;
+            let area = Math.PI * r * r;
+            document.getElementById('circleResult').innerHTML = `Area: ${formatArea(area)} ${r !== 0 ? 'cm²' : '—'}`;
+        }
+
+        // Add input listeners
+        document.getElementById('squareSide').addEventListener('input', calcSquareArea);
+        document.getElementById('rectLength').addEventListener('input', calcRectangleArea);
+        document.getElementById('rectWidth').addEventListener('input', calcRectangleArea);
+        document.getElementById('triBase').addEventListener('input', calcTriangleArea);
+        document.getElementById('triHeight').addEventListener('input', calcTriangleArea);
+        document.getElementById('paraBase').addEventListener('input', calcParallelogramArea);
+        document.getElementById('paraHeight').addEventListener('input', calcParallelogramArea);
+        document.getElementById('trapA').addEventListener('input', calcTrapeziumArea);
+        document.getElementById('trapB').addEventListener('input', calcTrapeziumArea);
+        document.getElementById('trapH').addEventListener('input', calcTrapeziumArea);
+        document.getElementById('circleRadius').addEventListener('input', calcCircleArea);
+
+        calcSquareArea(); calcRectangleArea(); calcTriangleArea(); calcParallelogramArea(); calcTrapeziumArea(); calcCircleArea();
+
+        // ========== 3D VOLUME & SURFACE AREA CODE ==========
         const shapeSelect = document.getElementById('shapeSelect');
         const dimsContainer = document.getElementById('dimsContainer');
         const calcVolBtn = document.getElementById('calcVolBtn');
         const volResult = document.getElementById('volResult');
+        const areaResult = document.getElementById('areaResult');
         const volUnitSpan = document.getElementById('volUnit');
+        const areaUnitSpan = document.getElementById('areaUnit');
         const unitSelect = document.getElementById('unitSelect');
         const shapeDiagram = document.getElementById('shapeDiagram');
         const dimText = document.getElementById('dimText');
+        const formulaText = document.getElementById('formulaText');
+        const volFormulaSpan = document.getElementById('volFormula');
+        const areaFormulaSpan = document.getElementById('areaFormula');
 
-        let coneChoice = 'height'; // 'height' or 'slant'
+        let coneChoice = 'height';
+
+        function updateFormulas(shape) {
+            if(shape === 'cube') { formulaText.innerHTML = '📐 Cube: V = a³, A = 6a²'; volFormulaSpan.innerHTML = '📖 V = a³'; areaFormulaSpan.innerHTML = '📖 A = 6a²'; }
+            else if(shape === 'sphere') { formulaText.innerHTML = '⚽ Sphere: V = ⁴⁄₃πr³, A = 4πr²'; volFormulaSpan.innerHTML = '📖 V = ⁴⁄₃ × π × r³'; areaFormulaSpan.innerHTML = '📖 A = 4 × π × r²'; }
+            else if(shape === 'cylinder') { formulaText.innerHTML = '🥫 Cylinder: V = πr²h, A = 2πr(r + h)'; volFormulaSpan.innerHTML = '📖 V = π × r² × h'; areaFormulaSpan.innerHTML = '📖 A = 2πr(r + h)'; }
+            else if(shape === 'cone') { formulaText.innerHTML = '🎩 Cone: V = ⅓πr²h, A = πr(r + l)'; volFormulaSpan.innerHTML = '📖 V = ⅓ × π × r² × h'; areaFormulaSpan.innerHTML = '📖 A = π × r × (r + l)'; }
+            else if(shape === 'pyramid') { formulaText.innerHTML = '🔺 Square Pyramid: V = ⅓ × b² × h'; volFormulaSpan.innerHTML = '📖 V = ⅓ × base area × height'; areaFormulaSpan.innerHTML = '📖 A = b² + 2b × slant height'; }
+        }
 
         function updateDimFields() {
             const shape = shapeSelect.value;
+            updateFormulas(shape);
             let html = '';
-            if(shape === 'cube') {
-                html = `<div class="input-field"><label>Side (a)</label><input type="number" id="dim1" value="5" step="any"></div>`;
-            } 
-            else if(shape === 'sphere') {
-                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="dim1" value="5" step="any"></div>`;
-            } 
-            else if(shape === 'cylinder') {
-                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="dim1" value="4" step="any"></div>
-                        <div class="input-field"><label>Height (h)</label><input type="number" id="dim2" value="10" step="any"></div>`;
-            } 
+            if(shape === 'cube') { html = `<div class="input-field"><label>Side (a) in cm/m</label><input type="number" id="dim1" value="5" step="any"></div>`; } 
+            else if(shape === 'sphere') { html = `<div class="input-field"><label>Radius (r) in cm/m</label><input type="number" id="dim1" value="5" step="any"></div>`; } 
+            else if(shape === 'cylinder') { html = `<div class="input-field"><label>Radius (r) in cm/m</label><input type="number" id="dim1" value="4" step="any"></div><div class="input-field"><label>Height (h) in cm/m</label><input type="number" id="dim2" value="10" step="any"></div>`; } 
             else if(shape === 'cone') {
-                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="coneRadius" value="3" step="any"></div>
-                        <div class="choice-box">
-                            <strong>📐 What do you know?</strong>
-                            <div class="choice-buttons">
-                                <button type="button" class="choice-btn ${coneChoice === 'height' ? 'active' : ''}" id="choiceHeightBtn">📏 Perpendicular Height (h)</button>
-                                <button type="button" class="choice-btn ${coneChoice === 'slant' ? 'active' : ''}" id="choiceSlantBtn">📐 Slant Height (l)</button>
-                            </div>
-                        </div>
-                        <div id="coneInputArea"></div>
-                        <div id="conePythagorasResult" class="pythagoras-result" style="display: none;"></div>`;
+                html = `<div class="input-field"><label>Radius (r) in cm/m</label><input type="number" id="coneRadius" value="3" step="any"></div>
+                        <div class="choice-box"><strong>📐 What do you know?</strong>
+                        <div class="choice-buttons"><button type="button" class="choice-btn ${coneChoice === 'height' ? 'active' : ''}" id="choiceHeightBtn">📏 Height (h)</button>
+                        <button type="button" class="choice-btn ${coneChoice === 'slant' ? 'active' : ''}" id="choiceSlantBtn">📐 Slant Height (l)</button></div></div>
+                        <div id="coneInputArea"></div><div id="conePythagorasResult" class="pythagoras-result" style="display: none;"></div>`;
             } 
-            else if(shape === 'pyramid') {
-                html = `<div class="input-field"><label>Base side (b)</label><input type="number" id="dim1" value="6" step="any"></div>
-                        <div class="input-field"><label>Height (h)</label><input type="number" id="dim2" value="8" step="any"></div>`;
-            }
+            else if(shape === 'pyramid') { html = `<div class="input-field"><label>Base side (b) in cm/m</label><input type="number" id="dim1" value="6" step="any"></div><div class="input-field"><label>Height (h) in cm/m</label><input type="number" id="dim2" value="8" step="any"></div>`; }
             dimsContainer.innerHTML = html;
 
             if(shape === 'cone') {
@@ -592,209 +500,77 @@
                 function updateConeInputs() {
                     const r = parseFloat(radiusInput?.value) || 0;
                     if(coneChoice === 'height') {
-                        coneInputArea.innerHTML = `<div class="input-field"><label>Perpendicular Height (h)</label><input type="number" id="coneHeightValue" value="5" step="any" placeholder="Enter height"></div>`;
+                        coneInputArea.innerHTML = `<div class="input-field"><label>Perpendicular Height (h) in cm/m</label><input type="number" id="coneHeightValue" value="5" step="any"></div>`;
                         const heightInput = document.getElementById('coneHeightValue');
-                        if(heightInput) {
-                            heightInput.addEventListener('input', () => {
-                                const h = parseFloat(heightInput.value) || 0;
-                                if(r > 0 && h > 0) {
-                                    const slant = Math.sqrt(r*r + h*h);
-                                    pythagorasDiv.style.display = 'block';
-                                    pythagorasDiv.innerHTML = `📐 <strong>Pythagoras:</strong> l = √(${r.toFixed(3)}² + ${h.toFixed(3)}²) = ${slant.toFixed(4)}<br>✅ Slant height = ${slant.toFixed(4)}`;
-                                } else {
-                                    pythagorasDiv.style.display = 'none';
-                                }
-                                updateDiagram();
-                            });
-                        }
+                        if(heightInput) heightInput.addEventListener('input', () => { const h = parseFloat(heightInput.value) || 0; if(r > 0 && h > 0) { const slant = Math.sqrt(r*r + h*h); pythagorasDiv.style.display = 'block'; pythagorasDiv.innerHTML = `📐 <strong>Pythagoras:</strong> l = √(${r.toFixed(3)}² + ${h.toFixed(3)}²) = ${slant.toFixed(4)}`; } else { pythagorasDiv.style.display = 'none'; } updateDiagram(); computeVolumeAndArea(); });
                     } else {
-                        coneInputArea.innerHTML = `<div class="input-field"><label>Slant Height (l)</label><input type="number" id="coneSlantValue" value="5.831" step="any" placeholder="Enter slant height"></div>`;
+                        coneInputArea.innerHTML = `<div class="input-field"><label>Slant Height (l) in cm/m</label><input type="number" id="coneSlantValue" value="5.831" step="any"></div>`;
                         const slantInput = document.getElementById('coneSlantValue');
-                        if(slantInput) {
-                            slantInput.addEventListener('input', () => {
-                                const l = parseFloat(slantInput.value) || 0;
-                                if(r > 0 && l > 0 && l > r) {
-                                    const height = Math.sqrt(l*l - r*r);
-                                    pythagorasDiv.style.display = 'block';
-                                    pythagorasDiv.innerHTML = `📐 <strong>Pythagoras:</strong> h = √(${l.toFixed(3)}² − ${r.toFixed(3)}²) = ${height.toFixed(4)}<br>✅ Perpendicular height = ${height.toFixed(4)}`;
-                                } else if(r > 0 && l > 0 && l <= r) {
-                                    pythagorasDiv.style.display = 'block';
-                                    pythagorasDiv.innerHTML = `⚠️ <strong>Error:</strong> Slant height must be greater than radius (l > r)`;
-                                } else {
-                                    pythagorasDiv.style.display = 'none';
-                                }
-                                updateDiagram();
-                            });
-                        }
+                        if(slantInput) slantInput.addEventListener('input', () => { const l = parseFloat(slantInput.value) || 0; if(r > 0 && l > 0 && l > r) { const height = Math.sqrt(l*l - r*r); pythagorasDiv.style.display = 'block'; pythagorasDiv.innerHTML = `📐 <strong>Pythagoras:</strong> h = √(${l.toFixed(3)}² − ${r.toFixed(3)}²) = ${height.toFixed(4)}`; } else if(r > 0 && l > 0 && l <= r) { pythagorasDiv.style.display = 'block'; pythagorasDiv.innerHTML = `⚠️ Error: l must be > r`; } else { pythagorasDiv.style.display = 'none'; } updateDiagram(); computeVolumeAndArea(); });
                     }
                     updateDiagram();
                 }
-                
-                if(choiceHeightBtn) {
-                    choiceHeightBtn.addEventListener('click', () => {
-                        coneChoice = 'height';
-                        choiceHeightBtn.classList.add('active');
-                        choiceSlantBtn.classList.remove('active');
-                        updateConeInputs();
-                    });
-                }
-                if(choiceSlantBtn) {
-                    choiceSlantBtn.addEventListener('click', () => {
-                        coneChoice = 'slant';
-                        choiceSlantBtn.classList.add('active');
-                        choiceHeightBtn.classList.remove('active');
-                        updateConeInputs();
-                    });
-                }
-                if(radiusInput) radiusInput.addEventListener('input', () => updateConeInputs());
+                if(choiceHeightBtn) choiceHeightBtn.addEventListener('click', () => { coneChoice = 'height'; choiceHeightBtn.classList.add('active'); choiceSlantBtn.classList.remove('active'); updateConeInputs(); computeVolumeAndArea(); });
+                if(choiceSlantBtn) choiceSlantBtn.addEventListener('click', () => { coneChoice = 'slant'; choiceSlantBtn.classList.add('active'); choiceHeightBtn.classList.remove('active'); updateConeInputs(); computeVolumeAndArea(); });
+                if(radiusInput) radiusInput.addEventListener('input', () => { updateConeInputs(); computeVolumeAndArea(); });
                 updateConeInputs();
             }
-            
             const inputs = dimsContainer.querySelectorAll('input');
-            inputs.forEach(inp => inp.addEventListener('input', () => updateDiagram()));
-            updateDiagram();
+            inputs.forEach(inp => inp.addEventListener('input', () => { updateDiagram(); computeVolumeAndArea(); }));
+            updateDiagram(); computeVolumeAndArea();
         }
 
         function getDims() {
             const shape = shapeSelect.value;
             if(shape === 'cone') {
                 const r = parseFloat(document.getElementById('coneRadius')?.value) || 0;
-                let h = 0;
-                if(coneChoice === 'height') {
-                    h = parseFloat(document.getElementById('coneHeightValue')?.value) || 0;
-                } else {
-                    const l = parseFloat(document.getElementById('coneSlantValue')?.value) || 0;
-                    const rVal = r;
-                    if(rVal > 0 && l > 0 && l > rVal) {
-                        h = Math.sqrt(l*l - rVal*rVal);
-                    }
-                }
-                return [r, h];
-            } else {
-                const inputs = dimsContainer.querySelectorAll('input');
-                return Array.from(inputs).map(i => parseFloat(i.value) || 0);
-            }
+                let h = 0, l = 0;
+                if(coneChoice === 'height') { h = parseFloat(document.getElementById('coneHeightValue')?.value) || 0; if(r > 0 && h > 0) l = Math.sqrt(r*r + h*h); }
+                else { l = parseFloat(document.getElementById('coneSlantValue')?.value) || 0; if(r > 0 && l > 0 && l > r) h = Math.sqrt(l*l - r*r); }
+                return [r, h, l];
+            } else { const inputs = dimsContainer.querySelectorAll('input'); return Array.from(inputs).map(i => parseFloat(i.value) || 0); }
         }
 
         function updateDiagram() {
-            const shape = shapeSelect.value;
-            const dims = getDims();
-            let svg = '';
-            if(shape === 'cube') {
-                let w = Math.min(80, 25 + dims[0]*4);
-                svg = `<svg width="160" height="120"><rect x="${80-w/2}" y="25" width="${w}" height="${w}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><text x="80" y="20" fill="#4a5568" font-size="10">a=${dims[0].toFixed(1)}</text></svg>`;
-                dimText.innerText = `Cube: side = ${dims[0].toFixed(2)}`;
-            } else if(shape === 'sphere') {
-                let r = Math.min(45, 15 + dims[0]*2.5);
-                svg = `<svg width="160" height="120"><circle cx="80" cy="55" r="${r}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><text x="80" y="${55+r+10}" fill="#667eea" font-size="9">r=${dims[0].toFixed(1)}</text></svg>`;
-                dimText.innerText = `Sphere: radius = ${dims[0].toFixed(2)}`;
-            } else if(shape === 'cylinder') {
-                let r = Math.min(40, 12 + dims[0]*2.5);
-                let h = Math.min(55, 15 + dims[1]*2);
-                svg = `<svg width="160" height="120"><ellipse cx="80" cy="25" rx="${r}" ry="${r*0.3}" fill="#c3dafe" stroke="#667eea"/><rect x="${80-r}" y="25" width="${2*r}" height="${h}" fill="#a3bffa" stroke="#667eea"/><ellipse cx="80" cy="${25+h}" rx="${r}" ry="${r*0.3}" fill="#81a4f0" stroke="#667eea"/><text x="40" y="${25+h+15}" fill="#667eea" font-size="8">r=${dims[0].toFixed(1)} h=${dims[1].toFixed(1)}</text></svg>`;
-                dimText.innerText = `Cylinder: r=${dims[0].toFixed(2)}, h=${dims[1].toFixed(2)}`;
-            } else if(shape === 'cone') {
-                let r = Math.min(40, 12 + dims[0]*2.5);
-                let hVal = dims[1] > 0 ? dims[1] : 5;
-                let h = Math.min(55, 15 + hVal*3);
-                svg = `<svg width="160" height="120"><ellipse cx="80" cy="${25+h}" rx="${r}" ry="${r*0.25}" fill="#c3dafe" stroke="#667eea"/><polygon points="80,25 ${80-r},${25+h} ${80+r},${25+h}" fill="#a3bffa" stroke="#667eea"/><text x="35" y="${25+h+15}" fill="#667eea" font-size="8">r=${dims[0].toFixed(1)} h=${dims[1].toFixed(2)}</text></svg>`;
-                dimText.innerText = `Cone: r=${dims[0].toFixed(2)}, h=${dims[1].toFixed(4)}`;
-            } else if(shape === 'pyramid') {
-                let b = Math.min(55, 15 + dims[0]*2.5);
-                let h = Math.min(55, 15 + dims[1]*2.5);
-                svg = `<svg width="160" height="120"><polygon points="80,25 ${80-b/2},${25+h} ${80+b/2},${25+h}" fill="#c3dafe" stroke="#667eea"/><rect x="${80-b/2}" y="${25+h}" width="${b}" height="8" fill="#a3bffa" stroke="#667eea"/><text x="35" y="${25+h+18}" fill="#667eea" font-size="8">b=${dims[0].toFixed(1)} h=${dims[1].toFixed(1)}</text></svg>`;
-                dimText.innerText = `Pyramid: base=${dims[0].toFixed(2)}, height=${dims[1].toFixed(2)}`;
-            }
+            const shape = shapeSelect.value; const dims = getDims(); let svg = '';
+            if(shape === 'cube') { let w = Math.min(80, 25 + dims[0]*4); svg = `<svg width="160" height="120"><rect x="${80-w/2}" y="25" width="${w}" height="${w}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><text x="80" y="20" fill="#4a5568" font-size="10">a=${dims[0].toFixed(1)}</text></svg>`; dimText.innerText = `Cube: side = ${dims[0].toFixed(2)}`; }
+            else if(shape === 'sphere') { let r = Math.min(45, 15 + dims[0]*2.5); svg = `<svg width="160" height="120"><circle cx="80" cy="55" r="${r}" fill="#c3dafe" stroke="#667eea" stroke-width="2"/><text x="80" y="${55+r+10}" fill="#667eea" font-size="9">r=${dims[0].toFixed(1)}</text></svg>`; dimText.innerText = `Sphere: radius = ${dims[0].toFixed(2)}`; }
+            else if(shape === 'cylinder') { let r = Math.min(40, 12 + dims[0]*2.5); let h = Math.min(55, 15 + dims[1]*2); svg = `<svg width="160" height="120"><ellipse cx="80" cy="25" rx="${r}" ry="${r*0.3}" fill="#c3dafe" stroke="#667eea"/><rect x="${80-r}" y="25" width="${2*r}" height="${h}" fill="#a3bffa" stroke="#667eea"/><ellipse cx="80" cy="${25+h}" rx="${r}" ry="${r*0.3}" fill="#81a4f0" stroke="#667eea"/><text x="40" y="${25+h+15}" fill="#667eea" font-size="8">r=${dims[0].toFixed(1)} h=${dims[1].toFixed(1)}</text></svg>`; dimText.innerText = `Cylinder: r=${dims[0].toFixed(2)}, h=${dims[1].toFixed(2)}`; }
+            else if(shape === 'cone') { let r = Math.min(40, 12 + dims[0]*2.5); let hVal = dims[1] > 0 ? dims[1] : 5; let h = Math.min(55, 15 + hVal*3); svg = `<svg width="160" height="120"><ellipse cx="80" cy="${25+h}" rx="${r}" ry="${r*0.25}" fill="#c3dafe" stroke="#667eea"/><polygon points="80,25 ${80-r},${25+h} ${80+r},${25+h}" fill="#a3bffa" stroke="#667eea"/><text x="35" y="${25+h+15}" fill="#667eea" font-size="8">r=${dims[0].toFixed(1)} h=${dims[1].toFixed(2)}</text></svg>`; dimText.innerText = `Cone: r=${dims[0].toFixed(2)}, h=${dims[1].toFixed(4)}`; }
+            else if(shape === 'pyramid') { let b = Math.min(55, 15 + dims[0]*2.5); let h = Math.min(55, 15 + dims[1]*2.5); svg = `<svg width="160" height="120"><polygon points="80,25 ${80-b/2},${25+h} ${80+b/2},${25+h}" fill="#c3dafe" stroke="#667eea"/><rect x="${80-b/2}" y="${25+h}" width="${b}" height="8" fill="#a3bffa" stroke="#667eea"/><text x="35" y="${25+h+18}" fill="#667eea" font-size="8">b=${dims[0].toFixed(1)} h=${dims[1].toFixed(1)}</text></svg>`; dimText.innerText = `Pyramid: base=${dims[0].toFixed(2)}, height=${dims[1].toFixed(2)}`; }
             shapeDiagram.innerHTML = svg;
         }
 
-        function computeVolume() {
-            const shape = shapeSelect.value;
-            const dims = getDims();
-            let vol = null;
-            if(shape === 'cube' && dims[0] > 0) vol = Math.pow(dims[0],3);
-            else if(shape === 'sphere' && dims[0] > 0) vol = (4/3)*Math.PI*Math.pow(dims[0],3);
-            else if(shape === 'cylinder' && dims[0] > 0 && dims[1] > 0) vol = Math.PI * dims[0]*dims[0] * dims[1];
-            else if(shape === 'cone' && dims[0] > 0 && dims[1] > 0) vol = (1/3)*Math.PI * dims[0]*dims[0] * dims[1];
-            else if(shape === 'pyramid' && dims[0] > 0 && dims[1] > 0) vol = (1/3)*Math.pow(dims[0],2)*dims[1];
-            
-            if(vol === null || isNaN(vol)) { volResult.innerText = 'Invalid'; return; }
-            let formatted = vol.toFixed(4).replace(/\.?0+$/, '');
-            volResult.innerText = formatted;
-            volUnitSpan.innerText = unitSelect.value === 'cm' ? 'cm³' : 'm³';
+        function computeVolumeAndArea() {
+            const shape = shapeSelect.value; const dims = getDims(); const unit = unitSelect.value; 
+            const unitVol = unit === 'cm' ? 'cm³' : 'm³'; const unitArea = unit === 'cm' ? 'cm²' : 'm²';
+            let vol = null, area = null;
+            if(shape === 'cube') { let a = dims[0]; if(a > 0) { vol = Math.pow(a, 3); area = 6 * Math.pow(a, 2); } }
+            else if(shape === 'sphere') { let r = dims[0]; if(r > 0) { vol = (4/3) * Math.PI * Math.pow(r, 3); area = 4 * Math.PI * Math.pow(r, 2); } }
+            else if(shape === 'cylinder') { let r = dims[0], h = dims[1]; if(r > 0 && h > 0) { vol = Math.PI * r * r * h; area = 2 * Math.PI * r * (r + h); } }
+            else if(shape === 'cone') { let r = dims[0], h = dims[1], l = dims[2]; if(r > 0 && h > 0 && l > 0) { vol = (1/3) * Math.PI * r * r * h; area = Math.PI * r * (r + l); } }
+            else if(shape === 'pyramid') { let b = dims[0], h = dims[1]; if(b > 0 && h > 0) { vol = (1/3) * Math.pow(b, 2) * h; let slantHeight = Math.sqrt(Math.pow(b/2, 2) + Math.pow(h, 2)); area = Math.pow(b, 2) + (2 * b * slantHeight); } }
+            if(vol === null || isNaN(vol)) { volResult.innerText = 'Invalid'; areaResult.innerText = 'Invalid'; return; }
+            volResult.innerText = vol.toFixed(4).replace(/\.?0+$/, ''); areaResult.innerText = area.toFixed(4).replace(/\.?0+$/, '');
+            volUnitSpan.innerText = unitVol; areaUnitSpan.innerText = unitArea;
         }
 
-        shapeSelect.addEventListener('change', () => { updateDimFields(); volResult.innerText = '—'; });
-        unitSelect.addEventListener('change', () => computeVolume());
-        calcVolBtn.addEventListener('click', computeVolume);
+        shapeSelect.addEventListener('change', () => { updateDimFields(); });
+        unitSelect.addEventListener('change', () => computeVolumeAndArea());
+        calcVolBtn.addEventListener('click', computeVolumeAndArea);
         updateDimFields();
 
-        // ========== LOG CALCULATOR ==========
-        const logExpr = document.getElementById('logExpr');
-        const calcLogBtn = document.getElementById('calcLogBtn');
-        const logValueSpan = document.getElementById('logValue');
-        const logResultSpan = document.getElementById('logResult');
+        // Log Calculator
+        const logExpr = document.getElementById('logExpr'); const calcLogBtn = document.getElementById('calcLogBtn'); 
+        const logValueSpan = document.getElementById('logValue'); const logResultSpan = document.getElementById('logResult'); 
         const logError = document.getElementById('logError');
-
-        function evaluateProduct(expr) {
-            let p = expr.replace(/π/g, Math.PI).replace(/[×*]/g, '*');
-            let f = p.split('*').map(s => parseFloat(s.trim()));
-            if(f.some(isNaN)) return null;
-            return f.reduce((a,b)=>a*b,1);
-        }
-        function parseFraction(expr) {
-            expr = expr.trim();
-            if(expr.includes('/')) {
-                let parts = expr.split('/');
-                if(parts.length !== 2) return null;
-                let n = evaluateProduct(parts[0]), d = evaluateProduct(parts[1]);
-                if(n===null || d===null || d===0) return null;
-                return n/d;
-            }
-            return evaluateProduct(expr);
-        }
-        function parseAdvanced(expr) {
-            expr = expr.trim();
-            let cbrt = expr.match(/^(?:∛|cbrt)\((.+)\)$/i);
-            if(cbrt) { let v = parseAdvanced(cbrt[1]); return (v!==null && v>=0) ? Math.cbrt(v) : null; }
-            let sqrt = expr.match(/^(?:√|sqrt)\((.+)\)$/i);
-            if(sqrt) { let v = parseAdvanced(sqrt[1]); return (v!==null && v>=0) ? Math.sqrt(v) : null; }
-            if(expr.includes('(')) {
-                let inner = expr.replace(/\(([^()]+)\)/g, (m,p1) => { let v = parseAdvanced(p1); return v!==null ? v.toString() : m; });
-                if(inner.includes('/')) {
-                    let parts = inner.split('/');
-                    if(parts.length===2) {
-                        let n = parseAdvanced(parts[0]), d = parseAdvanced(parts[1]);
-                        if(n!==null && d!==null && d!==0) return n/d;
-                    }
-                }
-                let prod = evaluateProduct(inner);
-                if(prod!==null) return prod;
-                return null;
-            }
-            return parseFraction(expr);
-        }
-
-        function computeLog() {
-            logError.innerText = '';
-            let raw = logExpr.value.trim();
-            if(!raw) { logError.innerText = 'Enter an expression'; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; return; }
-            try {
-                let val = parseAdvanced(raw);
-                if(val===null || isNaN(val)) throw new Error('Invalid expression');
-                if(val <= 0) throw new Error('Value must be positive');
-                let lg = Math.log10(val);
-                logValueSpan.innerText = val.toFixed(6).replace(/\.?0+$/, '');
-                logResultSpan.innerText = lg.toFixed(6).replace(/\.?0+$/, '');
-            } catch(e) { logError.innerText = '❌ ' + e.message; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; }
-        }
-
+        function evaluateProduct(expr) { let p = expr.replace(/π/g, Math.PI).replace(/[×*]/g, '*'); let f = p.split('*').map(s => parseFloat(s.trim())); if(f.some(isNaN)) return null; return f.reduce((a,b)=>a*b,1); }
+        function parseFraction(expr) { expr = expr.trim(); if(expr.includes('/')) { let parts = expr.split('/'); if(parts.length !== 2) return null; let n = evaluateProduct(parts[0]), d = evaluateProduct(parts[1]); if(n===null || d===null || d===0) return null; return n/d; } return evaluateProduct(expr); }
+        function parseAdvanced(expr) { expr = expr.trim(); let cbrt = expr.match(/^(?:∛|cbrt)\((.+)\)$/i); if(cbrt) { let v = parseAdvanced(cbrt[1]); return (v!==null && v>=0) ? Math.cbrt(v) : null; } let sqrt = expr.match(/^(?:√|sqrt)\((.+)\)$/i); if(sqrt) { let v = parseAdvanced(sqrt[1]); return (v!==null && v>=0) ? Math.sqrt(v) : null; } if(expr.includes('(')) { let inner = expr.replace(/\(([^()]+)\)/g, (m,p1) => { let v = parseAdvanced(p1); return v!==null ? v.toString() : m; }); if(inner.includes('/')) { let parts = inner.split('/'); if(parts.length===2) { let n = parseAdvanced(parts[0]), d = parseAdvanced(parts[1]); if(n!==null && d!==null && d!==0) return n/d; } } let prod = evaluateProduct(inner); if(prod!==null) return prod; return null; } return parseFraction(expr); }
+        function computeLog() { logError.innerText = ''; let raw = logExpr.value.trim(); if(!raw) { logError.innerText = 'Enter an expression'; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; return; } try { let val = parseAdvanced(raw); if(val===null || isNaN(val)) throw new Error('Invalid expression'); if(val <= 0) throw new Error('Value must be positive'); let lg = Math.log10(val); logValueSpan.innerText = val.toFixed(6).replace(/\.?0+$/, ''); logResultSpan.innerText = lg.toFixed(6).replace(/\.?0+$/, ''); } catch(e) { logError.innerText = '❌ ' + e.message; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; } }
         calcLogBtn.addEventListener('click', computeLog);
-        document.querySelectorAll('.example-badge').forEach(b => {
-            b.addEventListener('click', () => { logExpr.value = b.dataset.ex; computeLog(); });
-        });
-        logExpr.value = "2×3×5/4×7";
-        computeLog();
+        document.querySelectorAll('.example-badge').forEach(b => { b.addEventListener('click', () => { logExpr.value = b.dataset.ex; computeLog(); }); });
+        logExpr.value = "2×3×5/4×7"; computeLog();
     </script>
 </body>
 </html>
