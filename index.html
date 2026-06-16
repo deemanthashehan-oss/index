@@ -72,7 +72,7 @@
         .back-btn { background: rgba(255,215,0,0.2); border: 1px solid #FFD700; padding: 0.2rem 0.8rem; border-radius: 1.5rem; color: #FFD700; cursor: pointer; font-size: 0.7rem; }
         .back-btn:hover { background: rgba(255,215,0,0.3); }
 
-        /* HOME PAGE - ATTRACTIVE CARDS */
+        /* HOME PAGE */
         .home-container {
             background: white;
             border-radius: 1rem;
@@ -95,7 +95,6 @@
             margin-bottom: 1.2rem;
         }
 
-        /* ATTRACTIVE CARDS */
         .nav-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -163,7 +162,6 @@
             box-shadow: 0 3px 10px rgba(102,126,234,0.4);
         }
 
-        /* Color variants for cards */
         .nav-card.card-area { background: linear-gradient(135deg, #fef9e6, #fef3c7); border-color: #f59e0b; }
         .nav-card.card-volume { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-color: #3b82f6; }
         .nav-card.card-pythagoras { background: linear-gradient(135deg, #fce7f3, #fbcfe8); border-color: #ec489a; }
@@ -197,7 +195,6 @@
             opacity: 0.9;
         }
 
-        /* WhatsApp & Creator Info */
         .creator-info {
             margin-top: 1rem;
             padding: 0.8rem;
@@ -227,9 +224,6 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(37,211,102,0.3);
         }
-        .creator-info .whatsapp-link i {
-            margin-right: 0.3rem;
-        }
 
         /* Tabs & Panels */
         .tabs { display: flex; gap: 0.3rem; background: #1a1a2e; border-radius: 1rem 1rem 0 0; padding: 0.5rem 1rem 0 1rem; flex-wrap: wrap; }
@@ -237,6 +231,94 @@
         .tab.active { background: white; color: #1a1a2e; border-bottom: 2px solid #FFD700; }
         .panel { background: white; border-radius: 0 0 1rem 1rem; padding: 0.8rem; display: none; }
         .panel.active { display: block; }
+
+        /* Theory Box */
+        .theory-box {
+            background: #e8f0fe;
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #667eea;
+        }
+        .theory-box h4 {
+            color: #1e40af;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .theory-box .law {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #1e293b;
+            padding: 0.2rem 0.5rem;
+            background: white;
+            border-radius: 0.3rem;
+            display: inline-block;
+            margin: 0.15rem 0;
+        }
+        .theory-box .law-desc {
+            font-size: 0.7rem;
+            color: #475569;
+            margin-left: 0.3rem;
+        }
+        .theory-box .example {
+            font-size: 0.7rem;
+            color: #1e40af;
+            margin-top: 0.2rem;
+            background: #dbeafe;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.3rem;
+        }
+
+        /* Log Practice Box with Steps */
+        .log-practice-box {
+            background: #f0fdf4;
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid #10b981;
+        }
+        .log-practice-box h4 {
+            color: #065f46;
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .log-practice-item {
+            font-size: 0.75rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px dashed #d1fae5;
+            display: block;
+        }
+        .log-practice-item:last-child {
+            border-bottom: none;
+        }
+        .practice-question-text {
+            display: block;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .practice-answer-box {
+            display: block;
+            margin-top: 0.2rem;
+            background: #ecfdf5;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.7rem;
+        }
+        .practice-answer-box .answer {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .practice-answer-box .steps {
+            color: #475569;
+            font-size: 0.65rem;
+            margin-top: 0.1rem;
+        }
 
         /* Quiz Styles */
         .quiz-container { padding: 0.5rem 0; }
@@ -388,16 +470,16 @@
             </div>
 
             <div class="tabs">
-                <button class="tab active" data-tab="home">🏠 Home</button>
+                <button class="tab" data-tab="home">🏠 Home</button>
                 <button class="tab" data-tab="area2d">📐 Area</button>
                 <button class="tab" data-tab="vol">📦 Volume</button>
                 <button class="tab" data-tab="pythagoras">🔢 Pythagoras</button>
                 <button class="tab" data-tab="quiz">📝 Quiz</button>
-                <button class="tab" data-tab="log">🔢 Log 10</button>
+                <button class="tab active" data-tab="log">🔢 Log 10</button>
             </div>
 
-            <!-- HOME TAB - WITH CREATOR INFO & WHATSAPP -->
-            <div id="homePanel" class="panel active">
+            <!-- HOME TAB -->
+            <div id="homePanel" class="panel">
                 <div class="home-container">
                     <div class="home-title">📚 Welcome to 元 Dee ACADEMY</div>
                     <div class="home-subtitle">Choose a topic to start learning</div>
@@ -446,7 +528,6 @@
                         <div class="stat-box"><div class="number">20+</div><div class="label">Practice Qs</div></div>
                     </div>
 
-                    <!-- CREATOR & WHATSAPP INFO -->
                     <div class="creator-info">
                         <div class="name">👨‍🏫 Created by: Shehan Deemantha</div>
                         <a href="https://wa.me/94702132547" target="_blank" class="whatsapp-link">
@@ -627,8 +708,95 @@
                 </div>
             </div>
 
-            <!-- LOG TAB -->
-            <div id="logPanel" class="panel">
+            <!-- LOG TAB - WITH THEORY, EXAMPLES, PRACTICE & QUIZ -->
+            <div id="logPanel" class="panel active">
+                <!-- Theory Section -->
+                <div class="theory-box">
+                    <h4>📖 Basic Laws of Logarithms</h4>
+                    <div>
+                        <div><span class="law">log₁₀(ab) = log₁₀a + log₁₀b</span> <span class="law-desc">Product Law</span></div>
+                        <div><span class="law">log₁₀(a/b) = log₁₀a - log₁₀b</span> <span class="law-desc">Quotient Law</span></div>
+                        <div><span class="law">log₁₀(aⁿ) = n × log₁₀a</span> <span class="law-desc">Power Law</span></div>
+                        <div><span class="law">log₁₀(1) = 0</span> <span class="law-desc">Zero Law</span></div>
+                        <div><span class="law">log₁₀(10) = 1</span> <span class="law-desc">Base Law</span></div>
+                        <div><span class="law">log₁₀(10ⁿ) = n</span> <span class="law-desc">Exponent Law</span></div>
+                        <div class="example">💡 Example: log₁₀(100) = log₁₀(10²) = 2</div>
+                        <div class="example">💡 Example: log₁₀(2×3) = log₁₀2 + log₁₀3</div>
+                    </div>
+                </div>
+
+                <!-- Worked Examples -->
+                <div class="theory-box" style="border-left-color: #f59e0b; background: #fef3c7;">
+                    <h4>📝 Worked Examples</h4>
+                    <div style="font-size: 0.75rem;">
+                        <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;">
+                            <strong>Example 1:</strong> log₁₀(8) + log₁₀(125) = log₁₀(8×125) = log₁₀(1000) = 3
+                        </div>
+                        <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;">
+                            <strong>Example 2:</strong> log₁₀(1000) - log₁₀(10) = log₁₀(1000/10) = log₁₀(100) = 2
+                        </div>
+                        <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;">
+                            <strong>Example 3:</strong> log₁₀(2³) = 3 × log₁₀(2)
+                        </div>
+                        <div style="padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;">
+                            <strong>Example 4:</strong> log₁₀(5) + log₁₀(20) = log₁₀(5×20) = log₁₀(100) = 2
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practice Problems with Step-by-Step Solutions -->
+                <div class="log-practice-box">
+                    <h4>📝 Practice Problems - Step-by-Step Solutions</h4>
+                    <div class="log-practice-item">
+                        <span class="practice-question-text">1. log₁₀(2) + log₁₀(5) = ?</span>
+                        <div class="practice-answer-box">
+                            <span class="answer">Answer: 1</span>
+                            <div class="steps">📐 Step 1: log(2) + log(5) = log(2×5)<br>Step 2: log(10) = 1</div>
+                        </div>
+                    </div>
+                    <div class="log-practice-item">
+                        <span class="practice-question-text">2. log₁₀(1000) - log₁₀(10) = ?</span>
+                        <div class="practice-answer-box">
+                            <span class="answer">Answer: 2</span>
+                            <div class="steps">📐 Step 1: log(1000) - log(10) = log(1000/10)<br>Step 2: log(100) = 2</div>
+                        </div>
+                    </div>
+                    <div class="log-practice-item">
+                        <span class="practice-question-text">3. log₁₀(2³) = ?</span>
+                        <div class="practice-answer-box">
+                            <span class="answer">Answer: 3 × log₁₀(2)</span>
+                            <div class="steps">📐 Step 1: log(2³) = 3 × log(2) [Power Law]</div>
+                        </div>
+                    </div>
+                    <div class="log-practice-item">
+                        <span class="practice-question-text">4. log₁₀(25) + log₁₀(4) = ?</span>
+                        <div class="practice-answer-box">
+                            <span class="answer">Answer: 2</span>
+                            <div class="steps">📐 Step 1: log(25) + log(4) = log(25×4)<br>Step 2: log(100) = 2</div>
+                        </div>
+                    </div>
+                    <div class="log-practice-item">
+                        <span class="practice-question-text">5. log₁₀(5) + log₁₀(2) = ?</span>
+                        <div class="practice-answer-box">
+                            <span class="answer">Answer: 1</span>
+                            <div class="steps">📐 Step 1: log(5) + log(2) = log(5×2)<br>Step 2: log(10) = 1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logarithm Quiz (10 Questions) -->
+                <div style="background: #fef9e6; border-radius: 0.8rem; padding: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #f59e0b;">
+                    <h4 style="color: #92400e; font-size: 0.9rem; margin-bottom: 0.5rem;">📝 Logarithm Quiz (10 Questions)</h4>
+                    <div id="logQuizContainer"></div>
+                    <button class="calc-btn" id="submitLogQuizBtn">📝 Submit Log Quiz & See Results</button>
+                    <div id="logQuizResults" style="display: none; margin-top: 0.5rem; padding: 0.5rem; background: #fef3c7; border-radius: 0.5rem; border: 1px solid #f59e0b;">
+                        <h4 style="color: #92400e;">📊 Your Log Quiz Results</h4>
+                        <div id="logQuizScore" style="font-size: 1.2rem; font-weight: bold; color: #667eea;"></div>
+                        <div id="logQuizDetails"></div>
+                    </div>
+                </div>
+
+                <!-- Calculator Section -->
                 <div class="input-field"><label>Enter Expression</label><textarea id="logExpr" rows="2" placeholder="Examples: 2×3×5/4×7  or  √(3×5/2×π)  or  100"></textarea>
                 <div style="margin-top: 0.3rem;">
                     <span class="example-badge" data-ex="2×3×5/4×7">2×3×5/4×7</span>
@@ -759,6 +927,7 @@
             const panel = document.getElementById(tabId + 'Panel');
             if (panel) panel.classList.add('active');
             if (tabId === 'quiz') loadQuiz();
+            if (tabId === 'log') loadLogQuiz();
         }
 
         homeCoverBtn.addEventListener('click', function() {
@@ -854,6 +1023,163 @@
                 stepsDiv.innerHTML = `📐 b² = c² - a²<br>b² = ${c}² - ${a}²<br>b² = ${c*c} - ${a*a}<br>b² = ${c*c - a*a}<br>b = √${c*c - a*a} = ${bResult.toFixed(4)}`;
             }
         }
+
+        // ========== LOG QUIZ (10 Questions) ==========
+        const logQuizQuestions = [
+            {
+                question: "log₁₀(2) + log₁₀(5) = ?",
+                options: ["1", "2", "3", "0"],
+                correct: 0,
+                explanation: "log(2×5) = log(10) = 1"
+            },
+            {
+                question: "log₁₀(100) = ?",
+                options: ["1", "2", "3", "4"],
+                correct: 1,
+                explanation: "10² = 100, so log₁₀(100) = 2"
+            },
+            {
+                question: "log₁₀(1000) - log₁₀(10) = ?",
+                options: ["1", "2", "3", "4"],
+                correct: 1,
+                explanation: "log(1000/10) = log(100) = 2"
+            },
+            {
+                question: "log₁₀(1) = ?",
+                options: ["0", "1", "10", "undefined"],
+                correct: 0,
+                explanation: "10⁰ = 1, so log₁₀(1) = 0"
+            },
+            {
+                question: "log₁₀(10) = ?",
+                options: ["0", "1", "10", "2"],
+                correct: 1,
+                explanation: "10¹ = 10, so log₁₀(10) = 1"
+            },
+            {
+                question: "log₁₀(25) + log₁₀(4) = ?",
+                options: ["1", "2", "3", "4"],
+                correct: 1,
+                explanation: "log(25×4) = log(100) = 2"
+            },
+            {
+                question: "log₁₀(8) + log₁₀(125) = ?",
+                options: ["2", "3", "4", "5"],
+                correct: 1,
+                explanation: "log(8×125) = log(1000) = 3"
+            },
+            {
+                question: "log₁₀(2³) = ?",
+                options: ["log₁₀(2)", "2×log₁₀(2)", "3×log₁₀(2)", "log₁₀(6)"],
+                correct: 2,
+                explanation: "Power Law: log(2³) = 3×log(2)"
+            },
+            {
+                question: "log₁₀(5) + log₁₀(2) = ?",
+                options: ["0", "1", "2", "3"],
+                correct: 1,
+                explanation: "log(5×2) = log(10) = 1"
+            },
+            {
+                question: "log₁₀(10²) = ?",
+                options: ["1", "2", "3", "4"],
+                correct: 1,
+                explanation: "log₁₀(10²) = 2"
+            }
+        ];
+
+        let logUserAnswers = new Array(logQuizQuestions.length).fill(null);
+        let logQuizSubmitted = false;
+
+        function loadLogQuiz() {
+            const container = document.getElementById('logQuizContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            logQuizSubmitted = false;
+            document.getElementById('logQuizResults').style.display = 'none';
+            
+            logQuizQuestions.forEach((q, idx) => {
+                let div = document.createElement('div');
+                div.style.cssText = 'background: #f8fafc; border-radius: 0.5rem; padding: 0.5rem; margin-bottom: 0.5rem; border-left: 3px solid #f59e0b;';
+                div.innerHTML = `
+                    <div style="font-weight: 700; color: #1a1a2e; font-size: 0.8rem; margin-bottom: 0.3rem;">${idx + 1}. ${q.question}</div>
+                    <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                        ${q.options.map((opt, oidx) => `
+                            <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.5rem; background: white; border-radius: 0.4rem; cursor: pointer; border: 1.5px solid ${logUserAnswers[idx] === oidx ? '#f59e0b' : '#e2e8f0'};" onclick="selectLogOption(${idx}, ${oidx})">
+                                <input type="radio" name="logq${idx}" ${logUserAnswers[idx] === oidx ? 'checked' : ''}>
+                                <label style="font-size: 0.75rem; cursor: pointer;">${String.fromCharCode(65 + oidx)}. ${opt}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="logfb-${idx}" style="margin-top: 0.3rem; padding: 0.3rem; border-radius: 0.3rem; font-size: 0.7rem; display: none;"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function selectLogOption(qIdx, optIdx) {
+            if (logQuizSubmitted) {
+                alert('⚠️ Quiz already submitted! Click "Reset Quiz" to try again.');
+                return;
+            }
+            logUserAnswers[qIdx] = optIdx;
+            const radios = document.querySelectorAll(`input[name="logq${qIdx}"]`);
+            radios.forEach((r, i) => r.checked = (i === optIdx));
+            // Update border color
+            const parentDiv = radios[0].closest('div[style*="display: flex; align-items: center;"]');
+            if (parentDiv) {
+                parentDiv.style.borderColor = '#f59e0b';
+            }
+        }
+
+        function submitLogQuiz() {
+            let allAnswered = true;
+            for (let i = 0; i < logQuizQuestions.length; i++) {
+                if (logUserAnswers[i] === null) {
+                    allAnswered = false;
+                    break;
+                }
+            }
+            
+            if (!allAnswered) {
+                alert('⚠️ Please answer all 10 questions before submitting!');
+                return;
+            }
+
+            logQuizSubmitted = true;
+            
+            let score = 0;
+            let resultsHTML = '';
+            for (let i = 0; i < logQuizQuestions.length; i++) {
+                const isCorrect = logUserAnswers[i] === logQuizQuestions[i].correct;
+                if (isCorrect) score++;
+                const fb = document.getElementById(`logfb-${i}`);
+                if (isCorrect) {
+                    fb.className = 'feedback correct';
+                    fb.innerHTML = `✅ Correct! ${logQuizQuestions[i].explanation}`;
+                } else {
+                    const correctLetter = String.fromCharCode(65 + logQuizQuestions[i].correct);
+                    fb.className = 'feedback wrong';
+                    fb.innerHTML = `❌ Incorrect. Correct: ${correctLetter}. ${logQuizQuestions[i].options[logQuizQuestions[i].correct]}<br>💡 ${logQuizQuestions[i].explanation}`;
+                }
+                fb.style.display = 'block';
+                
+                resultsHTML += `
+                    <div style="padding: 0.2rem 0; border-bottom: 1px dashed #fde047; font-size: 0.7rem; display: flex; justify-content: space-between;">
+                        <span>Q${i+1}. ${isCorrect ? '✅' : '❌'}</span>
+                        <span class="${isCorrect ? 'result-status-correct' : 'result-status-wrong'}">${isCorrect ? 'Correct' : 'Wrong'}</span>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('logQuizResults').style.display = 'block';
+            document.getElementById('logQuizScore').innerHTML = `Score: ${score} out of ${logQuizQuestions.length} - ${Math.round(score/logQuizQuestions.length*100)}%`;
+            document.getElementById('logQuizDetails').innerHTML = resultsHTML;
+            
+            document.getElementById('logQuizResults').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('submitLogQuizBtn').addEventListener('click', submitLogQuiz);
 
         // ========== QUIZ ==========
         const quizQuestions = [
@@ -1321,8 +1647,9 @@
         updateCircleDiagram();
         updatePracticeQuestions('pyramid');
 
-        // Load quiz
+        // Load quizzes
         loadQuiz();
+        loadLogQuiz();
     </script>
 </body>
 </html>
