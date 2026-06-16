@@ -20,7 +20,6 @@
             padding: 10px;
         }
 
-        /* COVER PAGE */
         .cover-page {
             position: fixed;
             top: 0;
@@ -75,7 +74,7 @@
         .panel { background: white; border-radius: 0 0 1rem 1rem; padding: 0.8rem; display: none; }
         .panel.active { display: block; }
 
-        /* Quiz Styles - New Design */
+        /* Quiz Styles */
         .quiz-container { padding: 0.5rem 0; }
         .quiz-question { background: #f8fafc; border-radius: 0.8rem; padding: 0.8rem; margin-bottom: 0.8rem; border-left: 4px solid #FFD700; }
         .question-text { font-weight: 700; color: #1a1a2e; font-size: 0.85rem; margin-bottom: 0.5rem; }
@@ -86,14 +85,28 @@
         .feedback { margin-top: 0.4rem; padding: 0.4rem; border-radius: 0.5rem; font-size: 0.75rem; display: none; }
         .feedback.correct { background: #d1fae5; color: #065f46; display: block; }
         .feedback.wrong { background: #fee2e2; color: #991b1b; display: block; }
-        
+
+        .step-solution {
+            background: #f0f4ff;
+            border-radius: 0.5rem;
+            padding: 0.6rem;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        .step-solution.visible { display: block; }
+        .step-solution .step-title { color: #1a1a2e; font-weight: bold; font-size: 0.75rem; margin-bottom: 0.3rem; }
+        .step-solution .step { padding: 0.15rem 0; border-bottom: 1px dashed #e2e8f0; }
+        .step-solution .step:last-child { border-bottom: none; }
+        .step-solution .final-answer { color: #10b981; font-weight: bold; font-size: 0.8rem; margin-top: 0.3rem; }
+
         .score-area { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0.8rem; border-radius: 1rem; color: white; text-align: center; margin-bottom: 1rem; }
         .score-number { font-size: 2rem; font-weight: 800; }
         .score-detail { font-size: 0.7rem; opacity: 0.9; }
         .reset-btn { background: #1a1a2e; color: #FFD700; border: none; padding: 0.4rem 1rem; border-radius: 1.5rem; cursor: pointer; font-weight: bold; margin-top: 0.5rem; font-size: 0.8rem; }
         .reset-btn:hover { background: #FFD700; color: #1a1a2e; }
 
-        /* Link to Calculator Button */
         .calc-link-btn { 
             display: inline-block; 
             background: linear-gradient(135deg, #667eea, #764ba2); 
@@ -109,7 +122,22 @@
         }
         .calc-link-btn:hover { opacity: 0.8; transform: scale(1.02); }
 
-        /* Results Summary */
+        .pythagoras-link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 0.2rem 0.8rem;
+            border-radius: 1.5rem;
+            cursor: pointer;
+            font-size: 0.6rem;
+            font-weight: bold;
+            margin-top: 0.3rem;
+            margin-left: 0.3rem;
+            text-decoration: none;
+        }
+        .pythagoras-link-btn:hover { opacity: 0.8; transform: scale(1.02); }
+
         .results-summary { 
             background: linear-gradient(135deg, #fef9e6, #fef3c7); 
             border-radius: 1rem; 
@@ -119,12 +147,13 @@
             display: none;
         }
         .results-summary h3 { color: #854d0e; font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .result-item { padding: 0.3rem 0; border-bottom: 1px dashed #fde047; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+        .result-item { padding: 0.3rem 0; border-bottom: 1px dashed #fde047; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .result-item:last-child { border-bottom: none; }
         .result-status-correct { color: #10b981; font-weight: bold; }
         .result-status-wrong { color: #ef4444; font-weight: bold; }
+        .result-step-btn { background: #667eea; color: white; border: none; padding: 0.1rem 0.5rem; border-radius: 1rem; cursor: pointer; font-size: 0.6rem; }
+        .result-step-btn:hover { opacity: 0.8; }
 
-        /* Practice Questions */
         .practice-box { 
             background: #f0fdf4; 
             border-radius: 0.8rem; 
@@ -136,6 +165,33 @@
         .practice-item { font-size: 0.75rem; padding: 0.25rem 0; border-bottom: 1px dashed #d1fae5; display: flex; justify-content: space-between; align-items: center; }
         .practice-item:last-child { border-bottom: none; }
         .practice-answer { color: #10b981; font-weight: bold; background: #ecfdf5; padding: 0.1rem 0.6rem; border-radius: 1rem; font-size: 0.7rem; }
+
+        /* Pythagoras Section */
+        .pythagoras-box {
+            background: linear-gradient(135deg, #fef9e6, #fef3c7);
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+            border: 2px solid #f59e0b;
+            margin-top: 0.5rem;
+        }
+        .pythagoras-box h4 { color: #92400e; font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .pyth-diagram {
+            text-align: center;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+        .pyth-diagram svg { max-width: 100%; height: auto; }
+
+        .pythagoras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .pythagoras-grid .input-field { margin-bottom: 0.3rem; }
+        .pythagoras-grid .input-field label { font-size: 0.7rem; }
+        .pythagoras-grid .input-field input { padding: 0.3rem; font-size: 0.7rem; }
+
+        .pythagoras-result-box { background: #d4e4fc; border-radius: 0.5rem; padding: 0.4rem; margin-top: 0.5rem; text-align: center; font-size: 0.8rem; }
+        .pythagoras-result-box .final { color: #1e40af; font-weight: bold; font-size: 0.9rem; }
 
         /* Calculator Styles */
         .calc-row { display: flex; flex-direction: column; gap: 1rem; }
@@ -153,6 +209,7 @@
         .choice-btn.active { background: #FFD700; color: #1a1a2e; }
         .pythagoras-result { background: #d4e4fc; border-radius: 0.6rem; padding: 0.4rem; margin: 0.3rem 0; font-size: 0.7rem; text-align: center; }
         .calc-btn { background: linear-gradient(135deg, #667eea, #764ba2); width: 100%; padding: 0.6rem; border: none; border-radius: 1.5rem; font-weight: bold; color: white; cursor: pointer; margin: 0.3rem 0; font-size: 0.8rem; }
+        .calc-btn-small { background: linear-gradient(135deg, #f59e0b, #d97706); width: 100%; padding: 0.4rem; border: none; border-radius: 1.5rem; font-weight: bold; color: white; cursor: pointer; margin: 0.3rem 0; font-size: 0.7rem; }
         .result { background: #f0f4f9; border-radius: 0.8rem; padding: 0.6rem; text-align: center; margin-top: 0.5rem; }
         .result-value { font-size: 1rem; font-weight: bold; color: #667eea; }
 
@@ -175,6 +232,8 @@
             .calc-row { flex-direction: row; }
             .calc-row .diagram-box { flex: 1; }
             .calc-row .form-box { flex: 1; }
+            .pythagoras-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .pyth-diagram svg { max-width: 200px; }
         }
     </style>
 </head>
@@ -186,18 +245,20 @@
             <div class="cover-logo"><img src="logonew.jpeg" alt="Dee Academy Logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>元</text></svg>'"></div>
             <h1 class="cover-title">元 Dee ACADEMY</h1>
             <p class="cover-subtitle">O/L Mathematics - Complete Geometry Guide</p>
-            <div class="cover-tagline">✦ AREA · VOLUME · SURFACE AREA · LOGARITHMS · QUIZ ✦</div>
+            <div class="cover-tagline">✦ AREA · VOLUME · PYTHAGORAS · LOGARITHMS · QUIZ ✦</div>
 
             <div class="topic-grid">
                 <div class="topic-card"><div class="topic-emoji">📐</div><div class="topic-name">Area of Plane Figures</div><div class="topic-desc">Square, Rectangle, Triangle, Parallelogram, Trapezium, Circle</div></div>
-                <div class="topic-card"><div class="topic-emoji">📦</div><div class="topic-name">Volume & Surface Area</div><div class="topic-desc">Pyramid, Cone, Sphere</div></div>
+                <div class="topic-card"><div class="topic-emoji">📦</div><div class="topic-name">Volume & Surface Area</div><div class="topic-desc">Pyramid, Cone, Cylinder, Sphere</div></div>
+                <div class="topic-card"><div class="topic-emoji">🔢</div><div class="topic-name">Pythagoras</div><div class="topic-desc">a² + b² = c²</div></div>
                 <div class="topic-card"><div class="topic-emoji">📝</div><div class="topic-name">Quiz</div><div class="topic-desc">Test your knowledge!</div></div>
-                <div class="topic-card"><div class="topic-emoji">🔢</div><div class="topic-name">Logarithm 10</div><div class="topic-desc">log₁₀ with fractions & roots</div></div>
+                <div class="topic-card"><div class="topic-emoji">🔢</div><div class="topic-name">Log 10</div><div class="topic-desc">log₁₀ with fractions & roots</div></div>
             </div>
 
             <div class="btn-group">
                 <button class="btn" id="coverAreaBtn">📐 Area</button>
                 <button class="btn" id="coverVolumeBtn">📦 Volume</button>
+                <button class="btn" id="coverPythagorasBtn">🔢 Pythagoras</button>
                 <button class="btn" id="coverQuizBtn">📝 Quiz</button>
                 <button class="btn" id="coverLogBtn">🔢 Log 10</button>
                 <button class="btn btn-primary" id="enterBtn">✨ Start ✨</button>
@@ -219,22 +280,81 @@
             <div class="tabs">
                 <button class="tab" data-tab="area2d">📐 Area</button>
                 <button class="tab" data-tab="vol">📦 Volume</button>
-                <button class="tab active" data-tab="quiz">📝 Quiz</button>
+                <button class="tab active" data-tab="pythagoras">🔢 Pythagoras</button>
+                <button class="tab" data-tab="quiz">📝 Quiz</button>
                 <button class="tab" data-tab="log">🔢 Log 10</button>
             </div>
 
-            <!-- QUIZ TAB -->
-            <div id="quizPanel" class="panel active">
-                <div class="score-area">
-                    <div style="font-size: 0.8rem;">Your Score</div>
-                    <div class="score-number" id="scoreDisplay">0</div>
-                    <div class="score-detail" id="scoreDetail">out of 10</div>
-                    <button class="reset-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+            <!-- PYTHAGORAS TAB -->
+            <div id="pythagorasPanel" class="panel active">
+                <h3 style="margin-bottom: 0.5rem; color: #1a1a2e; text-align: center; font-size: 1rem;">📐 Pythagoras Theorem Calculator</h3>
+                <div style="text-align: center; font-size: 0.7rem; color: #555; margin-bottom: 0.5rem;">a² + b² = c²</div>
+                
+                <!-- Triangle Diagram -->
+                <div class="pyth-diagram">
+                    <svg viewBox="0 0 250 200" width="100%" height="auto">
+                        <!-- Right Triangle -->
+                        <polygon points="30,170 180,170 30,40" fill="#c3dafe" stroke="#1e40af" stroke-width="3"/>
+                        
+                        <!-- Right angle symbol -->
+                        <polyline points="30,170 50,170 50,150" fill="none" stroke="#1e40af" stroke-width="2"/>
+                        
+                        <!-- Side labels -->
+                        <!-- Side a (vertical) -->
+                        <line x1="30" y1="170" x2="30" y2="40" stroke="#ef4444" stroke-width="3"/>
+                        <text x="15" y="110" fill="#ef4444" font-size="16" font-weight="bold" transform="rotate(-90, 15, 110)">a</text>
+                        
+                        <!-- Side b (horizontal) -->
+                        <line x1="30" y1="170" x2="180" y2="170" stroke="#10b981" stroke-width="3"/>
+                        <text x="90" y="192" fill="#10b981" font-size="16" font-weight="bold">b</text>
+                        
+                        <!-- Side c (hypotenuse) -->
+                        <line x1="30" y1="40" x2="180" y2="170" stroke="#f59e0b" stroke-width="3"/>
+                        <text x="100" y="95" fill="#f59e0b" font-size="16" font-weight="bold" transform="rotate(36, 100, 95)">c</text>
+                        
+                        <!-- Vertex labels -->
+                        <text x="20" y="30" fill="#1e40af" font-size="14" font-weight="bold">A</text>
+                        <text x="185" y="185" fill="#1e40af" font-size="14" font-weight="bold">B</text>
+                        <text x="15" y="185" fill="#1e40af" font-size="14" font-weight="bold">C</text>
+                        
+                        <!-- Right angle label -->
+                        <text x="35" y="145" fill="#1e40af" font-size="12" font-weight="bold">90°</text>
+                        
+                        <!-- Formula display -->
+                        <text x="30" y="20" fill="#1e40af" font-size="12" font-weight="bold">📐 a² + b² = c²</text>
+                    </svg>
                 </div>
-                <div class="quiz-container" id="quizContainer"></div>
-                <div class="results-summary" id="resultsSummary">
-                    <h3>📊 Quiz Results Summary</h3>
-                    <div id="resultsList"></div>
+
+                <div class="pythagoras-box">
+                    <h4>🔢 What do you want to find?</h4>
+                    <div class="choice-box" style="margin-bottom: 0.5rem;">
+                        <div class="choice-buttons">
+                            <button class="choice-btn active" id="pythFindC">📐 Find c (Hypotenuse)</button>
+                            <button class="choice-btn" id="pythFindA">📏 Find a (Side)</button>
+                            <button class="choice-btn" id="pythFindB">📏 Find b (Side)</button>
+                        </div>
+                    </div>
+                    <div id="pythagorasInputs">
+                        <div class="pythagoras-grid">
+                            <div class="input-field"><label>Side a</label><input type="number" id="pythA" placeholder="Enter a" step="any"></div>
+                            <div class="input-field"><label>Side b</label><input type="number" id="pythB" placeholder="Enter b" step="any"></div>
+                            <div class="input-field"><label>Hypotenuse c</label><input type="number" id="pythC" placeholder="Enter c" step="any"></div>
+                        </div>
+                    </div>
+                    <button class="calc-btn-small" onclick="calculatePythagoras()">📐 Calculate</button>
+                    <div class="pythagoras-result-box" id="pythResult">
+                        <div>📐 <strong>Result:</strong></div>
+                        <div class="final" id="pythAnswer">Enter values and click Calculate</div>
+                        <div id="pythSteps" style="font-size: 0.7rem; color: #555; margin-top: 0.3rem;"></div>
+                    </div>
+                </div>
+                <div class="practice-box" style="margin-top: 0.5rem;">
+                    <h4>📝 Pythagoras Practice Questions</h4>
+                    <div class="practice-item"><span class="practice-question">1. a = 3, b = 4 → c = ?</span> <span class="practice-answer">5</span></div>
+                    <div class="practice-item"><span class="practice-question">2. a = 5, b = 12 → c = ?</span> <span class="practice-answer">13</span></div>
+                    <div class="practice-item"><span class="practice-question">3. c = 10, a = 6 → b = ?</span> <span class="practice-answer">8</span></div>
+                    <div class="practice-item"><span class="practice-question">4. c = 17, b = 8 → a = ?</span> <span class="practice-answer">15</span></div>
+                    <div class="practice-item"><span class="practice-question">5. a = 7, b = 24 → c = ?</span> <span class="practice-answer">25</span></div>
                 </div>
             </div>
 
@@ -251,6 +371,7 @@
                         <div class="input-field"><label>Solid Shape</label><select id="shapeSelect">
                             <option value="pyramid">🔺 Square Pyramid</option>
                             <option value="cone">🎩 Cone</option>
+                            <option value="cylinder">🥫 Cylinder</option>
                             <option value="sphere">⚽ Sphere</option>
                         </select></div>
                         <div id="dimsContainer"></div>
@@ -276,6 +397,14 @@
                     <div class="practice-item"><span class="practice-question">4. Volume = 616 cm³, height = 12 cm</span> <span class="practice-answer">7 cm</span></div>
                     <div class="practice-item"><span class="practice-question">5. Circumference = 44 cm, height = 21 cm (π=22/7)</span> <span class="practice-answer">1078 cm³</span></div>
                 </div>
+                <div id="cylinderPractice" class="practice-box" style="display: none;">
+                    <h4>🥫 Practice Questions - Cylinder</h4>
+                    <div class="practice-item"><span class="practice-question">1. Radius = 7 cm, height = 10 cm (π=22/7)</span> <span class="practice-answer">1540 cm³</span></div>
+                    <div class="practice-item"><span class="practice-question">2. Radius = 3.5 cm, height = 8 cm (π=22/7)</span> <span class="practice-answer">308 cm³</span></div>
+                    <div class="practice-item"><span class="practice-question">3. Volume = 1232 cm³, height = 8 cm (π=22/7)</span> <span class="practice-answer">7 cm</span></div>
+                    <div class="practice-item"><span class="practice-question">4. Radius = 5 cm, height = 12 cm (π=22/7)</span> <span class="practice-answer">942.86 cm³</span></div>
+                    <div class="practice-item"><span class="practice-question">5. Volume = 1760 cm³, radius = 7 cm (π=22/7)</span> <span class="practice-answer">11.43 cm</span></div>
+                </div>
                 <div id="spherePractice" class="practice-box" style="display: none;">
                     <h4>⚽ Practice Questions - Sphere</h4>
                     <div class="practice-item"><span class="practice-question">1. Radius = 7 cm (π=22/7)</span> <span class="practice-answer">1437.33 cm³</span></div>
@@ -283,6 +412,21 @@
                     <div class="practice-item"><span class="practice-question">3. Radius = 21 cm (π=22/7)</span> <span class="practice-answer">38808 cm³</span></div>
                     <div class="practice-item"><span class="practice-question">4. Volume = 11492⅔ cm³ (π=22/7)</span> <span class="practice-answer">14 cm</span></div>
                     <div class="practice-item"><span class="practice-question">5. Hemisphere radius = 7 cm (π=22/7)</span> <span class="practice-answer">718.67 cm³</span></div>
+                </div>
+            </div>
+
+            <!-- QUIZ TAB -->
+            <div id="quizPanel" class="panel">
+                <div class="score-area">
+                    <div style="font-size: 0.8rem;">Your Score</div>
+                    <div class="score-number" id="scoreDisplay">0</div>
+                    <div class="score-detail" id="scoreDetail">out of 10</div>
+                    <button class="reset-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+                </div>
+                <div class="quiz-container" id="quizContainer"></div>
+                <div class="results-summary" id="resultsSummary">
+                    <h3>📊 Quiz Results Summary</h3>
+                    <div id="resultsList"></div>
                 </div>
             </div>
 
@@ -339,6 +483,7 @@
         const homeCoverBtn = document.getElementById('homeCoverBtn');
         const coverAreaBtn = document.getElementById('coverAreaBtn');
         const coverVolumeBtn = document.getElementById('coverVolumeBtn');
+        const coverPythagorasBtn = document.getElementById('coverPythagorasBtn');
         const coverQuizBtn = document.getElementById('coverQuizBtn');
         const coverLogBtn = document.getElementById('coverLogBtn');
 
@@ -351,14 +496,16 @@
                 mainApp.classList.add('visible');
                 if(tab === 'area') { document.querySelector('.tab[data-tab="area2d"]').click(); }
                 else if(tab === 'vol') { document.querySelector('.tab[data-tab="vol"]').click(); }
+                else if(tab === 'pythagoras') { document.querySelector('.tab[data-tab="pythagoras"]').click(); }
                 else if(tab === 'quiz') { document.querySelector('.tab[data-tab="quiz"]').click(); }
                 else if(tab === 'log') { document.querySelector('.tab[data-tab="log"]').click(); }
             }, 500);
         }
 
-        enterBtn.addEventListener('click', () => showApp('quiz'));
+        enterBtn.addEventListener('click', () => showApp('pythagoras'));
         coverAreaBtn.addEventListener('click', () => showApp('area'));
         coverVolumeBtn.addEventListener('click', () => showApp('vol'));
+        coverPythagorasBtn.addEventListener('click', () => showApp('pythagoras'));
         coverQuizBtn.addEventListener('click', () => showApp('quiz'));
         coverLogBtn.addEventListener('click', () => showApp('log'));
         homeCoverBtn.addEventListener('click', showCover);
@@ -375,6 +522,87 @@
             });
         });
 
+        // ========== PYTHAGORAS CALCULATOR ==========
+        let pythMode = 'findC';
+
+        document.getElementById('pythFindC').addEventListener('click', function() {
+            pythMode = 'findC';
+            document.getElementById('pythFindC').classList.add('active');
+            document.getElementById('pythFindA').classList.remove('active');
+            document.getElementById('pythFindB').classList.remove('active');
+            document.getElementById('pythA').placeholder = 'Enter a';
+            document.getElementById('pythB').placeholder = 'Enter b';
+            document.getElementById('pythC').placeholder = 'Enter c (optional)';
+            document.getElementById('pythResult').style.display = 'block';
+            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
+            document.getElementById('pythSteps').innerHTML = '';
+        });
+
+        document.getElementById('pythFindA').addEventListener('click', function() {
+            pythMode = 'findA';
+            document.getElementById('pythFindA').classList.add('active');
+            document.getElementById('pythFindC').classList.remove('active');
+            document.getElementById('pythFindB').classList.remove('active');
+            document.getElementById('pythA').placeholder = 'Enter a (optional)';
+            document.getElementById('pythB').placeholder = 'Enter b';
+            document.getElementById('pythC').placeholder = 'Enter c';
+            document.getElementById('pythResult').style.display = 'block';
+            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
+            document.getElementById('pythSteps').innerHTML = '';
+        });
+
+        document.getElementById('pythFindB').addEventListener('click', function() {
+            pythMode = 'findB';
+            document.getElementById('pythFindB').classList.add('active');
+            document.getElementById('pythFindC').classList.remove('active');
+            document.getElementById('pythFindA').classList.remove('active');
+            document.getElementById('pythA').placeholder = 'Enter a';
+            document.getElementById('pythB').placeholder = 'Enter b (optional)';
+            document.getElementById('pythC').placeholder = 'Enter c';
+            document.getElementById('pythResult').style.display = 'block';
+            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
+            document.getElementById('pythSteps').innerHTML = '';
+        });
+
+        function calculatePythagoras() {
+            const a = parseFloat(document.getElementById('pythA').value);
+            const b = parseFloat(document.getElementById('pythB').value);
+            const c = parseFloat(document.getElementById('pythC').value);
+            const resultDiv = document.getElementById('pythAnswer');
+            const stepsDiv = document.getElementById('pythSteps');
+
+            if (pythMode === 'findC') {
+                if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
+                    resultDiv.innerHTML = '⚠️ Please enter valid values for a and b (positive numbers)';
+                    stepsDiv.innerHTML = '';
+                    return;
+                }
+                const cResult = Math.sqrt(a*a + b*b);
+                resultDiv.innerHTML = `✅ Hypotenuse (c) = ${cResult.toFixed(4)}`;
+                stepsDiv.innerHTML = `📐 a² + b² = c²<br>${a}² + ${b}² = c²<br>${a*a} + ${b*b} = c²<br>${a*a + b*b} = c²<br>c = √${a*a + b*b} = ${cResult.toFixed(4)}`;
+            }
+            else if (pythMode === 'findA') {
+                if (isNaN(b) || isNaN(c) || b <= 0 || c <= 0 || c <= b) {
+                    resultDiv.innerHTML = '⚠️ Please enter valid b and c (c must be > b)';
+                    stepsDiv.innerHTML = '';
+                    return;
+                }
+                const aResult = Math.sqrt(c*c - b*b);
+                resultDiv.innerHTML = `✅ Side a = ${aResult.toFixed(4)}`;
+                stepsDiv.innerHTML = `📐 a² = c² - b²<br>a² = ${c}² - ${b}²<br>a² = ${c*c} - ${b*b}<br>a² = ${c*c - b*b}<br>a = √${c*c - b*b} = ${aResult.toFixed(4)}`;
+            }
+            else if (pythMode === 'findB') {
+                if (isNaN(a) || isNaN(c) || a <= 0 || c <= 0 || c <= a) {
+                    resultDiv.innerHTML = '⚠️ Please enter valid a and c (c must be > a)';
+                    stepsDiv.innerHTML = '';
+                    return;
+                }
+                const bResult = Math.sqrt(c*c - a*a);
+                resultDiv.innerHTML = `✅ Side b = ${bResult.toFixed(4)}`;
+                stepsDiv.innerHTML = `📐 b² = c² - a²<br>b² = ${c}² - ${a}²<br>b² = ${c*c} - ${a*a}<br>b² = ${c*c - a*a}<br>b = √${c*c - a*a} = ${bResult.toFixed(4)}`;
+            }
+        }
+
         // ========== QUIZ QUESTIONS ==========
         const quizQuestions = [
             {
@@ -382,70 +610,137 @@
                 options: ["V = a²h", "V = ⅓a²h", "V = ⅔a²h", "V = ½a²h"],
                 correct: 1,
                 explanation: "Volume of a pyramid = ⅓ × area of base × height = ⅓a²h",
-                topic: "pyramid"
+                topic: "pyramid",
+                steps: [
+                    "Step 1: Recall formula for pyramid volume: V = ⅓ × a² × h",
+                    "Step 2: Multiply ⅓ by a² (base area)",
+                    "Step 3: Multiply by height h",
+                    "Final: V = ⅓a²h"
+                ]
             },
             {
                 question: "What is the volume of a cone with radius 7 cm and height 12 cm? (π = 22/7)",
                 options: ["616 cm³", "528 cm³", "308 cm³", "770 cm³"],
                 correct: 0,
                 explanation: "V = ⅓πr²h = ⅓ × 22/7 × 7 × 7 × 12 = 616 cm³",
-                topic: "cone"
+                topic: "cone",
+                steps: [
+                    "Step 1: Formula for cone: V = ⅓ × π × r² × h",
+                    "Step 2: Substitute values: V = ⅓ × 22/7 × 7 × 7 × 12",
+                    "Step 3: 7 × 7 = 49, then 49 × 12 = 588",
+                    "Step 4: ⅓ × 22/7 × 49 × 12 = 616",
+                    "Final: V = 616 cm³"
+                ]
             },
             {
                 question: "What is the formula for the volume of a sphere?",
                 options: ["4/3πr³", "πr²h", "⅓πr²h", "4πr²"],
                 correct: 0,
                 explanation: "Volume of a sphere = 4/3 × π × r³",
-                topic: "sphere"
+                topic: "sphere",
+                steps: [
+                    "Step 1: Volume of a sphere = 4/3 × π × r³",
+                    "Step 2: This is the standard formula for sphere volume",
+                    "Final: V = 4/3πr³"
+                ]
             },
             {
                 question: "The volume of a pyramid with a square base is 400 cm³. If its height is 12 cm, what is the base side length?",
                 options: ["8 cm", "10 cm", "12 cm", "15 cm"],
                 correct: 1,
                 explanation: "⅓a² × 12 = 400 → 4a² = 400 → a² = 100 → a = 10 cm",
-                topic: "pyramid"
+                topic: "pyramid",
+                steps: [
+                    "Step 1: Formula: V = ⅓ × a² × h",
+                    "Step 2: 400 = ⅓ × a² × 12",
+                    "Step 3: 400 = 4 × a²",
+                    "Step 4: a² = 100",
+                    "Final: a = 10 cm"
+                ]
             },
             {
                 question: "What is the volume of a cone with radius 3.5 cm and height 12 cm? (π = 22/7)",
                 options: ["154 cm³", "132 cm³", "176 cm³", "196 cm³"],
                 correct: 0,
                 explanation: "V = ⅓ × 22/7 × 3.5 × 3.5 × 12 = 154 cm³",
-                topic: "cone"
+                topic: "cone",
+                steps: [
+                    "Step 1: Formula: V = ⅓ × π × r² × h",
+                    "Step 2: 3.5 = 7/2, so r² = 49/4",
+                    "Step 3: V = ⅓ × 22/7 × 49/4 × 12",
+                    "Step 4: Simplify: V = 154 cm³",
+                    "Final: V = 154 cm³"
+                ]
             },
             {
                 question: "A cone has a slant height of 25 cm and radius 7 cm. What is its height?",
                 options: ["20 cm", "22 cm", "24 cm", "26 cm"],
                 correct: 2,
                 explanation: "h = √(l² - r²) = √(25² - 7²) = √(625 - 49) = √576 = 24 cm",
-                topic: "cone"
+                topic: "cone",
+                steps: [
+                    "Step 1: Use Pythagoras: l² = r² + h²",
+                    "Step 2: h² = l² - r²",
+                    "Step 3: h² = 25² - 7² = 625 - 49 = 576",
+                    "Step 4: h = √576 = 24",
+                    "Final: h = 24 cm"
+                ],
+                showPythagoras: true
             },
             {
                 question: "What is the volume of a sphere of radius 21 cm? (π = 22/7)",
                 options: ["38,808 cm³", "32,648 cm³", "41,580 cm³", "28,896 cm³"],
                 correct: 0,
                 explanation: "V = 4/3 × 22/7 × 21 × 21 × 21 = 38,808 cm³",
-                topic: "sphere"
+                topic: "sphere",
+                steps: [
+                    "Step 1: Formula: V = 4/3 × π × r³",
+                    "Step 2: V = 4/3 × 22/7 × 21 × 21 × 21",
+                    "Step 3: 21³ = 9261",
+                    "Step 4: V = 4/3 × 22/7 × 9261 = 38808",
+                    "Final: V = 38,808 cm³"
+                ]
             },
             {
                 question: "What is the formula for the volume of a cylinder?",
                 options: ["πr²h", "⅓πr²h", "2πr²h", "4/3πr³"],
                 correct: 0,
                 explanation: "Volume of a cylinder = π × r² × h",
-                topic: "cylinder"
+                topic: "cylinder",
+                steps: [
+                    "Step 1: Volume of a cylinder = area of base × height",
+                    "Step 2: Base area = πr²",
+                    "Step 3: Multiply by height h",
+                    "Final: V = πr²h"
+                ]
             },
             {
                 question: "The circumference of the base of a cone is 44 cm and height is 21 cm. What is its volume? (π = 22/7)",
                 options: ["924 cm³", "1078 cm³", "1155 cm³", "1232 cm³"],
                 correct: 1,
                 explanation: "2πr = 44 → r = 7 cm. V = ⅓ × 22/7 × 7 × 7 × 21 = 1078 cm³",
-                topic: "cone"
+                topic: "cone",
+                steps: [
+                    "Step 1: Circumference = 2πr = 44",
+                    "Step 2: r = 44/(2π) = 44/(2×22/7) = 7 cm",
+                    "Step 3: Formula: V = ⅓ × π × r² × h",
+                    "Step 4: V = ⅓ × 22/7 × 7 × 7 × 21 = 1078",
+                    "Final: V = 1078 cm³"
+                ]
             },
             {
                 question: "The volume of a sphere is 11492⅔ cm³. What is its radius? (π = 22/7)",
                 options: ["12 cm", "13 cm", "14 cm", "15 cm"],
                 correct: 2,
                 explanation: "4/3 × 22/7 × r³ = 34478/3 → r³ = 2744 → r = 14 cm",
-                topic: "sphere"
+                topic: "sphere",
+                steps: [
+                    "Step 1: Formula: V = 4/3 × π × r³",
+                    "Step 2: 4/3 × 22/7 × r³ = 11492⅔ = 34478/3",
+                    "Step 3: Multiply both sides: r³ = 2744",
+                    "Step 4: r = ∛2744 = 14",
+                    "Final: r = 14 cm"
+                ]
             }
         ];
 
@@ -462,6 +757,10 @@
             quizQuestions.forEach((q, idx) => {
                 let div = document.createElement('div');
                 div.className = 'quiz-question';
+                let pythagorasLink = '';
+                if (q.showPythagoras) {
+                    pythagorasLink = `<button class="pythagoras-link-btn" onclick="goToPythagoras()">🔢 Pythagoras Calculator</button>`;
+                }
                 div.innerHTML = `
                     <div class="question-text">${idx + 1}. ${q.question}</div>
                     <div class="options">
@@ -473,7 +772,14 @@
                         `).join('')}
                     </div>
                     <div class="feedback" id="fb-${idx}"></div>
-                    <button class="calc-link-btn" onclick="goToCalculator('${q.topic}')">📐 Go to ${q.topic.charAt(0).toUpperCase() + q.topic.slice(1)} Calculator</button>
+                    <div class="step-solution" id="steps-${idx}">
+                        <div class="step-title">📐 Step-by-Step Solution:</div>
+                        ${q.steps.map(s => `<div class="step">• ${s}</div>`).join('')}
+                    </div>
+                    <div>
+                        <button class="calc-link-btn" onclick="goToCalculator('${q.topic}')">📐 Go to ${q.topic.charAt(0).toUpperCase() + q.topic.slice(1)} Calculator</button>
+                        ${pythagorasLink}
+                    </div>
                 `;
                 container.appendChild(div);
                 if (userAnswers[idx] !== null) showFeedback(idx);
@@ -481,15 +787,15 @@
             updateScore();
         }
 
+        function goToPythagoras() {
+            document.querySelector('.tab[data-tab="pythagoras"]').click();
+        }
+
         function goToCalculator(topic) {
-            // Switch to volume tab
             document.querySelector('.tab[data-tab="vol"]').click();
-            // Select the shape
             const shapeSelect = document.getElementById('shapeSelect');
-            if (topic === 'pyramid') shapeSelect.value = 'pyramid';
-            else if (topic === 'cone') shapeSelect.value = 'cone';
-            else if (topic === 'sphere') shapeSelect.value = 'sphere';
-            // Trigger update
+            const shapeMap = { pyramid: 'pyramid', cone: 'cone', cylinder: 'cylinder', sphere: 'sphere' };
+            if (shapeMap[topic]) shapeSelect.value = shapeMap[topic];
             shapeSelect.dispatchEvent(new Event('change'));
         }
 
@@ -501,7 +807,6 @@
             userAnswers[qIdx] = optIdx;
             const radios = document.querySelectorAll(`input[name="q${qIdx}"]`);
             radios.forEach((r, i) => r.checked = (i === optIdx));
-            // Don't show feedback immediately - let them complete all questions first
             updateScore();
         }
 
@@ -518,6 +823,13 @@
             }
         }
 
+        function showSteps(qIdx) {
+            const stepsDiv = document.getElementById(`steps-${qIdx}`);
+            if (stepsDiv) {
+                stepsDiv.classList.toggle('visible');
+            }
+        }
+
         function updateScore() {
             let answered = 0;
             for (let i = 0; i < quizQuestions.length; i++) {
@@ -528,7 +840,6 @@
         }
 
         function submitQuiz() {
-            // Check if all questions are answered
             let allAnswered = true;
             for (let i = 0; i < quizQuestions.length; i++) {
                 if (userAnswers[i] === null) {
@@ -544,12 +855,14 @@
 
             quizSubmitted = true;
             
-            // Show feedback for all questions
             for (let i = 0; i < quizQuestions.length; i++) {
                 showFeedback(i);
+                const stepsDiv = document.getElementById(`steps-${i}`);
+                if (stepsDiv) {
+                    stepsDiv.classList.add('visible');
+                }
             }
             
-            // Calculate score
             let score = 0;
             let resultsHTML = '';
             for (let i = 0; i < quizQuestions.length; i++) {
@@ -557,21 +870,21 @@
                 if (isCorrect) score++;
                 resultsHTML += `
                     <div class="result-item">
-                        <span>Q${i+1}. ${isCorrect ? '✅' : '❌'} ${quizQuestions[i].question.substring(0, 50)}${quizQuestions[i].question.length > 50 ? '...' : ''}</span>
-                        <span class="${isCorrect ? 'result-status-correct' : 'result-status-wrong'}">${isCorrect ? 'Correct' : 'Wrong'}</span>
+                        <span>Q${i+1}. ${isCorrect ? '✅' : '❌'} ${quizQuestions[i].question.substring(0, 40)}${quizQuestions[i].question.length > 40 ? '...' : ''}</span>
+                        <span>
+                            <span class="${isCorrect ? 'result-status-correct' : 'result-status-wrong'}">${isCorrect ? 'Correct' : 'Wrong'}</span>
+                            <button class="result-step-btn" onclick="showSteps(${i})">📖 Steps</button>
+                        </span>
                     </div>
                 `;
             }
             
-            // Show results summary
             document.getElementById('resultsSummary').style.display = 'block';
             document.getElementById('resultsList').innerHTML = resultsHTML;
             
-            // Update score display
             document.getElementById('scoreDisplay').innerHTML = `${score}`;
             document.getElementById('scoreDetail').innerHTML = `${score} out of ${quizQuestions.length} - ${Math.round(score/quizQuestions.length*100)}%`;
             
-            // Scroll to results
             document.getElementById('resultsSummary').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -582,7 +895,6 @@
             loadQuiz();
         }
 
-        // Add submit button to quiz
         function addSubmitButton() {
             const container = document.getElementById('quizContainer');
             const submitBtn = document.createElement('button');
@@ -593,7 +905,6 @@
             container.appendChild(submitBtn);
         }
 
-        // Override loadQuiz to include submit button
         const originalLoadQuiz = loadQuiz;
         loadQuiz = function() {
             originalLoadQuiz();
@@ -628,6 +939,7 @@
         function updateFormulas(shape) {
             if(shape === 'pyramid') { formulaText.innerHTML = 'Pyramid: V = ⅓ × a² × h, A = a² + 2a√((a/2)² + h²)'; }
             else if(shape === 'cone') { formulaText.innerHTML = 'Cone: V = ⅓ × π × r² × h, A = πr(r + l)'; }
+            else if(shape === 'cylinder') { formulaText.innerHTML = 'Cylinder: V = π × r² × h, A = 2πr(r + h)'; }
             else if(shape === 'sphere') { formulaText.innerHTML = 'Sphere: V = ⁴⁄₃ × π × r³, A = 4πr²'; }
         }
 
@@ -646,6 +958,10 @@
                         <button type="button" class="choice-btn ${coneChoice === 'slant' ? 'active' : ''}" id="choiceSlantBtn">Slant (l)</button></div></div>
                         <div id="coneInputArea"></div><div id="conePythagorasResult" class="pythagoras-result" style="display: none;"></div>`;
             } 
+            else if(shape === 'cylinder') {
+                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="dim1" placeholder="Enter radius"></div>
+                        <div class="input-field"><label>Height (h)</label><input type="number" id="dim2" placeholder="Enter height"></div>`;
+            }
             else if(shape === 'sphere') {
                 html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="dim1" placeholder="Enter radius"></div>`;
             }
@@ -673,6 +989,7 @@
             
             document.getElementById('pyramidPractice').style.display = shape === 'pyramid' ? 'block' : 'none';
             document.getElementById('conePractice').style.display = shape === 'cone' ? 'block' : 'none';
+            document.getElementById('cylinderPractice').style.display = shape === 'cylinder' ? 'block' : 'none';
             document.getElementById('spherePractice').style.display = shape === 'sphere' ? 'block' : 'none';
         }
 
@@ -704,6 +1021,12 @@
                 let h = Math.min(40, 10 + hVal*2);
                 svg = `<svg width="120" height="90"><ellipse cx="60" cy="${20+h}" rx="${r}" ry="${r*0.2}" fill="#c3dafe" stroke="#667eea"/><polygon points="60,20 ${60-r},${20+h} ${60+r},${20+h}" fill="#a3bffa" stroke="#667eea"/><text x="35" y="${20+h+12}" fill="#667eea" font-size="7">r=${dims[0]||'?'} h=${dims[1]?.toFixed(2)||'?'}</text></svg>`;
                 dimText.innerText = `Cone: r=${dims[0]||'?'}, h=${dims[1]?.toFixed(2)||'?'}`;
+            }
+            else if(shape === 'cylinder') {
+                let r = Math.min(25, 8 + (dims[0]||5)*2);
+                let h = Math.min(40, 10 + (dims[1]||5)*2);
+                svg = `<svg width="120" height="90"><ellipse cx="60" cy="${10}" rx="${r}" ry="${r*0.2}" fill="#c3dafe" stroke="#667eea"/><rect x="${60-r}" y="${10}" width="${2*r}" height="${h}" fill="#a3bffa" stroke="#667eea"/><text x="35" y="${10+h+12}" fill="#667eea" font-size="7">r=${dims[0]||'?'} h=${dims[1]||'?'}</text></svg>`;
+                dimText.innerText = `Cylinder: r=${dims[0]||'?'}, h=${dims[1]||'?'}`;
             }
             else if(shape === 'sphere') {
                 let r = Math.min(35, 10 + (dims[0]||5)*2.5);
@@ -737,6 +1060,13 @@
                         if(coneChoice === 'height') pythagorasDiv.innerHTML = `📐 l = √(${r.toFixed(2)}² + ${h.toFixed(2)}²) = ${l.toFixed(3)}`; 
                         else pythagorasDiv.innerHTML = `📐 h = √(${l.toFixed(2)}² - ${r.toFixed(2)}²) = ${h.toFixed(3)}`; 
                     } 
+                } else { volResult.innerText = '—'; areaResult.innerText = '—'; return; }
+            }
+            else if(shape === 'cylinder') { 
+                let r = dims[0], h = dims[1]; 
+                if(r > 0 && h > 0) { 
+                    vol = Math.PI * r * r * h; 
+                    area = 2 * Math.PI * r * (r + h); 
                 } else { volResult.innerText = '—'; areaResult.innerText = '—'; return; }
             }
             else if(shape === 'sphere') { 
