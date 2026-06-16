@@ -49,27 +49,163 @@
         .cover-tagline { font-size: 0.7rem; color: #FFD700; margin-bottom: 1rem; letter-spacing: 2px; }
 
         .topic-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 1rem 0; }
-        .topic-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border-radius: 0.8rem; padding: 0.6rem 1rem; width: 130px; border: 1px solid rgba(255,215,0,0.3); }
+        .topic-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border-radius: 0.8rem; padding: 0.6rem 1rem; width: 130px; border: 1px solid rgba(255,215,0,0.3); transition: all 0.3s; cursor: pointer; }
+        .topic-card:hover { transform: translateY(-3px); background: rgba(255,215,0,0.2); border-color: #FFD700; }
         .topic-emoji { font-size: 1.5rem; margin-bottom: 0.2rem; }
         .topic-name { font-weight: 700; color: #FFD700; font-size: 0.75rem; }
         .topic-desc { font-size: 0.6rem; color: #ccc; margin-top: 0.2rem; }
 
         .btn-group { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin: 1rem 0; }
         .btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,215,0,0.5); padding: 0.5rem 1rem; border-radius: 2rem; font-weight: 700; color: #FFD700; cursor: pointer; transition: all 0.3s; font-size: 0.75rem; }
+        .btn:hover { background: #FFD700; color: #1a1a2e; transform: translateY(-2px); }
         .btn-primary { background: #FFD700; color: #1a1a2e; border: none; }
+        .btn-primary:hover { background: #FFA500; transform: scale(1.02); }
 
         .main-app { opacity: 0; transition: opacity 0.5s ease; padding: 0.5rem; display: none; }
         .main-app.visible { display: block; opacity: 1; }
-        .dashboard { max-width: 100%; width: 100%; margin: 0 auto; }
+        .dashboard { max-width: 800px; width: 100%; margin: 0 auto; }
 
         .app-header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 1rem; padding: 0.6rem 1rem; margin-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
         .logo-small { width: 50px; height: 50px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; }
         .logo-small img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
         .app-title { font-size: 1rem; font-weight: 700; color: #FFD700; }
         .back-btn { background: rgba(255,215,0,0.2); border: 1px solid #FFD700; padding: 0.2rem 0.8rem; border-radius: 1.5rem; color: #FFD700; cursor: pointer; font-size: 0.7rem; }
+        .back-btn:hover { background: rgba(255,215,0,0.3); }
 
+        /* HOME PAGE - ATTRACTIVE CARDS */
+        .home-container {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.2rem;
+        }
+        .home-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.3rem;
+        }
+        .home-subtitle {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+
+        /* ATTRACTIVE CARDS */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .nav-card {
+            background: linear-gradient(135deg, #f8fafc, #eef2ff);
+            border-radius: 1rem;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .nav-card:hover::before {
+            left: 100%;
+        }
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #FFD700;
+        }
+        .nav-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+        .nav-card .title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #1a1a2e;
+        }
+        .nav-card .desc {
+            font-size: 0.55rem;
+            color: #666;
+            margin-top: 0.2rem;
+        }
+        .nav-card .arrow-circle {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            line-height: 25px;
+            font-size: 0.7rem;
+            margin-top: 0.4rem;
+            transition: all 0.3s;
+        }
+        .nav-card:hover .arrow-circle {
+            transform: scale(1.1);
+            box-shadow: 0 3px 10px rgba(102,126,234,0.4);
+        }
+
+        /* Color variants for cards */
+        .nav-card.card-area { background: linear-gradient(135deg, #fef9e6, #fef3c7); border-color: #f59e0b; }
+        .nav-card.card-volume { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-color: #3b82f6; }
+        .nav-card.card-pythagoras { background: linear-gradient(135deg, #fce7f3, #fbcfe8); border-color: #ec489a; }
+        .nav-card.card-quiz { background: linear-gradient(135deg, #d1fae5, #a7f3d0); border-color: #10b981; }
+        .nav-card.card-log { background: linear-gradient(135deg, #fef3c7, #fde68a); border-color: #f59e0b; }
+
+        .nav-card.card-area:hover { border-color: #f59e0b; }
+        .nav-card.card-volume:hover { border-color: #3b82f6; }
+        .nav-card.card-pythagoras:hover { border-color: #ec489a; }
+        .nav-card.card-quiz:hover { border-color: #10b981; }
+        .nav-card.card-log:hover { border-color: #f59e0b; }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 0.6rem;
+            padding: 0.5rem;
+            text-align: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        .stat-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+        }
+        .stat-box .number {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+        .stat-box .label {
+            font-size: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* Tabs & Panels */
         .tabs { display: flex; gap: 0.3rem; background: #1a1a2e; border-radius: 1rem 1rem 0 0; padding: 0.5rem 1rem 0 1rem; flex-wrap: wrap; }
-        .tab { background: transparent; border: none; padding: 0.4rem 0.8rem; font-weight: 700; color: #cbd5e0; cursor: pointer; border-radius: 0.8rem 0.8rem 0 0; font-size: 0.7rem; }
+        .tab { background: transparent; border: none; padding: 0.4rem 0.8rem; font-weight: 700; color: #cbd5e0; cursor: pointer; border-radius: 0.8rem 0.8rem 0 0; font-size: 0.7rem; transition: all 0.3s; }
         .tab.active { background: white; color: #1a1a2e; border-bottom: 2px solid #FFD700; }
         .panel { background: white; border-radius: 0 0 1rem 1rem; padding: 0.8rem; display: none; }
         .panel.active { display: block; }
@@ -86,15 +222,7 @@
         .feedback.correct { background: #d1fae5; color: #065f46; display: block; }
         .feedback.wrong { background: #fee2e2; color: #991b1b; display: block; }
 
-        .step-solution {
-            background: #f0f4ff;
-            border-radius: 0.5rem;
-            padding: 0.6rem;
-            margin-top: 0.5rem;
-            font-size: 0.7rem;
-            border-left: 4px solid #667eea;
-            display: none;
-        }
+        .step-solution { background: #f0f4ff; border-radius: 0.5rem; padding: 0.6rem; margin-top: 0.5rem; font-size: 0.7rem; border-left: 4px solid #667eea; display: none; }
         .step-solution.visible { display: block; }
         .step-solution .step-title { color: #1a1a2e; font-weight: bold; font-size: 0.75rem; margin-bottom: 0.3rem; }
         .step-solution .step { padding: 0.15rem 0; border-bottom: 1px dashed #e2e8f0; }
@@ -107,45 +235,13 @@
         .reset-btn { background: #1a1a2e; color: #FFD700; border: none; padding: 0.4rem 1rem; border-radius: 1.5rem; cursor: pointer; font-weight: bold; margin-top: 0.5rem; font-size: 0.8rem; }
         .reset-btn:hover { background: #FFD700; color: #1a1a2e; }
 
-        .calc-link-btn { 
-            display: inline-block; 
-            background: linear-gradient(135deg, #667eea, #764ba2); 
-            color: white; 
-            border: none; 
-            padding: 0.2rem 0.8rem; 
-            border-radius: 1.5rem; 
-            cursor: pointer; 
-            font-size: 0.6rem; 
-            font-weight: bold; 
-            margin-top: 0.3rem;
-            text-decoration: none;
-        }
+        .calc-link-btn { display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.2rem 0.8rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.6rem; font-weight: bold; margin-top: 0.3rem; text-decoration: none; }
         .calc-link-btn:hover { opacity: 0.8; transform: scale(1.02); }
 
-        .pythagoras-link-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            border: none;
-            padding: 0.2rem 0.8rem;
-            border-radius: 1.5rem;
-            cursor: pointer;
-            font-size: 0.6rem;
-            font-weight: bold;
-            margin-top: 0.3rem;
-            margin-left: 0.3rem;
-            text-decoration: none;
-        }
+        .pythagoras-link-btn { display: inline-block; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; padding: 0.2rem 0.8rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.6rem; font-weight: bold; margin-top: 0.3rem; margin-left: 0.3rem; text-decoration: none; }
         .pythagoras-link-btn:hover { opacity: 0.8; transform: scale(1.02); }
 
-        .results-summary { 
-            background: linear-gradient(135deg, #fef9e6, #fef3c7); 
-            border-radius: 1rem; 
-            padding: 1rem; 
-            margin-top: 1rem; 
-            border: 2px solid #FFD700; 
-            display: none;
-        }
+        .results-summary { background: linear-gradient(135deg, #fef9e6, #fef3c7); border-radius: 1rem; padding: 1rem; margin-top: 1rem; border: 2px solid #FFD700; display: none; }
         .results-summary h3 { color: #854d0e; font-size: 1.1rem; margin-bottom: 0.5rem; }
         .result-item { padding: 0.3rem 0; border-bottom: 1px dashed #fde047; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .result-item:last-child { border-bottom: none; }
@@ -154,61 +250,26 @@
         .result-step-btn { background: #667eea; color: white; border: none; padding: 0.1rem 0.5rem; border-radius: 1rem; cursor: pointer; font-size: 0.6rem; }
         .result-step-btn:hover { opacity: 0.8; }
 
-        .practice-box { 
-            background: #f0fdf4; 
-            border-radius: 0.8rem; 
-            padding: 0.8rem; 
-            margin-top: 1rem; 
-            border-left: 4px solid #10b981; 
-        }
+        .practice-box { background: #f0fdf4; border-radius: 0.8rem; padding: 0.8rem; margin-top: 1rem; border-left: 4px solid #10b981; }
         .practice-box h4 { color: #065f46; font-size: 0.85rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .practice-item { font-size: 0.75rem; padding: 0.25rem 0; border-bottom: 1px dashed #d1fae5; display: flex; justify-content: space-between; align-items: center; }
         .practice-item:last-child { border-bottom: none; }
         .practice-answer { color: #10b981; font-weight: bold; background: #ecfdf5; padding: 0.1rem 0.6rem; border-radius: 1rem; font-size: 0.7rem; }
 
-        /* Pythagoras Section */
-        .pythagoras-box {
-            background: linear-gradient(135deg, #fef9e6, #fef3c7);
-            border-radius: 0.8rem;
-            padding: 0.8rem;
-            border: 2px solid #f59e0b;
-            margin-top: 0.5rem;
-        }
+        .pythagoras-box { background: linear-gradient(135deg, #fef9e6, #fef3c7); border-radius: 0.8rem; padding: 0.8rem; border: 2px solid #f59e0b; margin-top: 0.5rem; }
         .pythagoras-box h4 { color: #92400e; font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-
-        .pyth-diagram {
-            text-align: center;
-            margin: 0.5rem 0;
-            background: white;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-        }
+        .pyth-diagram { text-align: center; margin: 0.5rem 0; background: white; border-radius: 0.5rem; padding: 0.5rem; }
         .pyth-diagram svg { max-width: 100%; height: auto; }
-
         .pythagoras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
         .pythagoras-grid .input-field { margin-bottom: 0.3rem; }
         .pythagoras-grid .input-field label { font-size: 0.7rem; }
         .pythagoras-grid .input-field input { padding: 0.3rem; font-size: 0.7rem; }
-
         .pythagoras-result-box { background: #d4e4fc; border-radius: 0.5rem; padding: 0.4rem; margin-top: 0.5rem; text-align: center; font-size: 0.8rem; }
         .pythagoras-result-box .final { color: #1e40af; font-weight: bold; font-size: 0.9rem; }
 
-        /* Calculator Styles */
         .calc-row { display: flex; flex-direction: column; gap: 1rem; }
-        .diagram-box { 
-            background: #fef9e6; 
-            border-radius: 0.8rem; 
-            padding: 0.8rem; 
-            text-align: center; 
-            border: 1px solid #FFD700;
-            min-height: 200px;
-        }
-        .diagram-box svg { 
-            width: 100%; 
-            height: auto; 
-            max-width: 280px; 
-            margin: 0 auto;
-        }
+        .diagram-box { background: #fef9e6; border-radius: 0.8rem; padding: 0.8rem; text-align: center; border: 1px solid #FFD700; min-height: 200px; }
+        .diagram-box svg { width: 100%; height: auto; max-width: 280px; margin: 0 auto; }
         .form-box { background: white; }
         .input-field { margin-bottom: 0.8rem; }
         .input-field label { font-weight: 600; color: #1a1a2e; display: block; margin-bottom: 0.2rem; font-size: 0.75rem; }
@@ -218,10 +279,11 @@
         .formula-text { font-size: 0.7rem; }
         .choice-box { background: #e8f0fe; border-radius: 0.6rem; padding: 0.5rem; margin: 0.3rem 0; text-align: center; }
         .choice-buttons { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.3rem; }
-        .choice-btn { background: #1a1a2e; color: #FFD700; border: none; padding: 0.3rem 0.8rem; border-radius: 1.5rem; cursor: pointer; font-weight: 600; font-size: 0.7rem; }
+        .choice-btn { background: #1a1a2e; color: #FFD700; border: none; padding: 0.3rem 0.8rem; border-radius: 1.5rem; cursor: pointer; font-weight: 600; font-size: 0.7rem; transition: all 0.2s; }
         .choice-btn.active { background: #FFD700; color: #1a1a2e; }
         .pythagoras-result { background: #d4e4fc; border-radius: 0.6rem; padding: 0.4rem; margin: 0.3rem 0; font-size: 0.7rem; text-align: center; }
         .calc-btn { background: linear-gradient(135deg, #667eea, #764ba2); width: 100%; padding: 0.6rem; border: none; border-radius: 1.5rem; font-weight: bold; color: white; cursor: pointer; margin: 0.3rem 0; font-size: 0.8rem; }
+        .calc-btn:hover { opacity: 0.9; transform: scale(1.01); }
         .calc-btn-small { background: linear-gradient(135deg, #f59e0b, #d97706); width: 100%; padding: 0.4rem; border: none; border-radius: 1.5rem; font-weight: bold; color: white; cursor: pointer; margin: 0.3rem 0; font-size: 0.7rem; }
         .result { background: #f0f4f9; border-radius: 0.8rem; padding: 0.6rem; text-align: center; margin-top: 0.5rem; }
         .result-value { font-size: 1rem; font-weight: bold; color: #667eea; }
@@ -236,7 +298,9 @@
         .area-unit-select { width: 100%; padding: 0.4rem; border-radius: 0.4rem; border: 1.5px solid #e2e8f0; font-size: 0.8rem; margin-top: 0.3rem; background: white; }
         .area-result { font-weight: bold; color: #667eea; margin-top: 0.3rem; text-align: center; font-size: 0.9rem; }
         .area-calc-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.4rem; border-radius: 1.5rem; cursor: pointer; margin-top: 0.3rem; width: 100%; font-weight: bold; font-size: 0.8rem; }
+        .area-calc-btn:hover { opacity: 0.9; }
         .example-badge { background: #e9ecef; border-radius: 15px; padding: 0.15rem 0.5rem; font-size: 0.6rem; display: inline-block; margin: 0.1rem; cursor: pointer; }
+        .example-badge:hover { background: #667eea; color: white; }
         footer { text-align: center; font-size: 0.55rem; color: #a0aec0; margin-top: 0.8rem; }
 
         @media (min-width: 768px) {
@@ -250,6 +314,13 @@
             .pyth-diagram svg { max-width: 250px; }
             .area-card svg { max-width: 250px; }
             .diagram-box svg { max-width: 320px; }
+            .quick-stats { grid-template-columns: repeat(4, 1fr); }
+            .nav-cards { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 500px) {
+            .quick-stats { grid-template-columns: repeat(2, 1fr); }
+            .nav-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -264,20 +335,15 @@
             <div class="cover-tagline">✦ AREA · VOLUME · PYTHAGORAS · LOGARITHMS · QUIZ ✦</div>
 
             <div class="topic-grid">
-                <div class="topic-card"><div class="topic-emoji">📐</div><div class="topic-name">Area of Plane Figures</div><div class="topic-desc">Square, Rectangle, Triangle, Parallelogram, Trapezium, Circle</div></div>
-                <div class="topic-card"><div class="topic-emoji">📦</div><div class="topic-name">Volume & Surface Area</div><div class="topic-desc">Pyramid, Cone, Cylinder, Sphere</div></div>
-                <div class="topic-card"><div class="topic-emoji">🔢</div><div class="topic-name">Pythagoras</div><div class="topic-desc">a² + b² = c²</div></div>
-                <div class="topic-card"><div class="topic-emoji">📝</div><div class="topic-name">Quiz</div><div class="topic-desc">Test your knowledge!</div></div>
-                <div class="topic-card"><div class="topic-emoji">🔢</div><div class="topic-name">Log 10</div><div class="topic-desc">log₁₀ with fractions & roots</div></div>
+                <div class="topic-card" onclick="enterApp('area')"><div class="topic-emoji">📐</div><div class="topic-name">Area of Plane Figures</div><div class="topic-desc">6 Shapes with Practice</div></div>
+                <div class="topic-card" onclick="enterApp('vol')"><div class="topic-emoji">📦</div><div class="topic-name">Volume & Surface Area</div><div class="topic-desc">4 Solids with Practice</div></div>
+                <div class="topic-card" onclick="enterApp('pythagoras')"><div class="topic-emoji">🔢</div><div class="topic-name">Pythagoras Theorem</div><div class="topic-desc">a² + b² = c²</div></div>
+                <div class="topic-card" onclick="enterApp('quiz')"><div class="topic-emoji">📝</div><div class="topic-name">Self Assessment Quiz</div><div class="topic-desc">10 Questions</div></div>
+                <div class="topic-card" onclick="enterApp('log')"><div class="topic-emoji">🔢</div><div class="topic-name">Log 10 Calculator</div><div class="topic-desc">log₁₀ with expressions</div></div>
             </div>
 
             <div class="btn-group">
-                <button class="btn" id="coverAreaBtn">📐 Area</button>
-                <button class="btn" id="coverVolumeBtn">📦 Volume</button>
-                <button class="btn" id="coverPythagorasBtn">🔢 Pythagoras</button>
-                <button class="btn" id="coverQuizBtn">📝 Quiz</button>
-                <button class="btn" id="coverLogBtn">🔢 Log 10</button>
-                <button class="btn btn-primary" id="enterBtn">✨ Start ✨</button>
+                <button class="btn btn-primary" onclick="enterApp('home')">✨ Start Learning ✨</button>
             </div>
         </div>
     </div>
@@ -294,15 +360,68 @@
             </div>
 
             <div class="tabs">
-                <button class="tab active" data-tab="area2d">📐 Area</button>
+                <button class="tab active" data-tab="home">🏠 Home</button>
+                <button class="tab" data-tab="area2d">📐 Area</button>
                 <button class="tab" data-tab="vol">📦 Volume</button>
                 <button class="tab" data-tab="pythagoras">🔢 Pythagoras</button>
                 <button class="tab" data-tab="quiz">📝 Quiz</button>
                 <button class="tab" data-tab="log">🔢 Log 10</button>
             </div>
 
+            <!-- HOME TAB - ATTRACTIVE CARDS (NO BOTTOM LINKS) -->
+            <div id="homePanel" class="panel active">
+                <div class="home-container">
+                    <div class="home-title">📚 Welcome to 元 Dee ACADEMY</div>
+                    <div class="home-subtitle">Choose a topic to start learning</div>
+
+                    <div class="nav-cards">
+                        <div class="nav-card card-area" onclick="switchToTab('area2d')">
+                            <span class="icon">📐</span>
+                            <div class="title">Area of Plane Figures</div>
+                            <div class="desc">Square, Rectangle, Triangle, Parallelogram, Trapezium, Circle</div>
+                            <div class="arrow-circle">→</div>
+                        </div>
+
+                        <div class="nav-card card-volume" onclick="switchToTab('vol')">
+                            <span class="icon">📦</span>
+                            <div class="title">Volume & Surface Area</div>
+                            <div class="desc">Pyramid, Cone, Cylinder, Sphere with Practice</div>
+                            <div class="arrow-circle">→</div>
+                        </div>
+
+                        <div class="nav-card card-pythagoras" onclick="switchToTab('pythagoras')">
+                            <span class="icon">🔢</span>
+                            <div class="title">Pythagoras Theorem</div>
+                            <div class="desc">a² + b² = c² • Find Hypotenuse or Sides</div>
+                            <div class="arrow-circle">→</div>
+                        </div>
+
+                        <div class="nav-card card-quiz" onclick="switchToTab('quiz')">
+                            <span class="icon">📝</span>
+                            <div class="title">Self Assessment Quiz</div>
+                            <div class="desc">10 Questions with Step-by-Step Solutions</div>
+                            <div class="arrow-circle">→</div>
+                        </div>
+
+                        <div class="nav-card card-log" onclick="switchToTab('log')" style="grid-column: 1 / -1;">
+                            <span class="icon">🔢</span>
+                            <div class="title">Logarithm 10 Calculator</div>
+                            <div class="desc">log₁₀ with fractions, roots & expressions</div>
+                            <div class="arrow-circle">→</div>
+                        </div>
+                    </div>
+
+                    <div class="quick-stats">
+                        <div class="stat-box"><div class="number">6</div><div class="label">Shapes</div></div>
+                        <div class="stat-box"><div class="number">4</div><div class="label">Solids</div></div>
+                        <div class="stat-box"><div class="number">10</div><div class="label">Quiz Qs</div></div>
+                        <div class="stat-box"><div class="number">20+</div><div class="label">Practice Qs</div></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- AREA TAB -->
-            <div id="area2dPanel" class="panel active">
+            <div id="area2dPanel" class="panel">
                 <h3 style="margin-bottom: 0.8rem; color: #1a1a2e; text-align: center; font-size: 1rem;">📐 Area of Plane Figures</h3>
                 <div class="area-grid">
                     <div class="area-card">
@@ -376,6 +495,35 @@
                 </div>
             </div>
 
+            <!-- VOLUME TAB -->
+            <div id="volPanel" class="panel">
+                <div class="calc-row">
+                    <div class="diagram-box">
+                        <div style="font-weight: bold; margin-bottom: 0.3rem; font-size: 0.8rem;">📐 3D Solid</div>
+                        <div id="shapeDiagram"><svg viewBox="0 0 200 160"><text x="50" y="80" fill="#718096" font-size="14">Select shape</text></svg></div>
+                        <div id="dimText" style="font-size: 0.7rem; margin-top: 0.3rem;">Choose a solid</div>
+                        <div id="formulaDisplay" class="formula-card"><h4>📖 Formula</h4><div class="formula-text" id="formulaText">Select shape</div></div>
+                    </div>
+                    <div class="form-box">
+                        <div class="input-field"><label>Solid Shape</label><select id="shapeSelect">
+                            <option value="pyramid">🔺 Square Pyramid</option>
+                            <option value="cone">🎩 Cone</option>
+                            <option value="cylinder">🥫 Cylinder</option>
+                            <option value="sphere">⚽ Sphere</option>
+                        </select></div>
+                        <div id="dimsContainer"></div>
+                        <div class="input-field"><label>Unit</label><select id="unitSelect"><option value="cm">cm</option><option value="m">m</option></select></div>
+                        <button class="calc-btn" id="calcVolBtn">📐 Calculate</button>
+                        <div class="result"><div><strong>📦 Volume:</strong> <span id="volResult" class="result-value">—</span> <span id="volUnit">cm³</span></div>
+                        <div style="margin-top: 0.3rem;"><strong>🌀 Surface Area:</strong> <span id="areaResult" class="result-value">—</span> <span id="areaUnit">cm²</span></div></div>
+                    </div>
+                </div>
+                <div id="practiceContainer" class="practice-box">
+                    <h4 id="practiceTitle">🔺 Practice Questions - Pyramid</h4>
+                    <div id="practiceList"></div>
+                </div>
+            </div>
+
             <!-- PYTHAGORAS TAB -->
             <div id="pythagorasPanel" class="panel">
                 <div class="pyth-diagram">
@@ -428,37 +576,6 @@
                 </div>
             </div>
 
-            <!-- VOLUME TAB WITH DYNAMIC PRACTICE QUESTIONS -->
-            <div id="volPanel" class="panel">
-                <div class="calc-row">
-                    <div class="diagram-box">
-                        <div style="font-weight: bold; margin-bottom: 0.3rem; font-size: 0.8rem;">📐 3D Solid</div>
-                        <div id="shapeDiagram"><svg viewBox="0 0 200 160"><text x="50" y="80" fill="#718096" font-size="14">Select shape</text></svg></div>
-                        <div id="dimText" style="font-size: 0.7rem; margin-top: 0.3rem;">Choose a solid</div>
-                        <div id="formulaDisplay" class="formula-card"><h4>📖 Formula</h4><div class="formula-text" id="formulaText">Select shape</div></div>
-                    </div>
-                    <div class="form-box">
-                        <div class="input-field"><label>Solid Shape</label><select id="shapeSelect">
-                            <option value="pyramid">🔺 Square Pyramid</option>
-                            <option value="cone">🎩 Cone</option>
-                            <option value="cylinder">🥫 Cylinder</option>
-                            <option value="sphere">⚽ Sphere</option>
-                        </select></div>
-                        <div id="dimsContainer"></div>
-                        <div class="input-field"><label>Unit</label><select id="unitSelect"><option value="cm">cm</option><option value="m">m</option></select></div>
-                        <button class="calc-btn" id="calcVolBtn">📐 Calculate</button>
-                        <div class="result"><div><strong>📦 Volume:</strong> <span id="volResult" class="result-value">—</span> <span id="volUnit">cm³</span></div>
-                        <div style="margin-top: 0.3rem;"><strong>🌀 Surface Area:</strong> <span id="areaResult" class="result-value">—</span> <span id="areaUnit">cm²</span></div></div>
-                    </div>
-                </div>
-                
-                <!-- DYNAMIC PRACTICE QUESTIONS - Changes based on selected shape -->
-                <div id="practiceContainer" class="practice-box">
-                    <h4 id="practiceTitle">🔺 Practice Questions - Pyramid</h4>
-                    <div id="practiceList"></div>
-                </div>
-            </div>
-
             <!-- QUIZ TAB -->
             <div id="quizPanel" class="panel">
                 <div class="score-area">
@@ -494,6 +611,19 @@
     </div>
 
     <script>
+        // ========== FLOATING SHAPES ==========
+        for(let i=0; i<20; i++) {
+            let s = document.createElement('div');
+            s.classList.add('shape');
+            let size = Math.random()*30+8;
+            s.style.width = size+'px'; s.style.height = size+'px';
+            s.style.left = Math.random()*100+'%';
+            s.style.top = Math.random()*100+'%';
+            s.style.animationDelay = Math.random()*8+'s';
+            s.style.animationDuration = (Math.random()*12+8)+'s';
+            document.getElementById('floatingShapes').appendChild(s);
+        }
+
         // ========== PRACTICE QUESTIONS DATA ==========
         const practiceData = {
             pyramid: {
@@ -542,7 +672,6 @@
         function updatePracticeQuestions(shape) {
             const data = practiceData[shape];
             if (!data) return;
-            
             document.getElementById('practiceTitle').innerHTML = data.title;
             const list = document.getElementById('practiceList');
             list.innerHTML = '';
@@ -555,84 +684,57 @@
         }
 
         // ========== AREA DIAGRAM UPDATE FUNCTIONS ==========
-        function updateSquareDiagram() {
-            const val = document.getElementById('squareSide').value || 5;
-            document.getElementById('squareSideLabel').textContent = `a = ${val}`;
-        }
-        function updateRectangleDiagram() {
-            const l = document.getElementById('rectLength').value || 8;
-            const w = document.getElementById('rectWidth').value || 5;
-            document.getElementById('rectLengthLabel').textContent = `l = ${l}`;
-            document.getElementById('rectWidthLabel').textContent = `w = ${w}`;
-        }
-        function updateTriangleDiagram() {
-            const b = document.getElementById('triBase').value || 8;
-            const h = document.getElementById('triHeight').value || 6;
-            document.getElementById('triBaseLabel').textContent = `b = ${b}`;
-            document.getElementById('triHeightLabel').textContent = `h = ${h}`;
-        }
-        function updateParallelogramDiagram() {
-            const b = document.getElementById('paraBase').value || 8;
-            const h = document.getElementById('paraHeight').value || 5;
-            document.getElementById('paraBaseLabel').textContent = `b = ${b}`;
-            document.getElementById('paraHeightLabel').textContent = `h = ${h}`;
-        }
-        function updateTrapeziumDiagram() {
-            const a = document.getElementById('trapA').value || 8;
-            const b = document.getElementById('trapB').value || 5;
-            const h = document.getElementById('trapH').value || 4;
-            document.getElementById('trapALabel').textContent = `a = ${a}`;
-            document.getElementById('trapBLabel').textContent = `b = ${b}`;
-            document.getElementById('trapHLabel').textContent = `h = ${h}`;
-        }
-        function updateCircleDiagram() {
-            const r = document.getElementById('circleRadius').value || 5;
-            document.getElementById('circleRadiusLabel').textContent = `r = ${r}`;
-        }
+        function updateSquareDiagram() { const val = document.getElementById('squareSide').value || 5; document.getElementById('squareSideLabel').textContent = `a = ${val}`; }
+        function updateRectangleDiagram() { const l = document.getElementById('rectLength').value || 8; const w = document.getElementById('rectWidth').value || 5; document.getElementById('rectLengthLabel').textContent = `l = ${l}`; document.getElementById('rectWidthLabel').textContent = `w = ${w}`; }
+        function updateTriangleDiagram() { const b = document.getElementById('triBase').value || 8; const h = document.getElementById('triHeight').value || 6; document.getElementById('triBaseLabel').textContent = `b = ${b}`; document.getElementById('triHeightLabel').textContent = `h = ${h}`; }
+        function updateParallelogramDiagram() { const b = document.getElementById('paraBase').value || 8; const h = document.getElementById('paraHeight').value || 5; document.getElementById('paraBaseLabel').textContent = `b = ${b}`; document.getElementById('paraHeightLabel').textContent = `h = ${h}`; }
+        function updateTrapeziumDiagram() { const a = document.getElementById('trapA').value || 8; const b = document.getElementById('trapB').value || 5; const h = document.getElementById('trapH').value || 4; document.getElementById('trapALabel').textContent = `a = ${a}`; document.getElementById('trapBLabel').textContent = `b = ${b}`; document.getElementById('trapHLabel').textContent = `h = ${h}`; }
+        function updateCircleDiagram() { const r = document.getElementById('circleRadius').value || 5; document.getElementById('circleRadiusLabel').textContent = `r = ${r}`; }
 
         // ========== NAVIGATION ==========
         const coverPage = document.getElementById('coverPage');
         const mainApp = document.getElementById('mainApp');
-        const enterBtn = document.getElementById('enterBtn');
         const homeCoverBtn = document.getElementById('homeCoverBtn');
-        const coverAreaBtn = document.getElementById('coverAreaBtn');
-        const coverVolumeBtn = document.getElementById('coverVolumeBtn');
-        const coverPythagorasBtn = document.getElementById('coverPythagorasBtn');
-        const coverQuizBtn = document.getElementById('coverQuizBtn');
-        const coverLogBtn = document.getElementById('coverLogBtn');
 
-        function showCover() { coverPage.classList.remove('hide'); coverPage.style.display = 'flex'; mainApp.classList.remove('visible'); mainApp.style.display = 'none'; }
-        function showApp(tab) { 
-            coverPage.classList.add('hide'); 
-            setTimeout(() => { 
-                coverPage.style.display = 'none'; 
-                mainApp.style.display = 'block'; 
+        function enterApp(tab) {
+            coverPage.classList.add('hide');
+            setTimeout(() => {
+                coverPage.style.display = 'none';
+                mainApp.style.display = 'block';
                 mainApp.classList.add('visible');
-                if(tab === 'area') { document.querySelector('.tab[data-tab="area2d"]').click(); }
-                else if(tab === 'vol') { document.querySelector('.tab[data-tab="vol"]').click(); }
-                else if(tab === 'pythagoras') { document.querySelector('.tab[data-tab="pythagoras"]').click(); }
-                else if(tab === 'quiz') { document.querySelector('.tab[data-tab="quiz"]').click(); }
-                else if(tab === 'log') { document.querySelector('.tab[data-tab="log"]').click(); }
+                if (tab === 'area') { switchToTab('area2d'); }
+                else if (tab === 'vol') { switchToTab('vol'); }
+                else if (tab === 'pythagoras') { switchToTab('pythagoras'); }
+                else if (tab === 'quiz') { switchToTab('quiz'); }
+                else if (tab === 'log') { switchToTab('log'); }
+                else { switchToTab('home'); }
             }, 500);
         }
 
-        enterBtn.addEventListener('click', () => showApp('area'));
-        coverAreaBtn.addEventListener('click', () => showApp('area'));
-        coverVolumeBtn.addEventListener('click', () => showApp('vol'));
-        coverPythagorasBtn.addEventListener('click', () => showApp('pythagoras'));
-        coverQuizBtn.addEventListener('click', () => showApp('quiz'));
-        coverLogBtn.addEventListener('click', () => showApp('log'));
-        homeCoverBtn.addEventListener('click', showCover);
+        function switchToTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const panels = document.querySelectorAll('.panel');
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            
+            const tabBtn = document.querySelector(`.tab[data-tab="${tabId}"]`);
+            if (tabBtn) tabBtn.classList.add('active');
+            
+            const panel = document.getElementById(tabId + 'Panel');
+            if (panel) panel.classList.add('active');
+            if (tabId === 'quiz') loadQuiz();
+        }
+
+        homeCoverBtn.addEventListener('click', function() {
+            switchToTab('home');
+        });
 
         // Tab switching
         const tabs = document.querySelectorAll('.tab');
-        const panels = document.querySelectorAll('.panel');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                panels.forEach(p => p.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.dataset.tab + 'Panel').classList.add('active');
+                const tabId = tab.dataset.tab;
+                switchToTab(tabId);
             });
         });
 
@@ -817,7 +919,7 @@
                 div.className = 'quiz-question';
                 let pythagorasLink = '';
                 if (q.showPythagoras) {
-                    pythagorasLink = `<button class="pythagoras-link-btn" onclick="goToPythagoras()">🔢 Pythagoras Calculator</button>`;
+                    pythagorasLink = `<button class="pythagoras-link-btn" onclick="switchToTab('pythagoras')">🔢 Pythagoras Calculator</button>`;
                 }
                 div.innerHTML = `
                     <div class="question-text">${idx + 1}. ${q.question}</div>
@@ -835,7 +937,7 @@
                         ${q.steps.map(s => `<div class="step">• ${s}</div>`).join('')}
                     </div>
                     <div>
-                        <button class="calc-link-btn" onclick="goToCalculator('${q.topic}')">📐 Go to ${q.topic.charAt(0).toUpperCase() + q.topic.slice(1)} Calculator</button>
+                        <button class="calc-link-btn" onclick="switchToTab('vol'); setTimeout(() => { document.getElementById('shapeSelect').value = '${q.topic}'; document.getElementById('shapeSelect').dispatchEvent(new Event('change')); }, 100);">📐 Go to ${q.topic.charAt(0).toUpperCase() + q.topic.slice(1)} Calculator</button>
                         ${pythagorasLink}
                     </div>
                 `;
@@ -843,18 +945,6 @@
                 if (userAnswers[idx] !== null) showFeedback(idx);
             });
             updateScore();
-        }
-
-        function goToPythagoras() {
-            document.querySelector('.tab[data-tab="pythagoras"]').click();
-        }
-
-        function goToCalculator(topic) {
-            document.querySelector('.tab[data-tab="vol"]').click();
-            const shapeSelect = document.getElementById('shapeSelect');
-            const shapeMap = { pyramid: 'pyramid', cone: 'cone', cylinder: 'cylinder', sphere: 'sphere' };
-            if (shapeMap[topic]) shapeSelect.value = shapeMap[topic];
-            shapeSelect.dispatchEvent(new Event('change'));
         }
 
         function selectOption(qIdx, optIdx) {
@@ -1044,7 +1134,6 @@
                 updateConeInputs();
             }
             updateVolumeDiagram();
-            // Update practice questions based on selected shape
             updatePracticeQuestions(shape);
         }
 
@@ -1194,8 +1283,6 @@
         updateParallelogramDiagram();
         updateTrapeziumDiagram();
         updateCircleDiagram();
-        
-        // Initialize practice questions with default (pyramid)
         updatePracticeQuestions('pyramid');
 
         // Load quiz
