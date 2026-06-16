@@ -13,12 +13,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans Sinhala', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             overflow-x: hidden;
             padding: 10px;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap');
 
         .cover-page {
             position: fixed;
@@ -65,12 +67,39 @@
         .main-app.visible { display: block; opacity: 1; }
         .dashboard { max-width: 800px; width: 100%; margin: 0 auto; }
 
-        .app-header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 1rem; padding: 0.6rem 1rem; margin-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
+        .app-header { 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
+            border-radius: 1rem; 
+            padding: 0.6rem 1rem; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 0.5rem; 
+        }
         .logo-small { width: 50px; height: 50px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 6px; }
         .logo-small img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
         .app-title { font-size: 1rem; font-weight: 700; color: #FFD700; }
         .back-btn { background: rgba(255,215,0,0.2); border: 1px solid #FFD700; padding: 0.2rem 0.8rem; border-radius: 1.5rem; color: #FFD700; cursor: pointer; font-size: 0.7rem; }
         .back-btn:hover { background: rgba(255,215,0,0.3); }
+
+        /* Language Toggle Button */
+        .lang-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.65rem;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(16,185,129,0.3);
+        }
 
         /* HOME PAGE */
         .home-container {
@@ -380,7 +409,6 @@
             display: block;
         }
 
-        /* Quiz Button */
         .quiz-link-btn {
             display: inline-block;
             background: linear-gradient(135deg, #10b981, #059669);
@@ -580,15 +608,10 @@
         .example-badge:hover { background: #667eea; color: white; }
         footer { text-align: center; font-size: 0.55rem; color: #a0aec0; margin-top: 0.8rem; }
 
-        /* Positive number indicator */
-        .positive-indicator {
-            font-size: 0.55rem;
-            color: #10b981;
-            margin-top: 0.1rem;
-            display: none;
-        }
-        .positive-indicator.show {
-            display: block;
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.6rem;
+            margin-top: 0.2rem;
         }
 
         @media (min-width: 768px) {
@@ -619,18 +642,18 @@
         <div class="cover-content">
             <div class="cover-logo"><img src="logonew.jpeg" alt="Dee Academy Logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>元</text></svg>'"></div>
             <h1 class="cover-title">元 Dee ACADEMY</h1>
-            <p class="cover-subtitle">O/L Mathematics - Complete Geometry Guide</p>
+            <p class="cover-subtitle" id="coverSubtitle">O/L Mathematics - Complete Geometry Guide</p>
             <div class="cover-tagline">✦ AREA · VOLUME · PYTHAGORAS · LOGARITHMS · QUIZ ✦</div>
 
             <div class="topic-grid">
-                <div class="topic-card" onclick="enterApp('area')"><div class="topic-emoji">📐</div><div class="topic-name">Area & Volume</div><div class="topic-desc">Plane Figures & Solids</div></div>
-                <div class="topic-card" onclick="enterApp('pythagoras')"><div class="topic-emoji">🔢</div><div class="topic-name">Pythagoras</div><div class="topic-desc">a² + b² = c²</div></div>
-                <div class="topic-card" onclick="enterApp('log')"><div class="topic-emoji">🔢</div><div class="topic-name">Logarithms</div><div class="topic-desc">Theory, Practice & Quiz</div></div>
-                <div class="topic-card" onclick="enterApp('query')"><div class="topic-emoji">💬</div><div class="topic-name">Ask a Question</div><div class="topic-desc">Send Snip/Image via WhatsApp</div></div>
+                <div class="topic-card" onclick="enterApp('area')"><div class="topic-emoji">📐</div><div class="topic-name" id="topicArea">Area & Volume</div><div class="topic-desc" id="topicAreaDesc">Plane Figures & Solids</div></div>
+                <div class="topic-card" onclick="enterApp('pythagoras')"><div class="topic-emoji">🔢</div><div class="topic-name" id="topicPythagoras">Pythagoras</div><div class="topic-desc" id="topicPythagorasDesc">a² + b² = c²</div></div>
+                <div class="topic-card" onclick="enterApp('log')"><div class="topic-emoji">🔢</div><div class="topic-name" id="topicLog">Logarithms</div><div class="topic-desc" id="topicLogDesc">Theory, Practice & Quiz</div></div>
+                <div class="topic-card" onclick="enterApp('query')"><div class="topic-emoji">💬</div><div class="topic-name" id="topicQuery">Ask a Question</div><div class="topic-desc" id="topicQueryDesc">Send Snip/Image via WhatsApp</div></div>
             </div>
 
             <div class="btn-group">
-                <button class="btn btn-primary" onclick="enterApp('home')">✨ Start Learning ✨</button>
+                <button class="btn btn-primary" onclick="enterApp('home')" id="startBtn">✨ Start Learning ✨</button>
             </div>
         </div>
     </div>
@@ -641,65 +664,68 @@
             <div class="app-header">
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                     <div class="logo-small"><img src="logonew.jpeg" alt="Dee Academy Logo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>元</text></svg>'"></div>
-                    <div><span class="app-title">元 Dee ACADEMY</span><div style="font-size: 0.55rem; color: #a0aec0;">O/L Mathematics</div></div>
+                    <div><span class="app-title" id="appTitle">元 Dee ACADEMY</span><div style="font-size: 0.55rem; color: #a0aec0;" id="appSubtitle">O/L Mathematics</div></div>
                 </div>
-                <button class="back-btn" id="homeCoverBtn">🏠 Home</button>
+                <div style="display: flex; gap: 0.3rem; align-items: center;">
+                    <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">🇱🇰 සිංහල</button>
+                    <button class="back-btn" id="homeCoverBtn">🏠 Home</button>
+                </div>
             </div>
 
             <div class="tabs">
-                <button class="tab" data-tab="home">🏠 Home</button>
-                <button class="tab active" data-tab="areaVol">📐 Area & Volume</button>
-                <button class="tab" data-tab="pythagoras">🔢 Pythagoras</button>
-                <button class="tab" data-tab="log">🔢 Logarithms</button>
-                <button class="tab" data-tab="query">💬 Ask a Question</button>
+                <button class="tab" data-tab="home" id="tabHome">🏠 Home</button>
+                <button class="tab active" data-tab="areaVol" id="tabAreaVol">📐 Area & Volume</button>
+                <button class="tab" data-tab="pythagoras" id="tabPythagoras">🔢 Pythagoras</button>
+                <button class="tab" data-tab="log" id="tabLog">🔢 Logarithms</button>
+                <button class="tab" data-tab="query" id="tabQuery">💬 Ask a Question</button>
             </div>
 
             <!-- HOME TAB -->
             <div id="homePanel" class="panel">
                 <div class="home-container">
-                    <div class="home-title">📚 Welcome to 元 Dee ACADEMY</div>
-                    <div class="home-subtitle">Choose a topic to start learning</div>
+                    <div class="home-title" id="homeTitle">📚 Welcome to 元 Dee ACADEMY</div>
+                    <div class="home-subtitle" id="homeSubtitle">Choose a topic to start learning</div>
 
                     <div class="nav-cards">
                         <div class="nav-card card-area" onclick="switchToTab('areaVol')">
                             <span class="icon">📐</span>
-                            <div class="title">Area & Volume</div>
-                            <div class="desc">Plane Figures & Solids with Practice</div>
+                            <div class="title" id="homeAreaTitle">Area & Volume</div>
+                            <div class="desc" id="homeAreaDesc">Plane Figures & Solids with Practice</div>
                             <div class="arrow-circle">→</div>
                         </div>
 
                         <div class="nav-card card-pythagoras" onclick="switchToTab('pythagoras')">
                             <span class="icon">🔢</span>
-                            <div class="title">Pythagoras Theorem</div>
-                            <div class="desc">a² + b² = c² • Find Hypotenuse or Sides</div>
+                            <div class="title" id="homePythagorasTitle">Pythagoras Theorem</div>
+                            <div class="desc" id="homePythagorasDesc">a² + b² = c² • Find Hypotenuse or Sides</div>
                             <div class="arrow-circle">→</div>
                         </div>
 
                         <div class="nav-card card-log" onclick="switchToTab('log')">
                             <span class="icon">🔢</span>
-                            <div class="title">Logarithms</div>
-                            <div class="desc">log₁₀ with Theory, Examples, Practice & Quiz</div>
+                            <div class="title" id="homeLogTitle">Logarithms</div>
+                            <div class="desc" id="homeLogDesc">log₁₀ with Theory, Examples, Practice & Quiz</div>
                             <div class="arrow-circle">→</div>
                         </div>
 
                         <div class="nav-card card-query" onclick="switchToTab('query')" style="grid-column: 1 / -1;">
                             <span class="icon">💬</span>
-                            <div class="title">Ask a Question</div>
-                            <div class="desc">Send Snip/Image • Get help on WhatsApp</div>
+                            <div class="title" id="homeQueryTitle">Ask a Question</div>
+                            <div class="desc" id="homeQueryDesc">Send Snip/Image • Get help on WhatsApp</div>
                             <div class="arrow-circle">→</div>
                         </div>
                     </div>
 
                     <div class="quick-stats">
-                        <div class="stat-box"><div class="number">6</div><div class="label">Shapes</div></div>
-                        <div class="stat-box"><div class="number">4</div><div class="label">Solids</div></div>
-                        <div class="stat-box"><div class="number">10</div><div class="label">Quiz Qs</div></div>
-                        <div class="stat-box"><div class="number">20+</div><div class="label">Practice Qs</div></div>
+                        <div class="stat-box"><div class="number">6</div><div class="label" id="statShapes">Shapes</div></div>
+                        <div class="stat-box"><div class="number">4</div><div class="label" id="statSolids">Solids</div></div>
+                        <div class="stat-box"><div class="number">10</div><div class="label" id="statQuiz">Quiz Qs</div></div>
+                        <div class="stat-box"><div class="number">20+</div><div class="label" id="statPractice">Practice Qs</div></div>
                     </div>
 
                     <div class="creator-info">
-                        <div class="name">👨‍🏫 Created by: Shehan Deemantha</div>
-                        <a href="https://wa.me/94702132547" target="_blank" class="whatsapp-link">
+                        <div class="name" id="creatorName">👨‍🏫 Created by: Shehan Deemantha</div>
+                        <a href="https://wa.me/94702132547" target="_blank" class="whatsapp-link" id="creatorWhatsApp">
                             💬 Need help? Contact me on WhatsApp
                         </a>
                     </div>
@@ -709,83 +735,83 @@
             <!-- AREA & VOLUME TAB -->
             <div id="areaVolPanel" class="panel active">
                 <div class="sub-tabs">
-                    <button class="sub-tab active" data-sub="area">📐 Area of Plane Figures</button>
-                    <button class="sub-tab" data-sub="vol">📦 Volume of Solids</button>
-                    <button class="sub-tab" data-sub="areaQuiz">📝 Area & Volume Quiz</button>
+                    <button class="sub-tab active" data-sub="area" id="subAreaBtn">📐 Area of Plane Figures</button>
+                    <button class="sub-tab" data-sub="vol" id="subVolBtn">📦 Volume of Solids</button>
+                    <button class="sub-tab" data-sub="areaQuiz" id="subQuizBtn">📝 Area & Volume Quiz</button>
                 </div>
 
                 <!-- AREA SUB-PANEL -->
                 <div id="subArea" class="sub-panel active">
-                    <h3 style="margin-bottom: 0.8rem; color: #1a1a2e; text-align: center; font-size: 1rem;">📐 Area of Plane Figures</h3>
+                    <h3 style="margin-bottom: 0.8rem; color: #1a1a2e; text-align: center; font-size: 1rem;" id="areaTitle">📐 Area of Plane Figures</h3>
                     <div class="area-grid">
                         <div class="area-card">
                             <div class="area-title">⬛ Square</div>
                             <svg viewBox="0 0 200 200"><rect x="20" y="20" width="160" height="160" fill="#c3dafe" stroke="#ef4444" stroke-width="4"/><line x1="20" y1="20" x2="180" y2="20" stroke="#ef4444" stroke-width="3"/><text x="70" y="15" fill="#ef4444" font-size="16" font-weight="bold" id="squareSideLabel">a = 5</text><text x="50" y="110" fill="#ef4444" font-size="14" font-weight="bold">a</text></svg>
-                            <div class="area-formula">📖 Formula: A = a²</div>
+                            <div class="area-formula" id="squareFormula">📖 Formula: A = a²</div>
                             <div class="area-input"><input type="number" id="squareSide" placeholder="Side (a)" value="5" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><select id="squareUnit" class="area-unit-select"><option value="cm²">cm²</option><option value="m²">m²</option></select></div>
-                            <button class="area-calc-btn" onclick="calcSquareArea()">Calculate</button>
+                            <button class="area-calc-btn" onclick="calcSquareArea()" id="squareCalcBtn">Calculate</button>
                             <div class="area-result" id="squareResult">Area: —</div>
                         </div>
                         <div class="area-card">
                             <div class="area-title">📏 Rectangle</div>
                             <svg viewBox="0 0 220 160"><rect x="20" y="20" width="180" height="120" fill="#c3dafe" stroke="#3b82f6" stroke-width="4"/><line x1="20" y1="20" x2="200" y2="20" stroke="#3b82f6" stroke-width="3"/><text x="80" y="15" fill="#3b82f6" font-size="14" font-weight="bold" id="rectLengthLabel">l = 8</text><line x1="200" y1="20" x2="200" y2="140" stroke="#ef4444" stroke-width="3"/><text x="205" y="75" fill="#ef4444" font-size="14" font-weight="bold" id="rectWidthLabel">w = 5</text></svg>
-                            <div class="area-formula">📖 Formula: A = l × w</div>
+                            <div class="area-formula" id="rectFormula">📖 Formula: A = l × w</div>
                             <div class="area-input"><input type="number" id="rectLength" placeholder="Length (l)" value="8" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><input type="number" id="rectWidth" placeholder="Width (w)" value="5" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><select id="rectUnit" class="area-unit-select"><option value="cm²">cm²</option><option value="m²">m²</option></select></div>
-                            <button class="area-calc-btn" onclick="calcRectangleArea()">Calculate</button>
+                            <button class="area-calc-btn" onclick="calcRectangleArea()" id="rectCalcBtn">Calculate</button>
                             <div class="area-result" id="rectResult">Area: —</div>
                         </div>
                         <div class="area-card">
                             <div class="area-title">🔺 Triangle</div>
                             <svg viewBox="0 0 220 200"><polygon points="110,20 20,170 200,170" fill="#c3dafe" stroke="#10b981" stroke-width="4"/><line x1="110" y1="20" x2="110" y2="170" stroke="#3b82f6" stroke-width="3" stroke-dasharray="6,4"/><text x="115" y="100" fill="#3b82f6" font-size="14" font-weight="bold" id="triHeightLabel">h = 6</text><line x1="20" y1="170" x2="200" y2="170" stroke="#ef4444" stroke-width="3"/><text x="80" y="190" fill="#ef4444" font-size="14" font-weight="bold" id="triBaseLabel">b = 8</text></svg>
-                            <div class="area-formula">📖 Formula: A = ½ × b × h</div>
+                            <div class="area-formula" id="triFormula">📖 Formula: A = ½ × b × h</div>
                             <div class="area-input"><input type="number" id="triBase" placeholder="Base (b)" value="8" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><input type="number" id="triHeight" placeholder="Height (h)" value="6" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><select id="triUnit" class="area-unit-select"><option value="cm²">cm²</option><option value="m²">m²</option></select></div>
-                            <button class="area-calc-btn" onclick="calcTriangleArea()">Calculate</button>
+                            <button class="area-calc-btn" onclick="calcTriangleArea()" id="triCalcBtn">Calculate</button>
                             <div class="area-result" id="triResult">Area: —</div>
                         </div>
                         <div class="area-card">
                             <div class="area-title">🔷 Parallelogram</div>
                             <svg viewBox="0 0 220 180"><polygon points="35,160 185,160 155,30 5,30" fill="#c3dafe" stroke="#f59e0b" stroke-width="4"/><line x1="5" y1="30" x2="155" y2="30" stroke="#ef4444" stroke-width="3"/><text x="60" y="25" fill="#ef4444" font-size="14" font-weight="bold" id="paraBaseLabel">b = 8</text><line x1="35" y1="160" x2="35" y2="30" stroke="#3b82f6" stroke-width="3" stroke-dasharray="6,4"/><text x="10" y="100" fill="#3b82f6" font-size="14" font-weight="bold" id="paraHeightLabel">h = 5</text></svg>
-                            <div class="area-formula">📖 Formula: A = b × h</div>
+                            <div class="area-formula" id="paraFormula">📖 Formula: A = b × h</div>
                             <div class="area-input"><input type="number" id="paraBase" placeholder="Base (b)" value="8" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><input type="number" id="paraHeight" placeholder="Height (h)" value="5" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><select id="paraUnit" class="area-unit-select"><option value="cm²">cm²</option><option value="m²">m²</option></select></div>
-                            <button class="area-calc-btn" onclick="calcParallelogramArea()">Calculate</button>
+                            <button class="area-calc-btn" onclick="calcParallelogramArea()" id="paraCalcBtn">Calculate</button>
                             <div class="area-result" id="paraResult">Area: —</div>
                         </div>
                         <div class="area-card">
                             <div class="area-title">📐 Trapezium</div>
                             <svg viewBox="0 0 220 180"><polygon points="35,160 185,160 155,30 65,30" fill="#c3dafe" stroke="#ec489a" stroke-width="4"/><line x1="65" y1="30" x2="155" y2="30" stroke="#ef4444" stroke-width="3"/><text x="85" y="25" fill="#ef4444" font-size="14" font-weight="bold" id="trapALabel">a = 8</text><line x1="35" y1="160" x2="185" y2="160" stroke="#10b981" stroke-width="3"/><text x="85" y="178" fill="#10b981" font-size="14" font-weight="bold" id="trapBLabel">b = 5</text><line x1="65" y1="30" x2="65" y2="160" stroke="#3b82f6" stroke-width="3" stroke-dasharray="6,4"/><text x="40" y="100" fill="#3b82f6" font-size="14" font-weight="bold" id="trapHLabel">h = 4</text></svg>
-                            <div class="area-formula">📖 Formula: A = ½ × (a + b) × h</div>
+                            <div class="area-formula" id="trapFormula">📖 Formula: A = ½ × (a + b) × h</div>
                             <div class="area-input"><input type="number" id="trapA" placeholder="Side a" value="8" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><input type="number" id="trapB" placeholder="Side b" value="5" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><input type="number" id="trapH" placeholder="Height (h)" value="4" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><select id="trapUnit" class="area-unit-select"><option value="cm²">cm²</option><option value="m²">m²</option></select></div>
-                            <button class="area-calc-btn" onclick="calcTrapeziumArea()">Calculate</button>
+                            <button class="area-calc-btn" onclick="calcTrapeziumArea()" id="trapCalcBtn">Calculate</button>
                             <div class="area-result" id="trapResult">Area: —</div>
                         </div>
                         <div class="area-card">
                             <div class="area-title">⚪ Circle</div>
                             <svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="80" fill="#c3dafe" stroke="#ef4444" stroke-width="4"/><line x1="110" y1="30" x2="110" y2="190" stroke="#ef4444" stroke-width="3" stroke-dasharray="6,4"/><text x="115" y="110" fill="#ef4444" font-size="16" font-weight="bold" id="circleRadiusLabel">r = 5</text></svg>
-                            <div class="area-formula">📖 Formula: A = π × r²</div>
+                            <div class="area-formula" id="circleFormula">📖 Formula: A = π × r²</div>
                             <div class="area-input"><input type="number" id="circleRadius" placeholder="Radius (r)" value="5" min="0.01" step="any" oninput="validatePositive(this)"></div>
                             <div class="area-input"><select id="circleUnit" class="area-unit-select"><option value="cm²">cm²</option><option value="m²">m²</option></select></div>
-                            <button class="area-calc-btn" onclick="calcCircleArea()">Calculate</button>
+                            <button class="area-calc-btn" onclick="calcCircleArea()" id="circleCalcBtn">Calculate</button>
                             <div class="area-result" id="circleResult">Area: —</div>
                         </div>
                     </div>
                     <div class="practice-box" style="margin-top: 1rem;">
-                        <h4>📝 Practice Questions - Area of Plane Figures</h4>
-                        <div class="practice-item"><span class="practice-question">1. Square: side = 7 cm</span> <span class="practice-answer">49 cm²</span></div>
-                        <div class="practice-item"><span class="practice-question">2. Rectangle: length = 12 cm, width = 8 cm</span> <span class="practice-answer">96 cm²</span></div>
-                        <div class="practice-item"><span class="practice-question">3. Triangle: base = 10 cm, height = 6 cm</span> <span class="practice-answer">30 cm²</span></div>
-                        <div class="practice-item"><span class="practice-question">4. Parallelogram: base = 9 cm, height = 7 cm</span> <span class="practice-answer">63 cm²</span></div>
-                        <div class="practice-item"><span class="practice-question">5. Trapezium: a = 10 cm, b = 6 cm, h = 5 cm</span> <span class="practice-answer">40 cm²</span></div>
-                        <div class="practice-item"><span class="practice-question">6. Circle: radius = 7 cm (π = 22/7)</span> <span class="practice-answer">154 cm²</span></div>
+                        <h4 id="areaPracticeTitle">📝 Practice Questions - Area of Plane Figures</h4>
+                        <div class="practice-item"><span class="practice-question" id="areaQ1">1. Square: side = 7 cm</span> <span class="practice-answer" id="areaA1">49 cm²</span></div>
+                        <div class="practice-item"><span class="practice-question" id="areaQ2">2. Rectangle: length = 12 cm, width = 8 cm</span> <span class="practice-answer" id="areaA2">96 cm²</span></div>
+                        <div class="practice-item"><span class="practice-question" id="areaQ3">3. Triangle: base = 10 cm, height = 6 cm</span> <span class="practice-answer" id="areaA3">30 cm²</span></div>
+                        <div class="practice-item"><span class="practice-question" id="areaQ4">4. Parallelogram: base = 9 cm, height = 7 cm</span> <span class="practice-answer" id="areaA4">63 cm²</span></div>
+                        <div class="practice-item"><span class="practice-question" id="areaQ5">5. Trapezium: a = 10 cm, b = 6 cm, h = 5 cm</span> <span class="practice-answer" id="areaA5">40 cm²</span></div>
+                        <div class="practice-item"><span class="practice-question" id="areaQ6">6. Circle: radius = 7 cm (π = 22/7)</span> <span class="practice-answer" id="areaA6">154 cm²</span></div>
                     </div>
                 </div>
 
@@ -793,23 +819,23 @@
                 <div id="subVol" class="sub-panel">
                     <div class="calc-row">
                         <div class="diagram-box">
-                            <div style="font-weight: bold; margin-bottom: 0.3rem; font-size: 0.8rem;">📐 3D Solid</div>
+                            <div style="font-weight: bold; margin-bottom: 0.3rem; font-size: 0.8rem;" id="volDiagramTitle">📐 3D Solid</div>
                             <div id="shapeDiagram"><svg viewBox="0 0 200 160"><text x="50" y="80" fill="#718096" font-size="14">Select shape</text></svg></div>
                             <div id="dimText" style="font-size: 0.7rem; margin-top: 0.3rem;">Choose a solid</div>
                             <div id="formulaDisplay" class="formula-card"><h4>📖 Formula</h4><div class="formula-text" id="formulaText">Select shape</div></div>
                         </div>
                         <div class="form-box">
-                            <div class="input-field"><label>Solid Shape</label><select id="shapeSelect">
-                                <option value="pyramid">🔺 Square Pyramid</option>
-                                <option value="cone">🎩 Cone</option>
-                                <option value="cylinder">🥫 Cylinder</option>
-                                <option value="sphere">⚽ Sphere</option>
+                            <div class="input-field"><label id="volShapeLabel">Solid Shape</label><select id="shapeSelect">
+                                <option value="pyramid" id="volPyramid">🔺 Square Pyramid</option>
+                                <option value="cone" id="volCone">🎩 Cone</option>
+                                <option value="cylinder" id="volCylinder">🥫 Cylinder</option>
+                                <option value="sphere" id="volSphere">⚽ Sphere</option>
                             </select></div>
                             <div id="dimsContainer"></div>
-                            <div class="input-field"><label>Unit</label><select id="unitSelect"><option value="cm">cm</option><option value="m">m</option></select></div>
+                            <div class="input-field"><label id="volUnitLabel">Unit</label><select id="unitSelect"><option value="cm">cm</option><option value="m">m</option></select></div>
                             <button class="calc-btn" id="calcVolBtn">📐 Calculate</button>
-                            <div class="result"><div><strong>📦 Volume:</strong> <span id="volResult" class="result-value">—</span> <span id="volUnit">cm³</span></div>
-                            <div style="margin-top: 0.3rem;"><strong>🌀 Surface Area:</strong> <span id="areaResult" class="result-value">—</span> <span id="areaUnit">cm²</span></div></div>
+                            <div class="result"><div><strong id="volResultLabel">📦 Volume:</strong> <span id="volResult" class="result-value">—</span> <span id="volUnit">cm³</span></div>
+                            <div style="margin-top: 0.3rem;"><strong id="areaResultLabel">🌀 Surface Area:</strong> <span id="areaResult" class="result-value">—</span> <span id="areaUnit">cm²</span></div></div>
                         </div>
                     </div>
                     <div id="practiceContainer" class="practice-box">
@@ -821,20 +847,20 @@
                 <!-- AREA & VOLUME QUIZ -->
                 <div id="subAreaQuiz" class="sub-panel">
                     <div class="score-area">
-                        <div style="font-size: 0.8rem;">Your Score</div>
+                        <div style="font-size: 0.8rem;" id="avScoreLabel">Your Score</div>
                         <div class="score-number" id="areaVolScore">0</div>
                         <div class="score-detail" id="areaVolScoreDetail">out of 10</div>
-                        <button class="reset-btn" onclick="resetAreaVolQuiz()">🔄 Reset Quiz</button>
+                        <button class="reset-btn" onclick="resetAreaVolQuiz()" id="avResetBtn">🔄 Reset Quiz</button>
                     </div>
                     <div id="areaVolQuizContainer"></div>
                     <div class="results-summary" id="areaVolResults">
-                        <h3>📊 Quiz Results Summary</h3>
+                        <h3 id="avResultsTitle">📊 Quiz Results Summary</h3>
                         <div id="areaVolResultsList"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- PYTHAGORAS TAB - WITH RESTRICTED INPUTS -->
+            <!-- PYTHAGORAS TAB -->
             <div id="pythagorasPanel" class="panel">
                 <div class="pyth-diagram">
                     <svg viewBox="0 0 300 250" width="100%" height="auto">
@@ -854,7 +880,7 @@
                     </svg>
                 </div>
                 <div class="pythagoras-box">
-                    <h4>🔢 What do you want to find?</h4>
+                    <h4 id="pythTitle">🔢 What do you want to find?</h4>
                     <div class="choice-box" style="margin-bottom: 0.5rem;">
                         <div class="choice-buttons">
                             <button class="choice-btn active" id="pythFindC" onclick="updatePythagorasInputs()">📐 Find c (Hypotenuse)</button>
@@ -865,75 +891,75 @@
                     <div id="pythagorasInputs">
                         <div class="pythagoras-grid">
                             <div class="input-field">
-                                <label>Side a</label>
+                                <label id="pythALabel">Side a</label>
                                 <input type="number" id="pythA" placeholder="Enter a" step="any" min="0.01" oninput="validatePositive(this)">
                             </div>
                             <div class="input-field">
-                                <label>Side b</label>
+                                <label id="pythBLabel">Side b</label>
                                 <input type="number" id="pythB" placeholder="Enter b" step="any" min="0.01" oninput="validatePositive(this)">
                             </div>
                             <div class="input-field">
-                                <label>Hypotenuse c</label>
+                                <label id="pythCLabel">Hypotenuse c</label>
                                 <input type="number" id="pythC" placeholder="Enter c" step="any" min="0.01" oninput="validatePositive(this)">
                             </div>
                         </div>
                     </div>
-                    <button class="calc-btn-small" onclick="calculatePythagoras()">📐 Calculate</button>
+                    <button class="calc-btn-small" onclick="calculatePythagoras()" id="pythCalcBtn">📐 Calculate</button>
                     <div class="pythagoras-result-box" id="pythResult">
-                        <div>📐 <strong>Result:</strong></div>
+                        <div>📐 <strong id="pythResultLabel">Result:</strong></div>
                         <div class="final" id="pythAnswer">Enter values and click Calculate</div>
                         <div id="pythSteps" style="font-size: 0.7rem; color: #555; margin-top: 0.3rem;"></div>
                     </div>
                 </div>
                 <div class="practice-box" style="margin-top: 0.5rem;">
-                    <h4>📝 Pythagoras Practice Questions</h4>
-                    <div class="practice-item"><span class="practice-question">1. a = 3, b = 4 → c = ?</span> <span class="practice-answer">5</span></div>
-                    <div class="practice-item"><span class="practice-question">2. a = 5, b = 12 → c = ?</span> <span class="practice-answer">13</span></div>
-                    <div class="practice-item"><span class="practice-question">3. c = 10, a = 6 → b = ?</span> <span class="practice-answer">8</span></div>
-                    <div class="practice-item"><span class="practice-question">4. c = 17, b = 8 → a = ?</span> <span class="practice-answer">15</span></div>
-                    <div class="practice-item"><span class="practice-question">5. a = 7, b = 24 → c = ?</span> <span class="practice-answer">25</span></div>
+                    <h4 id="pythPracticeTitle">📝 Pythagoras Practice Questions</h4>
+                    <div class="practice-item"><span class="practice-question" id="pythQ1">1. a = 3, b = 4 → c = ?</span> <span class="practice-answer">5</span></div>
+                    <div class="practice-item"><span class="practice-question" id="pythQ2">2. a = 5, b = 12 → c = ?</span> <span class="practice-answer">13</span></div>
+                    <div class="practice-item"><span class="practice-question" id="pythQ3">3. c = 10, a = 6 → b = ?</span> <span class="practice-answer">8</span></div>
+                    <div class="practice-item"><span class="practice-question" id="pythQ4">4. c = 17, b = 8 → a = ?</span> <span class="practice-answer">15</span></div>
+                    <div class="practice-item"><span class="practice-question" id="pythQ5">5. a = 7, b = 24 → c = ?</span> <span class="practice-answer">25</span></div>
                 </div>
             </div>
 
             <!-- LOGARITHMS TAB -->
             <div id="logPanel" class="panel">
                 <div class="log-sub-tabs">
-                    <button class="log-sub-tab active" data-log="theory">📖 Theory & Practice</button>
-                    <button class="log-sub-tab" data-log="quiz">📝 Log Quiz</button>
+                    <button class="log-sub-tab active" data-log="theory" id="logTheoryTab">📖 Theory & Practice</button>
+                    <button class="log-sub-tab" data-log="quiz" id="logQuizTab">📝 Log Quiz</button>
                 </div>
 
                 <div id="logTheory" class="log-sub-panel active">
                     <div class="theory-box">
-                        <h4>📖 Basic Laws of Logarithms</h4>
+                        <h4 id="logLawsTitle">📖 Basic Laws of Logarithms</h4>
                         <div>
-                            <div><span class="law">log₁₀(ab) = log₁₀a + log₁₀b</span> <span class="law-desc">Product Law</span></div>
-                            <div><span class="law">log₁₀(a/b) = log₁₀a - log₁₀b</span> <span class="law-desc">Quotient Law</span></div>
-                            <div><span class="law">log₁₀(aⁿ) = n × log₁₀a</span> <span class="law-desc">Power Law</span></div>
-                            <div><span class="law">log₁₀(1) = 0</span> <span class="law-desc">Zero Law</span></div>
-                            <div><span class="law">log₁₀(10) = 1</span> <span class="law-desc">Base Law</span></div>
-                            <div><span class="law">log₁₀(10ⁿ) = n</span> <span class="law-desc">Exponent Law</span></div>
+                            <div><span class="law">log₁₀(ab) = log₁₀a + log₁₀b</span> <span class="law-desc" id="logProductLaw">Product Law</span></div>
+                            <div><span class="law">log₁₀(a/b) = log₁₀a - log₁₀b</span> <span class="law-desc" id="logQuotientLaw">Quotient Law</span></div>
+                            <div><span class="law">log₁₀(aⁿ) = n × log₁₀a</span> <span class="law-desc" id="logPowerLaw">Power Law</span></div>
+                            <div><span class="law">log₁₀(1) = 0</span> <span class="law-desc" id="logZeroLaw">Zero Law</span></div>
+                            <div><span class="law">log₁₀(10) = 1</span> <span class="law-desc" id="logBaseLaw">Base Law</span></div>
+                            <div><span class="law">log₁₀(10ⁿ) = n</span> <span class="law-desc" id="logExponentLaw">Exponent Law</span></div>
                             <div class="example">💡 Example: log₁₀(100) = log₁₀(10²) = 2</div>
                             <div class="example">💡 Example: log₁₀(2×3) = log₁₀2 + log₁₀3</div>
                         </div>
                     </div>
                     <div class="theory-box" style="border-left-color: #f59e0b; background: #fef3c7;">
-                        <h4>📝 Worked Examples</h4>
+                        <h4 id="logExamplesTitle">📝 Worked Examples</h4>
                         <div style="font-size: 0.75rem;">
-                            <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;"><strong>Example 1:</strong> log₁₀(8) + log₁₀(125) = log₁₀(8×125) = log₁₀(1000) = 3</div>
-                            <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;"><strong>Example 2:</strong> log₁₀(1000) - log₁₀(10) = log₁₀(1000/10) = log₁₀(100) = 2</div>
-                            <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;"><strong>Example 3:</strong> log₁₀(2³) = 3 × log₁₀(2)</div>
-                            <div style="padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;"><strong>Example 4:</strong> log₁₀(5) + log₁₀(20) = log₁₀(5×20) = log₁₀(100) = 2</div>
+                            <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;" id="logEx1"><strong>Example 1:</strong> log₁₀(8) + log₁₀(125) = log₁₀(8×125) = log₁₀(1000) = 3</div>
+                            <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;" id="logEx2"><strong>Example 2:</strong> log₁₀(1000) - log₁₀(10) = log₁₀(1000/10) = log₁₀(100) = 2</div>
+                            <div style="margin-bottom: 0.3rem; padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;" id="logEx3"><strong>Example 3:</strong> log₁₀(2³) = 3 × log₁₀(2)</div>
+                            <div style="padding: 0.2rem 0.4rem; background: white; border-radius: 0.3rem;" id="logEx4"><strong>Example 4:</strong> log₁₀(5) + log₁₀(20) = log₁₀(5×20) = log₁₀(100) = 2</div>
                         </div>
                     </div>
                     <div class="log-practice-box">
-                        <h4>📝 Practice Problems - Step-by-Step Solutions</h4>
-                        <div class="log-practice-item"><span class="practice-question-text">1. log₁₀(2) + log₁₀(5) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 1</span><div class="steps">📐 Step 1: log(2) + log(5) = log(2×5)<br>Step 2: log(10) = 1</div></div></div>
-                        <div class="log-practice-item"><span class="practice-question-text">2. log₁₀(1000) - log₁₀(10) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 2</span><div class="steps">📐 Step 1: log(1000) - log(10) = log(1000/10)<br>Step 2: log(100) = 2</div></div></div>
-                        <div class="log-practice-item"><span class="practice-question-text">3. log₁₀(2³) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 3 × log₁₀(2)</span><div class="steps">📐 Step 1: log(2³) = 3 × log(2) [Power Law]</div></div></div>
-                        <div class="log-practice-item"><span class="practice-question-text">4. log₁₀(25) + log₁₀(4) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 2</span><div class="steps">📐 Step 1: log(25) + log(4) = log(25×4)<br>Step 2: log(100) = 2</div></div></div>
-                        <div class="log-practice-item"><span class="practice-question-text">5. log₁₀(5) + log₁₀(2) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 1</span><div class="steps">📐 Step 1: log(5) + log(2) = log(5×2)<br>Step 2: log(10) = 1</div></div></div>
+                        <h4 id="logPracticeTitle">📝 Practice Problems - Step-by-Step Solutions</h4>
+                        <div class="log-practice-item"><span class="practice-question-text" id="logP1">1. log₁₀(2) + log₁₀(5) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 1</span><div class="steps">📐 Step 1: log(2) + log(5) = log(2×5)<br>Step 2: log(10) = 1</div></div></div>
+                        <div class="log-practice-item"><span class="practice-question-text" id="logP2">2. log₁₀(1000) - log₁₀(10) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 2</span><div class="steps">📐 Step 1: log(1000) - log(10) = log(1000/10)<br>Step 2: log(100) = 2</div></div></div>
+                        <div class="log-practice-item"><span class="practice-question-text" id="logP3">3. log₁₀(2³) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 3 × log₁₀(2)</span><div class="steps">📐 Step 1: log(2³) = 3 × log(2) [Power Law]</div></div></div>
+                        <div class="log-practice-item"><span class="practice-question-text" id="logP4">4. log₁₀(25) + log₁₀(4) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 2</span><div class="steps">📐 Step 1: log(25) + log(4) = log(25×4)<br>Step 2: log(100) = 2</div></div></div>
+                        <div class="log-practice-item"><span class="practice-question-text" id="logP5">5. log₁₀(5) + log₁₀(2) = ?</span><div class="practice-answer-box"><span class="answer">Answer: 1</span><div class="steps">📐 Step 1: log(5) + log(2) = log(5×2)<br>Step 2: log(10) = 1</div></div></div>
                     </div>
-                    <div class="input-field"><label>Enter Expression</label><textarea id="logExpr" rows="2" placeholder="Examples: 2×3×5/4×7  or  √(3×5/2×π)  or  100"></textarea>
+                    <div class="input-field"><label id="logExprLabel">Enter Expression</label><textarea id="logExpr" rows="2" placeholder="Examples: 2×3×5/4×7  or  √(3×5/2×π)  or  100"></textarea>
                     <div style="margin-top: 0.3rem;">
                         <span class="example-badge" data-ex="2×3×5/4×7">2×3×5/4×7</span>
                         <span class="example-badge" data-ex="√(3×5/2×π)">√(3×5/2×π)</span>
@@ -942,21 +968,21 @@
                     </div>
                     </div>
                     <button class="calc-btn" id="calcLogBtn">🧮 Calculate log₁₀</button>
-                    <div class="result"><div><strong>Value:</strong> <span id="logValue" class="result-value">—</span></div>
+                    <div class="result"><div><strong id="logValueLabel">Value:</strong> <span id="logValue" class="result-value">—</span></div>
                     <div style="margin-top: 0.3rem;"><strong>log₁₀ =</strong> <span id="logResult" class="result-value">—</span></div>
                     <div id="logError" style="color: #e53e3e; font-size: 0.65rem;"></div></div>
                 </div>
 
                 <div id="logQuiz" class="log-sub-panel">
                     <div class="score-area">
-                        <div style="font-size: 0.8rem;">Your Score</div>
+                        <div style="font-size: 0.8rem;" id="logQuizScoreLabel">Your Score</div>
                         <div class="score-number" id="logQuizScoreDisplay">0</div>
                         <div class="score-detail" id="logQuizScoreDetail">out of 10</div>
-                        <button class="reset-btn" onclick="resetLogQuiz()">🔄 Reset Quiz</button>
+                        <button class="reset-btn" onclick="resetLogQuiz()" id="logQuizResetBtn">🔄 Reset Quiz</button>
                     </div>
                     <div id="logQuizContainer"></div>
                     <div class="results-summary" id="logQuizResultsSummary">
-                        <h3>📊 Log Quiz Results Summary</h3>
+                        <h3 id="logQuizResultsTitle">📊 Log Quiz Results Summary</h3>
                         <div id="logQuizResultsList"></div>
                     </div>
                 </div>
@@ -965,8 +991,8 @@
             <!-- ASK A QUESTION TAB -->
             <div id="queryPanel" class="panel">
                 <div class="query-container">
-                    <h4>💬 Ask Your Question with Snip/Image</h4>
-                    <p style="font-size: 0.75rem; color: #475569; margin-bottom: 0.3rem;">
+                    <h4 id="queryTitle">💬 Ask Your Question with Snip/Image</h4>
+                    <p style="font-size: 0.75rem; color: #475569; margin-bottom: 0.3rem;" id="queryDesc">
                         📸 Upload a screenshot or snip of your problem, type your question, and send it to me on WhatsApp!
                     </p>
 
@@ -974,8 +1000,8 @@
 
                     <div class="upload-area" id="uploadArea">
                         <div class="upload-icon">📷</div>
-                        <div class="upload-text">Click or drag & drop an image here</div>
-                        <div class="upload-hint">Supports PNG, JPG, GIF (Max 5MB)</div>
+                        <div class="upload-text" id="uploadText">Click or drag & drop an image here</div>
+                        <div class="upload-hint" id="uploadHint">Supports PNG, JPG, GIF (Max 5MB)</div>
                     </div>
                     <input type="file" id="imageInput" accept="image/*" style="display: none;">
 
@@ -989,20 +1015,453 @@
                     <button class="query-btn" id="sendQueryBtn" onclick="sendQuery()">📤 Send via WhatsApp</button>
 
                     <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #e2e8f0;">
-                        <p style="font-size: 0.7rem; color: #64748b;">Or directly contact me on:</p>
+                        <p style="font-size: 0.7rem; color: #64748b;" id="queryDirect">Or directly contact me on:</p>
                         <a href="https://wa.me/94702132547" target="_blank" class="whatsapp-link">💬 Chat on WhatsApp</a>
                     </div>
-                    <div class="contact-note">
+                    <div class="contact-note" id="queryNote">
                         📌 WhatsApp: 070 213 2547 • Response within 24 hours
                     </div>
                 </div>
             </div>
 
-            <footer>元 Dee ACADEMY | O/L Mathematics | Mobile Ready 📱</footer>
+            <footer id="footerText">元 Dee ACADEMY | O/L Mathematics | Mobile Ready 📱</footer>
         </div>
     </div>
 
     <script>
+        // ========== LANGUAGE TOGGLE ==========
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                // Cover Page
+                coverSubtitle: "O/L Mathematics - Complete Geometry Guide",
+                topicArea: "Area & Volume",
+                topicAreaDesc: "Plane Figures & Solids",
+                topicPythagoras: "Pythagoras",
+                topicPythagorasDesc: "a² + b² = c²",
+                topicLog: "Logarithms",
+                topicLogDesc: "Theory, Practice & Quiz",
+                topicQuery: "Ask a Question",
+                topicQueryDesc: "Send Snip/Image via WhatsApp",
+                startBtn: "✨ Start Learning ✨",
+                
+                // App Header
+                appTitle: "元 Dee ACADEMY",
+                appSubtitle: "O/L Mathematics",
+                langBtn: "🇱🇰 සිංහල",
+                
+                // Tabs
+                tabHome: "🏠 Home",
+                tabAreaVol: "📐 Area & Volume",
+                tabPythagoras: "🔢 Pythagoras",
+                tabLog: "🔢 Logarithms",
+                tabQuery: "💬 Ask a Question",
+                
+                // Home
+                homeTitle: "📚 Welcome to 元 Dee ACADEMY",
+                homeSubtitle: "Choose a topic to start learning",
+                homeAreaTitle: "Area & Volume",
+                homeAreaDesc: "Plane Figures & Solids with Practice",
+                homePythagorasTitle: "Pythagoras Theorem",
+                homePythagorasDesc: "a² + b² = c² • Find Hypotenuse or Sides",
+                homeLogTitle: "Logarithms",
+                homeLogDesc: "log₁₀ with Theory, Examples, Practice & Quiz",
+                homeQueryTitle: "Ask a Question",
+                homeQueryDesc: "Send Snip/Image • Get help on WhatsApp",
+                statShapes: "Shapes",
+                statSolids: "Solids",
+                statQuiz: "Quiz Qs",
+                statPractice: "Practice Qs",
+                creatorName: "👨‍🏫 Created by: Shehan Deemantha",
+                creatorWhatsApp: "💬 Need help? Contact me on WhatsApp",
+                
+                // Area & Volume
+                subAreaBtn: "📐 Area of Plane Figures",
+                subVolBtn: "📦 Volume of Solids",
+                subQuizBtn: "📝 Area & Volume Quiz",
+                areaTitle: "📐 Area of Plane Figures",
+                squareFormula: "📖 Formula: A = a²",
+                rectFormula: "📖 Formula: A = l × w",
+                triFormula: "📖 Formula: A = ½ × b × h",
+                paraFormula: "📖 Formula: A = b × h",
+                trapFormula: "📖 Formula: A = ½ × (a + b) × h",
+                circleFormula: "📖 Formula: A = π × r²",
+                squareCalcBtn: "Calculate",
+                rectCalcBtn: "Calculate",
+                triCalcBtn: "Calculate",
+                paraCalcBtn: "Calculate",
+                trapCalcBtn: "Calculate",
+                circleCalcBtn: "Calculate",
+                areaPracticeTitle: "📝 Practice Questions - Area of Plane Figures",
+                areaQ1: "1. Square: side = 7 cm",
+                areaA1: "49 cm²",
+                areaQ2: "2. Rectangle: length = 12 cm, width = 8 cm",
+                areaA2: "96 cm²",
+                areaQ3: "3. Triangle: base = 10 cm, height = 6 cm",
+                areaA3: "30 cm²",
+                areaQ4: "4. Parallelogram: base = 9 cm, height = 7 cm",
+                areaA4: "63 cm²",
+                areaQ5: "5. Trapezium: a = 10 cm, b = 6 cm, h = 5 cm",
+                areaA5: "40 cm²",
+                areaQ6: "6. Circle: radius = 7 cm (π = 22/7)",
+                areaA6: "154 cm²",
+                volDiagramTitle: "📐 3D Solid",
+                volShapeLabel: "Solid Shape",
+                volPyramid: "🔺 Square Pyramid",
+                volCone: "🎩 Cone",
+                volCylinder: "🥫 Cylinder",
+                volSphere: "⚽ Sphere",
+                volUnitLabel: "Unit",
+                volResultLabel: "📦 Volume:",
+                areaResultLabel: "🌀 Surface Area:",
+                avScoreLabel: "Your Score",
+                avResultsTitle: "📊 Quiz Results Summary",
+                avResetBtn: "🔄 Reset Quiz",
+                
+                // Pythagoras
+                pythTitle: "🔢 What do you want to find?",
+                pythALabel: "Side a",
+                pythBLabel: "Side b",
+                pythCLabel: "Hypotenuse c",
+                pythCalcBtn: "📐 Calculate",
+                pythResultLabel: "Result:",
+                pythPracticeTitle: "📝 Pythagoras Practice Questions",
+                pythQ1: "1. a = 3, b = 4 → c = ?",
+                pythQ2: "2. a = 5, b = 12 → c = ?",
+                pythQ3: "3. c = 10, a = 6 → b = ?",
+                pythQ4: "4. c = 17, b = 8 → a = ?",
+                pythQ5: "5. a = 7, b = 24 → c = ?",
+                
+                // Log
+                logTheoryTab: "📖 Theory & Practice",
+                logQuizTab: "📝 Log Quiz",
+                logLawsTitle: "📖 Basic Laws of Logarithms",
+                logProductLaw: "Product Law",
+                logQuotientLaw: "Quotient Law",
+                logPowerLaw: "Power Law",
+                logZeroLaw: "Zero Law",
+                logBaseLaw: "Base Law",
+                logExponentLaw: "Exponent Law",
+                logExamplesTitle: "📝 Worked Examples",
+                logEx1: "<strong>Example 1:</strong> log₁₀(8) + log₁₀(125) = log₁₀(8×125) = log₁₀(1000) = 3",
+                logEx2: "<strong>Example 2:</strong> log₁₀(1000) - log₁₀(10) = log₁₀(1000/10) = log₁₀(100) = 2",
+                logEx3: "<strong>Example 3:</strong> log₁₀(2³) = 3 × log₁₀(2)",
+                logEx4: "<strong>Example 4:</strong> log₁₀(5) + log₁₀(20) = log₁₀(5×20) = log₁₀(100) = 2",
+                logPracticeTitle: "📝 Practice Problems - Step-by-Step Solutions",
+                logP1: "1. log₁₀(2) + log₁₀(5) = ?",
+                logP2: "2. log₁₀(1000) - log₁₀(10) = ?",
+                logP3: "3. log₁₀(2³) = ?",
+                logP4: "4. log₁₀(25) + log₁₀(4) = ?",
+                logP5: "5. log₁₀(5) + log₁₀(2) = ?",
+                logExprLabel: "Enter Expression",
+                logValueLabel: "Value:",
+                logQuizScoreLabel: "Your Score",
+                logQuizResultsTitle: "📊 Log Quiz Results Summary",
+                logQuizResetBtn: "🔄 Reset Quiz",
+                
+                // Query
+                queryTitle: "💬 Ask Your Question with Snip/Image",
+                queryDesc: "📸 Upload a screenshot or snip of your problem, type your question, and send it to me on WhatsApp!",
+                uploadText: "Click or drag & drop an image here",
+                uploadHint: "Supports PNG, JPG, GIF (Max 5MB)",
+                queryDirect: "Or directly contact me on:",
+                queryNote: "📌 WhatsApp: 070 213 2547 • Response within 24 hours",
+                
+                // Footer
+                footerText: "元 Dee ACADEMY | O/L Mathematics | Mobile Ready 📱"
+            },
+            si: {
+                // Cover Page
+                coverSubtitle: "සා/පෙළ ගණිතය - සම්පූර්ණ ජ්යාමිතික මාර්ගෝපදේශය",
+                topicArea: "වර්ගඵලය හා පරිමාව",
+                topicAreaDesc: "තල රූප හා ඝන වස්තු",
+                topicPythagoras: "පයිතගරස් ප්‍රමේයය",
+                topicPythagorasDesc: "a² + b² = c²",
+                topicLog: "ලඝුගණක",
+                topicLogDesc: "න්‍යාය, අභ්‍යාස හා ප්‍රශ්න",
+                topicQuery: "ප්‍රශ්නයක් අසන්න",
+                topicQueryDesc: "වට්ස්ඇප් හරහා පින්තූරයක් යවන්න",
+                startBtn: "✨ ඉගෙනීම ආරම්භ කරන්න ✨",
+                
+                // App Header
+                appTitle: "元 ඩී ඇකඩමිය",
+                appSubtitle: "සා/පෙළ ගණිතය",
+                langBtn: "🇬🇧 English",
+                
+                // Tabs
+                tabHome: "🏠 මුල් පිටුව",
+                tabAreaVol: "📐 වර්ගඵලය හා පරිමාව",
+                tabPythagoras: "🔢 පයිතගරස්",
+                tabLog: "🔢 ලඝුගණක",
+                tabQuery: "💬 ප්‍රශ්නයක් අසන්න",
+                
+                // Home
+                homeTitle: "📚 ඩී ඇකඩමියට සාදරයෙන් පිළිගනිමු",
+                homeSubtitle: "ඉගෙනීම ආරම්භ කිරීමට විෂයයක් තෝරන්න",
+                homeAreaTitle: "වර්ගඵලය හා පරිමාව",
+                homeAreaDesc: "තල රූප හා ඝන වස්තු අභ්‍යාස සමඟ",
+                homePythagorasTitle: "පයිතගරස් ප්‍රමේයය",
+                homePythagorasDesc: "a² + b² = c² • කර්ණය හෝ පාද සොයන්න",
+                homeLogTitle: "ලඝුගණක",
+                homeLogDesc: "න්‍යාය, උදාහරණ, අභ්‍යාස හා ප්‍රශ්න සමඟ log₁₀",
+                homeQueryTitle: "ප්‍රශ්නයක් අසන්න",
+                homeQueryDesc: "පින්තූරයක් යවන්න • වට්ස්ඇප් හරහා උදවු ලබාගන්න",
+                statShapes: "හැඩතල",
+                statSolids: "ඝන වස්තු",
+                statQuiz: "ප්‍රශ්න",
+                statPractice: "අභ්‍යාස",
+                creatorName: "👨‍🏫 නිර්මාණය කළේ: ෂෙහාන් දීමන්ත",
+                creatorWhatsApp: "💬 උදවු අවශ්‍යද? වට්ස්ඇප් හරහා අමතන්න",
+                
+                // Area & Volume
+                subAreaBtn: "📐 තල රූපවල වර්ගඵලය",
+                subVolBtn: "📦 ඝන වස්තු පරිමාව",
+                subQuizBtn: "📝 වර්ගඵලය හා පරිමාව ප්‍රශ්න",
+                areaTitle: "📐 තල රූපවල වර්ගඵලය",
+                squareFormula: "📖 සූත්‍රය: A = a²",
+                rectFormula: "📖 සූත්‍රය: A = l × w",
+                triFormula: "📖 සූත්‍රය: A = ½ × b × h",
+                paraFormula: "📖 සූත්‍රය: A = b × h",
+                trapFormula: "📖 සූත්‍රය: A = ½ × (a + b) × h",
+                circleFormula: "📖 සූත්‍රය: A = π × r²",
+                squareCalcBtn: "ගණනය කරන්න",
+                rectCalcBtn: "ගණනය කරන්න",
+                triCalcBtn: "ගණනය කරන්න",
+                paraCalcBtn: "ගණනය කරන්න",
+                trapCalcBtn: "ගණනය කරන්න",
+                circleCalcBtn: "ගණනය කරන්න",
+                areaPracticeTitle: "📝 අභ්‍යාස ප්‍රශ්න - තල රූපවල වර්ගඵලය",
+                areaQ1: "1. චතුරස්‍රය: පැත්ත = 7 cm",
+                areaA1: "49 cm²",
+                areaQ2: "2. සෘජුකෝණාස්‍රය: දිග = 12 cm, පළල = 8 cm",
+                areaA2: "96 cm²",
+                areaQ3: "3. ත්‍රිකෝණය: පාදය = 10 cm, උස = 6 cm",
+                areaA3: "30 cm²",
+                areaQ4: "4. සමාන්තරාස්‍රය: පාදය = 9 cm, උස = 7 cm",
+                areaA4: "63 cm²",
+                areaQ5: "5. ඛණ්ඩකය: a = 10 cm, b = 6 cm, h = 5 cm",
+                areaA5: "40 cm²",
+                areaQ6: "6. වෘත්තය: අරය = 7 cm (π = 22/7)",
+                areaA6: "154 cm²",
+                volDiagramTitle: "📐 ඝන වස්තුව",
+                volShapeLabel: "ඝන වස්තුව",
+                volPyramid: "🔺 වර්ග පිරමීඩය",
+                volCone: "🎩 කේතුව",
+                volCylinder: "🥫 සිලින්ඩරය",
+                volSphere: "⚽ ගෝලය",
+                volUnitLabel: "ඒකකය",
+                volResultLabel: "📦 පරිමාව:",
+                areaResultLabel: "🌀 පෘෂ්ඨ වර්ගඵලය:",
+                avScoreLabel: "ඔබේ ලකුණු",
+                avResultsTitle: "📊 ප්‍රශ්න ප්‍රතිඵල සාරාංශය",
+                avResetBtn: "🔄 ප්‍රශ්න නැවත ආරම්භ කරන්න",
+                
+                // Pythagoras
+                pythTitle: "🔢 ඔබට සොයා ගැනීමට අවශ්‍ය කුමක්ද?",
+                pythALabel: "පාදය a",
+                pythBLabel: "පාදය b",
+                pythCLabel: "කර්ණය c",
+                pythCalcBtn: "📐 ගණනය කරන්න",
+                pythResultLabel: "ප්‍රතිඵලය:",
+                pythPracticeTitle: "📝 පයිතගරස් අභ්‍යාස ප්‍රශ්න",
+                pythQ1: "1. a = 3, b = 4 → c = ?",
+                pythQ2: "2. a = 5, b = 12 → c = ?",
+                pythQ3: "3. c = 10, a = 6 → b = ?",
+                pythQ4: "4. c = 17, b = 8 → a = ?",
+                pythQ5: "5. a = 7, b = 24 → c = ?",
+                
+                // Log
+                logTheoryTab: "📖 න්‍යාය හා අභ්‍යාස",
+                logQuizTab: "📝 ලඝුගණක ප්‍රශ්න",
+                logLawsTitle: "📖 මූලික ලඝුගණක නියම",
+                logProductLaw: "ගුණිත නියමය",
+                logQuotientLaw: "භාග නියමය",
+                logPowerLaw: "බල නියමය",
+                logZeroLaw: "ශුන්‍ය නියමය",
+                logBaseLaw: "පාද නියමය",
+                logExponentLaw: "ඝාත නියමය",
+                logExamplesTitle: "📝 විසඳූ උදාහරණ",
+                logEx1: "<strong>උදාහරණ 1:</strong> log₁₀(8) + log₁₀(125) = log₁₀(8×125) = log₁₀(1000) = 3",
+                logEx2: "<strong>උදාහරණ 2:</strong> log₁₀(1000) - log₁₀(10) = log₁₀(1000/10) = log₁₀(100) = 2",
+                logEx3: "<strong>උදාහරණ 3:</strong> log₁₀(2³) = 3 × log₁₀(2)",
+                logEx4: "<strong>උදාහරණ 4:</strong> log₁₀(5) + log₁₀(20) = log₁₀(5×20) = log₁₀(100) = 2",
+                logPracticeTitle: "📝 අභ්‍යාස ගැටලු - පියවරෙන් පියවර විසඳුම්",
+                logP1: "1. log₁₀(2) + log₁₀(5) = ?",
+                logP2: "2. log₁₀(1000) - log₁₀(10) = ?",
+                logP3: "3. log₁₀(2³) = ?",
+                logP4: "4. log₁₀(25) + log₁₀(4) = ?",
+                logP5: "5. log₁₀(5) + log₁₀(2) = ?",
+                logExprLabel: "ප්‍රකාශනය ඇතුළත් කරන්න",
+                logValueLabel: "අගය:",
+                logQuizScoreLabel: "ඔබේ ලකුණු",
+                logQuizResultsTitle: "📊 ලඝුගණක ප්‍රශ්න ප්‍රතිඵල සාරාංශය",
+                logQuizResetBtn: "🔄 ප්‍රශ්න නැවත ආරම්භ කරන්න",
+                
+                // Query
+                queryTitle: "💬 ඔබගේ ප්‍රශ්නය රූපයක් සමඟ අසන්න",
+                queryDesc: "📸 ඔබගේ ගැටලුවේ තිර පින්තූරයක් උඩුගත කර, ඔබගේ ප්‍රශ්නය ටයිප් කර වට්ස්ඇප් හරහා යවන්න!",
+                uploadText: "පින්තූරයක් තෝරන්න හෝ ඇද දමන්න",
+                uploadHint: "PNG, JPG, GIF (උපරිම 5MB) සඳහා සහාය වේ",
+                queryDirect: "නැතහොත් සෘජුවම මා අමතන්න:",
+                queryNote: "📌 වට්ස්ඇප්: 070 213 2547 • පිළිතුර පැය 24ක් ඇතුළත",
+                
+                // Footer
+                footerText: "元 ඩී ඇකඩමිය | සා/පෙළ ගණිතය | ජංගම දුරකතන සඳහා සූදානම් 📱"
+            }
+        };
+
+        function toggleLanguage() {
+            if (currentLang === 'en') {
+                currentLang = 'si';
+                document.getElementById('langBtn').innerHTML = '🇬🇧 English';
+            } else {
+                currentLang = 'en';
+                document.getElementById('langBtn').innerHTML = '🇱🇰 සිංහල';
+            }
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const t = translations[currentLang];
+            
+            // Cover Page
+            document.getElementById('coverSubtitle').innerHTML = t.coverSubtitle;
+            document.getElementById('topicArea').innerHTML = t.topicArea;
+            document.getElementById('topicAreaDesc').innerHTML = t.topicAreaDesc;
+            document.getElementById('topicPythagoras').innerHTML = t.topicPythagoras;
+            document.getElementById('topicPythagorasDesc').innerHTML = t.topicPythagorasDesc;
+            document.getElementById('topicLog').innerHTML = t.topicLog;
+            document.getElementById('topicLogDesc').innerHTML = t.topicLogDesc;
+            document.getElementById('topicQuery').innerHTML = t.topicQuery;
+            document.getElementById('topicQueryDesc').innerHTML = t.topicQueryDesc;
+            document.getElementById('startBtn').innerHTML = t.startBtn;
+            
+            // App Header
+            document.getElementById('appTitle').innerHTML = t.appTitle;
+            document.getElementById('appSubtitle').innerHTML = t.appSubtitle;
+            
+            // Tabs
+            document.getElementById('tabHome').innerHTML = t.tabHome;
+            document.getElementById('tabAreaVol').innerHTML = t.tabAreaVol;
+            document.getElementById('tabPythagoras').innerHTML = t.tabPythagoras;
+            document.getElementById('tabLog').innerHTML = t.tabLog;
+            document.getElementById('tabQuery').innerHTML = t.tabQuery;
+            
+            // Home
+            document.getElementById('homeTitle').innerHTML = t.homeTitle;
+            document.getElementById('homeSubtitle').innerHTML = t.homeSubtitle;
+            document.getElementById('homeAreaTitle').innerHTML = t.homeAreaTitle;
+            document.getElementById('homeAreaDesc').innerHTML = t.homeAreaDesc;
+            document.getElementById('homePythagorasTitle').innerHTML = t.homePythagorasTitle;
+            document.getElementById('homePythagorasDesc').innerHTML = t.homePythagorasDesc;
+            document.getElementById('homeLogTitle').innerHTML = t.homeLogTitle;
+            document.getElementById('homeLogDesc').innerHTML = t.homeLogDesc;
+            document.getElementById('homeQueryTitle').innerHTML = t.homeQueryTitle;
+            document.getElementById('homeQueryDesc').innerHTML = t.homeQueryDesc;
+            document.getElementById('statShapes').innerHTML = t.statShapes;
+            document.getElementById('statSolids').innerHTML = t.statSolids;
+            document.getElementById('statQuiz').innerHTML = t.statQuiz;
+            document.getElementById('statPractice').innerHTML = t.statPractice;
+            document.getElementById('creatorName').innerHTML = t.creatorName;
+            document.getElementById('creatorWhatsApp').innerHTML = t.creatorWhatsApp;
+            
+            // Area & Volume Sub-tabs
+            document.getElementById('subAreaBtn').innerHTML = t.subAreaBtn;
+            document.getElementById('subVolBtn').innerHTML = t.subVolBtn;
+            document.getElementById('subQuizBtn').innerHTML = t.subQuizBtn;
+            document.getElementById('areaTitle').innerHTML = t.areaTitle;
+            document.getElementById('squareFormula').innerHTML = t.squareFormula;
+            document.getElementById('rectFormula').innerHTML = t.rectFormula;
+            document.getElementById('triFormula').innerHTML = t.triFormula;
+            document.getElementById('paraFormula').innerHTML = t.paraFormula;
+            document.getElementById('trapFormula').innerHTML = t.trapFormula;
+            document.getElementById('circleFormula').innerHTML = t.circleFormula;
+            document.getElementById('squareCalcBtn').innerHTML = t.squareCalcBtn;
+            document.getElementById('rectCalcBtn').innerHTML = t.rectCalcBtn;
+            document.getElementById('triCalcBtn').innerHTML = t.triCalcBtn;
+            document.getElementById('paraCalcBtn').innerHTML = t.paraCalcBtn;
+            document.getElementById('trapCalcBtn').innerHTML = t.trapCalcBtn;
+            document.getElementById('circleCalcBtn').innerHTML = t.circleCalcBtn;
+            document.getElementById('areaPracticeTitle').innerHTML = t.areaPracticeTitle;
+            document.getElementById('areaQ1').innerHTML = t.areaQ1;
+            document.getElementById('areaA1').innerHTML = t.areaA1;
+            document.getElementById('areaQ2').innerHTML = t.areaQ2;
+            document.getElementById('areaA2').innerHTML = t.areaA2;
+            document.getElementById('areaQ3').innerHTML = t.areaQ3;
+            document.getElementById('areaA3').innerHTML = t.areaA3;
+            document.getElementById('areaQ4').innerHTML = t.areaQ4;
+            document.getElementById('areaA4').innerHTML = t.areaA4;
+            document.getElementById('areaQ5').innerHTML = t.areaQ5;
+            document.getElementById('areaA5').innerHTML = t.areaA5;
+            document.getElementById('areaQ6').innerHTML = t.areaQ6;
+            document.getElementById('areaA6').innerHTML = t.areaA6;
+            document.getElementById('volDiagramTitle').innerHTML = t.volDiagramTitle;
+            document.getElementById('volShapeLabel').innerHTML = t.volShapeLabel;
+            document.getElementById('volPyramid').innerHTML = t.volPyramid;
+            document.getElementById('volCone').innerHTML = t.volCone;
+            document.getElementById('volCylinder').innerHTML = t.volCylinder;
+            document.getElementById('volSphere').innerHTML = t.volSphere;
+            document.getElementById('volUnitLabel').innerHTML = t.volUnitLabel;
+            document.getElementById('volResultLabel').innerHTML = t.volResultLabel;
+            document.getElementById('areaResultLabel').innerHTML = t.areaResultLabel;
+            document.getElementById('avScoreLabel').innerHTML = t.avScoreLabel;
+            document.getElementById('avResultsTitle').innerHTML = t.avResultsTitle;
+            document.getElementById('avResetBtn').innerHTML = t.avResetBtn;
+            
+            // Pythagoras
+            document.getElementById('pythTitle').innerHTML = t.pythTitle;
+            document.getElementById('pythALabel').innerHTML = t.pythALabel;
+            document.getElementById('pythBLabel').innerHTML = t.pythBLabel;
+            document.getElementById('pythCLabel').innerHTML = t.pythCLabel;
+            document.getElementById('pythCalcBtn').innerHTML = t.pythCalcBtn;
+            document.getElementById('pythResultLabel').innerHTML = t.pythResultLabel;
+            document.getElementById('pythPracticeTitle').innerHTML = t.pythPracticeTitle;
+            document.getElementById('pythQ1').innerHTML = t.pythQ1;
+            document.getElementById('pythQ2').innerHTML = t.pythQ2;
+            document.getElementById('pythQ3').innerHTML = t.pythQ3;
+            document.getElementById('pythQ4').innerHTML = t.pythQ4;
+            document.getElementById('pythQ5').innerHTML = t.pythQ5;
+            
+            // Log
+            document.getElementById('logTheoryTab').innerHTML = t.logTheoryTab;
+            document.getElementById('logQuizTab').innerHTML = t.logQuizTab;
+            document.getElementById('logLawsTitle').innerHTML = t.logLawsTitle;
+            document.getElementById('logProductLaw').innerHTML = t.logProductLaw;
+            document.getElementById('logQuotientLaw').innerHTML = t.logQuotientLaw;
+            document.getElementById('logPowerLaw').innerHTML = t.logPowerLaw;
+            document.getElementById('logZeroLaw').innerHTML = t.logZeroLaw;
+            document.getElementById('logBaseLaw').innerHTML = t.logBaseLaw;
+            document.getElementById('logExponentLaw').innerHTML = t.logExponentLaw;
+            document.getElementById('logExamplesTitle').innerHTML = t.logExamplesTitle;
+            document.getElementById('logEx1').innerHTML = t.logEx1;
+            document.getElementById('logEx2').innerHTML = t.logEx2;
+            document.getElementById('logEx3').innerHTML = t.logEx3;
+            document.getElementById('logEx4').innerHTML = t.logEx4;
+            document.getElementById('logPracticeTitle').innerHTML = t.logPracticeTitle;
+            document.getElementById('logP1').innerHTML = t.logP1;
+            document.getElementById('logP2').innerHTML = t.logP2;
+            document.getElementById('logP3').innerHTML = t.logP3;
+            document.getElementById('logP4').innerHTML = t.logP4;
+            document.getElementById('logP5').innerHTML = t.logP5;
+            document.getElementById('logExprLabel').innerHTML = t.logExprLabel;
+            document.getElementById('logValueLabel').innerHTML = t.logValueLabel;
+            document.getElementById('logQuizScoreLabel').innerHTML = t.logQuizScoreLabel;
+            document.getElementById('logQuizResultsTitle').innerHTML = t.logQuizResultsTitle;
+            document.getElementById('logQuizResetBtn').innerHTML = t.logQuizResetBtn;
+            
+            // Query
+            document.getElementById('queryTitle').innerHTML = t.queryTitle;
+            document.getElementById('queryDesc').innerHTML = t.queryDesc;
+            document.getElementById('uploadText').innerHTML = t.uploadText;
+            document.getElementById('uploadHint').innerHTML = t.uploadHint;
+            document.getElementById('queryDirect').innerHTML = t.queryDirect;
+            document.getElementById('queryNote').innerHTML = t.queryNote;
+            
+            // Footer
+            document.getElementById('footerText').innerHTML = t.footerText;
+        }
+
         // ========== VALIDATE POSITIVE NUMBERS ==========
         function validatePositive(input) {
             let val = parseFloat(input.value);
@@ -1010,16 +1469,14 @@
                 input.value = '';
                 input.style.borderColor = '#ef4444';
                 input.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.2)';
-                // Show a small error indicator
                 const parent = input.parentElement;
                 let errorMsg = parent.querySelector('.error-msg');
                 if (!errorMsg) {
                     errorMsg = document.createElement('div');
                     errorMsg.className = 'error-msg';
-                    errorMsg.style.cssText = 'color: #ef4444; font-size: 0.6rem; margin-top: 0.2rem;';
                     parent.appendChild(errorMsg);
                 }
-                errorMsg.textContent = '⚠️ Please enter a positive number > 0';
+                errorMsg.textContent = currentLang === 'si' ? '⚠️ කරුණාකර ධන අගයක් ඇතුළත් කරන්න > 0' : '⚠️ Please enter a positive number > 0';
             } else {
                 input.style.borderColor = '#10b981';
                 input.style.boxShadow = '0 0 0 3px rgba(16,185,129,0.2)';
@@ -1033,56 +1490,50 @@
         function updatePythagorasInputs() {
             const mode = document.querySelector('.choice-btn.active')?.id || 'pythFindC';
             
-            // Get all inputs
             const inputA = document.getElementById('pythA');
             const inputB = document.getElementById('pythB');
             const inputC = document.getElementById('pythC');
             
-            // Reset all inputs - enable, clear restrictions
             [inputA, inputB, inputC].forEach(inp => {
                 inp.disabled = false;
-                inp.placeholder = 'Enter value';
+                inp.placeholder = currentLang === 'si' ? 'අගය ඇතුළත් කරන්න' : 'Enter value';
                 inp.style.opacity = '1';
                 inp.style.background = 'white';
             });
             
             if (mode === 'pythFindC') {
-                // Find c: only a and b can be entered
                 inputA.disabled = false;
-                inputA.placeholder = 'Enter a';
+                inputA.placeholder = currentLang === 'si' ? 'a ඇතුළත් කරන්න' : 'Enter a';
                 inputB.disabled = false;
-                inputB.placeholder = 'Enter b';
+                inputB.placeholder = currentLang === 'si' ? 'b ඇතුළත් කරන්න' : 'Enter b';
                 inputC.disabled = true;
-                inputC.placeholder = 'Disabled (finding c)';
+                inputC.placeholder = currentLang === 'si' ? 'අක්‍රියයි (c සොයයි)' : 'Disabled (finding c)';
                 inputC.style.background = '#f1f5f9';
                 inputC.style.opacity = '0.7';
                 inputC.value = '';
             } else if (mode === 'pythFindA') {
-                // Find a: only b and c can be entered
                 inputA.disabled = true;
-                inputA.placeholder = 'Disabled (finding a)';
+                inputA.placeholder = currentLang === 'si' ? 'අක්‍රියයි (a සොයයි)' : 'Disabled (finding a)';
                 inputA.style.background = '#f1f5f9';
                 inputA.style.opacity = '0.7';
                 inputA.value = '';
                 inputB.disabled = false;
-                inputB.placeholder = 'Enter b';
+                inputB.placeholder = currentLang === 'si' ? 'b ඇතුළත් කරන්න' : 'Enter b';
                 inputC.disabled = false;
-                inputC.placeholder = 'Enter c';
+                inputC.placeholder = currentLang === 'si' ? 'c ඇතුළත් කරන්න' : 'Enter c';
             } else if (mode === 'pythFindB') {
-                // Find b: only a and c can be entered
                 inputA.disabled = false;
-                inputA.placeholder = 'Enter a';
+                inputA.placeholder = currentLang === 'si' ? 'a ඇතුළත් කරන්න' : 'Enter a';
                 inputB.disabled = true;
-                inputB.placeholder = 'Disabled (finding b)';
+                inputB.placeholder = currentLang === 'si' ? 'අක්‍රියයි (b සොයයි)' : 'Disabled (finding b)';
                 inputB.style.background = '#f1f5f9';
                 inputB.style.opacity = '0.7';
                 inputB.value = '';
                 inputC.disabled = false;
-                inputC.placeholder = 'Enter c';
+                inputC.placeholder = currentLang === 'si' ? 'c ඇතුළත් කරන්න' : 'Enter c';
             }
             
-            // Clear results when mode changes
-            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
+            document.getElementById('pythAnswer').innerHTML = currentLang === 'si' ? 'අගයන් ඇතුළත් කර ගණනය කරන්න' : 'Enter values and click Calculate';
             document.getElementById('pythSteps').innerHTML = '';
         }
 
@@ -1104,7 +1555,7 @@
             if (e.target.files && e.target.files[0]) {
                 const file = e.target.files[0];
                 if (file.size > 5 * 1024 * 1024) {
-                    alert('⚠️ File is too large! Maximum size is 5MB.');
+                    alert(currentLang === 'si' ? '⚠️ ගොනුව විශාලයි! උපරිම ප්‍රමාණය 5MB වේ.' : '⚠️ File is too large! Maximum size is 5MB.');
                     return;
                 }
                 imageFile = file;
@@ -1135,7 +1586,7 @@
             if (e.dataTransfer.files && e.dataTransfer.files[0]) {
                 const file = e.dataTransfer.files[0];
                 if (file.size > 5 * 1024 * 1024) {
-                    alert('⚠️ File is too large! Maximum size is 5MB.');
+                    alert(currentLang === 'si' ? '⚠️ ගොනුව විශාලයි! උපරිම ප්‍රමාණය 5MB වේ.' : '⚠️ File is too large! Maximum size is 5MB.');
                     return;
                 }
                 imageFile = file;
@@ -1157,7 +1608,7 @@
             imagePreviewContainer.style.display = 'none';
             uploadArea.style.display = 'block';
             uploadStatus.classList.remove('show');
-            uploadStatus.textContent = '✅ Image uploaded successfully!';
+            uploadStatus.textContent = currentLang === 'si' ? '✅ රූපය සාර්ථකව උඩුගත කරන ලදී!' : '✅ Image uploaded successfully!';
             imageInput.value = '';
         }
 
@@ -1165,37 +1616,37 @@
         function sendQuery() {
             const query = document.getElementById('queryInput').value.trim();
             if (!query && !uploadedImageUrl && !imageFile) {
-                alert('📝 Please type your question or attach an image!');
+                alert(currentLang === 'si' ? '📝 කරුණාකර ඔබගේ ප්‍රශ්නය ටයිප් කරන්න හෝ පින්තූරයක් අමුණන්න!' : '📝 Please type your question or attach an image!');
                 return;
             }
 
             const btn = document.getElementById('sendQueryBtn');
             btn.disabled = true;
-            btn.textContent = '⏳ Sending...';
+            btn.textContent = '⏳ ' + (currentLang === 'si' ? 'යවමින්...' : 'Sending...');
 
-            let message = `📚 Question from Dee Academy Student:\n\n`;
+            let message = currentLang === 'si' ? '📚 ඩී ඇකඩමි ශිෂ්‍යයෙකුගෙන් ප්‍රශ්නයක්:\n\n' : '📚 Question from Dee Academy Student:\n\n';
             if (query) {
                 message += `${query}\n\n`;
             }
             if (imageFile) {
-                message += `📸 I have attached a screenshot/snip of the problem.\n`;
-                message += `Please check the image I sent along with this message.\n\n`;
+                message += currentLang === 'si' ? '📸 මම ගැටලුවේ තිර පින්තූරයක් අමුණා ඇත.\n' : '📸 I have attached a screenshot/snip of the problem.\n';
+                message += currentLang === 'si' ? 'කරුණාකර මෙම පණිවිඩය සමඟ එවන ලද පින්තූරය පරීක්ෂා කරන්න.\n\n' : 'Please check the image I sent along with this message.\n\n';
             }
-            message += `📌 Please respond to this message. Thank you!`;
+            message += currentLang === 'si' ? '📌 කරුණාකර මෙම පණිවිඩයට පිළිතුරු දෙන්න. ඔබට ස්තුතියි!' : '📌 Please respond to this message. Thank you!';
 
             const phone = '94702132547';
             const encodedMessage = encodeURIComponent(message);
             const url = `https://wa.me/${phone}?text=${encodedMessage}`;
 
             if (imageFile) {
-                alert('📸 Please send the image separately on WhatsApp after the message opens.');
+                alert(currentLang === 'si' ? '📸 කරුණාකර පින්තූරය වෙන වෙනම වට්ස්ඇප් හරහා යවන්න.' : '📸 Please send the image separately on WhatsApp after the message opens.');
             }
 
             window.open(url, '_blank');
 
             setTimeout(() => {
                 btn.disabled = false;
-                btn.textContent = '📤 Send via WhatsApp';
+                btn.textContent = '📤 ' + (currentLang === 'si' ? 'වට්ස්ඇප් හරහා යවන්න' : 'Send via WhatsApp');
             }, 3000);
         }
 
@@ -1222,7 +1673,8 @@
         // ========== PRACTICE QUESTIONS DATA ==========
         const practiceData = {
             pyramid: {
-                title: "🔺 Practice Questions - Pyramid",
+                titleEn: "🔺 Practice Questions - Pyramid",
+                titleSi: "🔺 අභ්‍යාස ප්‍රශ්න - පිරමීඩය",
                 questions: [
                     { q: "Height = 9 cm, base side = 5 cm", a: "75 cm³" },
                     { q: "Height = 10 cm, base area = 36 cm²", a: "120 cm³" },
@@ -1232,7 +1684,8 @@
                 ]
             },
             cone: {
-                title: "🎩 Practice Questions - Cone",
+                titleEn: "🎩 Practice Questions - Cone",
+                titleSi: "🎩 අභ්‍යාස ප්‍රශ්න - කේතුව",
                 questions: [
                     { q: "Radius = 7 cm, height = 12 cm (π=22/7)", a: "616 cm³" },
                     { q: "Radius = 3.5 cm, height = 12 cm (π=22/7)", a: "154 cm³" },
@@ -1242,7 +1695,8 @@
                 ]
             },
             cylinder: {
-                title: "🥫 Practice Questions - Cylinder",
+                titleEn: "🥫 Practice Questions - Cylinder",
+                titleSi: "🥫 අභ්‍යාස ප්‍රශ්න - සිලින්ඩරය",
                 questions: [
                     { q: "Radius = 7 cm, height = 10 cm (π=22/7)", a: "1540 cm³" },
                     { q: "Radius = 3.5 cm, height = 8 cm (π=22/7)", a: "308 cm³" },
@@ -1252,7 +1706,8 @@
                 ]
             },
             sphere: {
-                title: "⚽ Practice Questions - Sphere",
+                titleEn: "⚽ Practice Questions - Sphere",
+                titleSi: "⚽ අභ්‍යාස ප්‍රශ්න - ගෝලය",
                 questions: [
                     { q: "Radius = 7 cm (π=22/7)", a: "1437.33 cm³" },
                     { q: "Diameter = 9 cm (π=22/7)", a: "381.86 cm³" },
@@ -1267,7 +1722,8 @@
         function updatePracticeQuestions(shape) {
             const data = practiceData[shape];
             if (!data) return;
-            document.getElementById('practiceTitle').innerHTML = data.title;
+            const title = currentLang === 'si' ? data.titleSi : data.titleEn;
+            document.getElementById('practiceTitle').innerHTML = title;
             const list = document.getElementById('practiceList');
             list.innerHTML = '';
             data.questions.forEach((item, idx) => {
@@ -1383,12 +1839,10 @@
         // ========== PYTHAGORAS ==========
         let pythMode = 'findC';
 
-        // Initialize Pythagoras inputs on load
         document.addEventListener('DOMContentLoaded', function() {
             updatePythagorasInputs();
         });
 
-        // Also update when tab is shown
         document.querySelector('.tab[data-tab="pythagoras"]').addEventListener('click', function() {
             setTimeout(updatePythagorasInputs, 100);
         });
@@ -1398,12 +1852,7 @@
             document.getElementById('pythFindC').classList.add('active');
             document.getElementById('pythFindA').classList.remove('active');
             document.getElementById('pythFindB').classList.remove('active');
-            document.getElementById('pythA').placeholder = 'Enter a';
-            document.getElementById('pythB').placeholder = 'Enter b';
-            document.getElementById('pythC').placeholder = 'Disabled (finding c)';
             document.getElementById('pythResult').style.display = 'block';
-            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
-            document.getElementById('pythSteps').innerHTML = '';
             updatePythagorasInputs();
         });
 
@@ -1412,12 +1861,7 @@
             document.getElementById('pythFindA').classList.add('active');
             document.getElementById('pythFindC').classList.remove('active');
             document.getElementById('pythFindB').classList.remove('active');
-            document.getElementById('pythA').placeholder = 'Disabled (finding a)';
-            document.getElementById('pythB').placeholder = 'Enter b';
-            document.getElementById('pythC').placeholder = 'Enter c';
             document.getElementById('pythResult').style.display = 'block';
-            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
-            document.getElementById('pythSteps').innerHTML = '';
             updatePythagorasInputs();
         });
 
@@ -1426,12 +1870,7 @@
             document.getElementById('pythFindB').classList.add('active');
             document.getElementById('pythFindC').classList.remove('active');
             document.getElementById('pythFindA').classList.remove('active');
-            document.getElementById('pythA').placeholder = 'Enter a';
-            document.getElementById('pythB').placeholder = 'Disabled (finding b)';
-            document.getElementById('pythC').placeholder = 'Enter c';
             document.getElementById('pythResult').style.display = 'block';
-            document.getElementById('pythAnswer').innerHTML = 'Enter values and click Calculate';
-            document.getElementById('pythSteps').innerHTML = '';
             updatePythagorasInputs();
         });
 
@@ -1442,13 +1881,12 @@
             const resultDiv = document.getElementById('pythAnswer');
             const stepsDiv = document.getElementById('pythSteps');
 
-            // Check which mode is active
             const mode = document.querySelector('.choice-btn.active')?.id || 'pythFindC';
+            const errorMsg = currentLang === 'si' ? '⚠️ කරුණාකර ධන අගයන් ඇතුළත් කරන්න' : '⚠️ Please enter valid positive values';
 
             if (mode === 'pythFindC') {
-                // Find c: need a and b
                 if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
-                    resultDiv.innerHTML = '⚠️ Please enter valid values for a and b (positive numbers)';
+                    resultDiv.innerHTML = errorMsg;
                     stepsDiv.innerHTML = '';
                     return;
                 }
@@ -1457,9 +1895,8 @@
                 stepsDiv.innerHTML = `📐 a² + b² = c²<br>${a}² + ${b}² = c²<br>${a*a} + ${b*b} = c²<br>${a*a + b*b} = c²<br>c = √${a*a + b*b} = ${cResult.toFixed(4)}`;
             }
             else if (mode === 'pythFindA') {
-                // Find a: need b and c
                 if (isNaN(b) || isNaN(c) || b <= 0 || c <= 0 || c <= b) {
-                    resultDiv.innerHTML = '⚠️ Please enter valid b and c (c must be > b)';
+                    resultDiv.innerHTML = errorMsg;
                     stepsDiv.innerHTML = '';
                     return;
                 }
@@ -1468,9 +1905,8 @@
                 stepsDiv.innerHTML = `📐 a² = c² - b²<br>a² = ${c}² - ${b}²<br>a² = ${c*c} - ${b*b}<br>a² = ${c*c - b*b}<br>a = √${c*c - b*b} = ${aResult.toFixed(4)}`;
             }
             else if (mode === 'pythFindB') {
-                // Find b: need a and c
                 if (isNaN(a) || isNaN(c) || a <= 0 || c <= 0 || c <= a) {
-                    resultDiv.innerHTML = '⚠️ Please enter valid a and c (c must be > a)';
+                    resultDiv.innerHTML = errorMsg;
                     stepsDiv.innerHTML = '';
                     return;
                 }
@@ -1576,7 +2012,7 @@
 
         function selectAreaVolOption(qIdx, optIdx) {
             if (areaVolQuizSubmitted) {
-                alert('⚠️ Quiz already submitted! Click "Reset Quiz" to try again.');
+                alert(currentLang === 'si' ? '⚠️ ප්‍රශ්න දැනටමත් ඉදිරිපත් කර ඇත! "නැවත ආරම්භ කරන්න" ක්ලික් කරන්න.' : '⚠️ Quiz already submitted! Click "Reset Quiz" to try again.');
                 return;
             }
             areaVolUserAnswers[qIdx] = optIdx;
@@ -1604,7 +2040,7 @@
             }
             
             if (!allAnswered) {
-                alert('⚠️ Please answer all 10 questions before submitting!');
+                alert(currentLang === 'si' ? '⚠️ කරුණාකර සියලු ප්‍රශ්න 10ට පිළිතුරු දෙන්න!' : '⚠️ Please answer all 10 questions before submitting!');
                 return;
             }
 
@@ -1654,7 +2090,7 @@
             const submitBtn = document.createElement('button');
             submitBtn.className = 'calc-btn';
             submitBtn.style.marginTop = '1rem';
-            submitBtn.innerHTML = '📝 Submit Quiz & See Results';
+            submitBtn.innerHTML = currentLang === 'si' ? '📝 ප්‍රශ්න ඉදිරිපත් කර ප්‍රතිඵල බලන්න' : '📝 Submit Quiz & See Results';
             submitBtn.onclick = submitAreaVolQuiz;
             container.appendChild(submitBtn);
         }
@@ -1761,7 +2197,7 @@
 
         function selectLogQuizOption(qIdx, optIdx) {
             if (logQuizSubmitted) {
-                alert('⚠️ Quiz already submitted! Click "Reset Quiz" to try again.');
+                alert(currentLang === 'si' ? '⚠️ ප්‍රශ්න දැනටමත් ඉදිරිපත් කර ඇත! "නැවත ආරම්භ කරන්න" ක්ලික් කරන්න.' : '⚠️ Quiz already submitted! Click "Reset Quiz" to try again.');
                 return;
             }
             logUserAnswers[qIdx] = optIdx;
@@ -1789,7 +2225,7 @@
             }
             
             if (!allAnswered) {
-                alert('⚠️ Please answer all 10 questions before submitting!');
+                alert(currentLang === 'si' ? '⚠️ කරුණාකර සියලු ප්‍රශ්න 10ට පිළිතුරු දෙන්න!' : '⚠️ Please answer all 10 questions before submitting!');
                 return;
             }
 
@@ -1839,7 +2275,7 @@
             const submitBtn = document.createElement('button');
             submitBtn.className = 'calc-btn';
             submitBtn.style.marginTop = '1rem';
-            submitBtn.innerHTML = '📝 Submit Log Quiz & See Results';
+            submitBtn.innerHTML = currentLang === 'si' ? '📝 ප්‍රශ්න ඉදිරිපත් කර ප්‍රතිඵල බලන්න' : '📝 Submit Log Quiz & See Results';
             submitBtn.onclick = submitLogQuiz;
             container.appendChild(submitBtn);
         }
@@ -1856,28 +2292,28 @@
         function calcSquareArea() { 
             let a = parseFloat(document.getElementById('squareSide').value); 
             let u = document.getElementById('squareUnit').value; 
-            if (isNaN(a) || a <= 0) { document.getElementById('squareResult').innerHTML = '⚠️ Enter positive value'; return; } 
+            if (isNaN(a) || a <= 0) { document.getElementById('squareResult').innerHTML = currentLang === 'si' ? '⚠️ ධන අගයක් ඇතුළත් කරන්න' : '⚠️ Enter positive value'; return; } 
             document.getElementById('squareResult').innerHTML = `Area: ${formatValue(a*a)} ${u}`; 
         }
         function calcRectangleArea() { 
             let l = parseFloat(document.getElementById('rectLength').value); 
             let w = parseFloat(document.getElementById('rectWidth').value); 
             let u = document.getElementById('rectUnit').value; 
-            if (isNaN(l) || l <= 0 || isNaN(w) || w <= 0) { document.getElementById('rectResult').innerHTML = '⚠️ Enter positive values'; return; } 
+            if (isNaN(l) || l <= 0 || isNaN(w) || w <= 0) { document.getElementById('rectResult').innerHTML = currentLang === 'si' ? '⚠️ ධන අගයන් ඇතුළත් කරන්න' : '⚠️ Enter positive values'; return; } 
             document.getElementById('rectResult').innerHTML = `Area: ${formatValue(l*w)} ${u}`; 
         }
         function calcTriangleArea() { 
             let b = parseFloat(document.getElementById('triBase').value); 
             let h = parseFloat(document.getElementById('triHeight').value); 
             let u = document.getElementById('triUnit').value; 
-            if (isNaN(b) || b <= 0 || isNaN(h) || h <= 0) { document.getElementById('triResult').innerHTML = '⚠️ Enter positive values'; return; } 
+            if (isNaN(b) || b <= 0 || isNaN(h) || h <= 0) { document.getElementById('triResult').innerHTML = currentLang === 'si' ? '⚠️ ධන අගයන් ඇතුළත් කරන්න' : '⚠️ Enter positive values'; return; } 
             document.getElementById('triResult').innerHTML = `Area: ${formatValue(0.5*b*h)} ${u}`; 
         }
         function calcParallelogramArea() { 
             let b = parseFloat(document.getElementById('paraBase').value); 
             let h = parseFloat(document.getElementById('paraHeight').value); 
             let u = document.getElementById('paraUnit').value; 
-            if (isNaN(b) || b <= 0 || isNaN(h) || h <= 0) { document.getElementById('paraResult').innerHTML = '⚠️ Enter positive values'; return; } 
+            if (isNaN(b) || b <= 0 || isNaN(h) || h <= 0) { document.getElementById('paraResult').innerHTML = currentLang === 'si' ? '⚠️ ධන අගයන් ඇතුළත් කරන්න' : '⚠️ Enter positive values'; return; } 
             document.getElementById('paraResult').innerHTML = `Area: ${formatValue(b*h)} ${u}`; 
         }
         function calcTrapeziumArea() { 
@@ -1885,13 +2321,13 @@
             let b = parseFloat(document.getElementById('trapB').value); 
             let h = parseFloat(document.getElementById('trapH').value); 
             let u = document.getElementById('trapUnit').value; 
-            if (isNaN(a) || a <= 0 || isNaN(b) || b <= 0 || isNaN(h) || h <= 0) { document.getElementById('trapResult').innerHTML = '⚠️ Enter positive values'; return; } 
+            if (isNaN(a) || a <= 0 || isNaN(b) || b <= 0 || isNaN(h) || h <= 0) { document.getElementById('trapResult').innerHTML = currentLang === 'si' ? '⚠️ ධන අගයන් ඇතුළත් කරන්න' : '⚠️ Enter positive values'; return; } 
             document.getElementById('trapResult').innerHTML = `Area: ${formatValue(0.5*(a+b)*h)} ${u}`; 
         }
         function calcCircleArea() { 
             let r = parseFloat(document.getElementById('circleRadius').value); 
             let u = document.getElementById('circleUnit').value; 
-            if (isNaN(r) || r <= 0) { document.getElementById('circleResult').innerHTML = '⚠️ Enter positive value'; return; } 
+            if (isNaN(r) || r <= 0) { document.getElementById('circleResult').innerHTML = currentLang === 'si' ? '⚠️ ධන අගයක් ඇතුළත් කරන්න' : '⚠️ Enter positive value'; return; } 
             document.getElementById('circleResult').innerHTML = `Area: ${formatValue(Math.PI*r*r)} ${u}`; 
         }
 
@@ -1922,22 +2358,22 @@
             updateFormulas(shape);
             let html = '';
             if(shape === 'pyramid') {
-                html = `<div class="input-field"><label>Base side (a)</label><input type="number" id="dim1" placeholder="Enter base side" min="0.01" step="any" oninput="validatePositive(this)"></div>
-                        <div class="input-field"><label>Height (h)</label><input type="number" id="dim2" placeholder="Enter height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
+                html = `<div class="input-field"><label id="volBaseLabel">Base side (a)</label><input type="number" id="dim1" placeholder="Enter base side" min="0.01" step="any" oninput="validatePositive(this)"></div>
+                        <div class="input-field"><label id="volHeightLabel">Height (h)</label><input type="number" id="dim2" placeholder="Enter height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
             } 
             else if(shape === 'cone') {
-                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="coneRadius" placeholder="Enter radius" min="0.01" step="any" oninput="validatePositive(this)"></div>
-                        <div class="choice-box"><strong>What do you know?</strong>
+                html = `<div class="input-field"><label id="volRadiusLabel">Radius (r)</label><input type="number" id="coneRadius" placeholder="Enter radius" min="0.01" step="any" oninput="validatePositive(this)"></div>
+                        <div class="choice-box"><strong id="volKnowLabel">What do you know?</strong>
                         <div class="choice-buttons"><button type="button" class="choice-btn ${coneChoice === 'height' ? 'active' : ''}" id="choiceHeightBtn">Height (h)</button>
                         <button type="button" class="choice-btn ${coneChoice === 'slant' ? 'active' : ''}" id="choiceSlantBtn">Slant (l)</button></div></div>
                         <div id="coneInputArea"></div><div id="conePythagorasResult" class="pythagoras-result" style="display: none;"></div>`;
             } 
             else if(shape === 'cylinder') {
-                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="dim1" placeholder="Enter radius" min="0.01" step="any" oninput="validatePositive(this)"></div>
-                        <div class="input-field"><label>Height (h)</label><input type="number" id="dim2" placeholder="Enter height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
+                html = `<div class="input-field"><label id="volCylRadiusLabel">Radius (r)</label><input type="number" id="dim1" placeholder="Enter radius" min="0.01" step="any" oninput="validatePositive(this)"></div>
+                        <div class="input-field"><label id="volCylHeightLabel">Height (h)</label><input type="number" id="dim2" placeholder="Enter height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
             }
             else if(shape === 'sphere') {
-                html = `<div class="input-field"><label>Radius (r)</label><input type="number" id="dim1" placeholder="Enter radius" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
+                html = `<div class="input-field"><label id="volSphereRadiusLabel">Radius (r)</label><input type="number" id="dim1" placeholder="Enter radius" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
             }
             dimsContainer.innerHTML = html;
 
@@ -1950,9 +2386,9 @@
                 
                 function updateConeInputs() {
                     if(coneChoice === 'height') {
-                        coneInputArea.innerHTML = `<div class="input-field"><label>Height (h)</label><input type="number" id="coneHeightValue" placeholder="Enter height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
+                        coneInputArea.innerHTML = `<div class="input-field"><label id="volConeHeightLabel">Height (h)</label><input type="number" id="coneHeightValue" placeholder="Enter height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
                     } else {
-                        coneInputArea.innerHTML = `<div class="input-field"><label>Slant Height (l)</label><input type="number" id="coneSlantValue" placeholder="Enter slant height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
+                        coneInputArea.innerHTML = `<div class="input-field"><label id="volConeSlantLabel">Slant Height (l)</label><input type="number" id="coneSlantValue" placeholder="Enter slant height" min="0.01" step="any" oninput="validatePositive(this)"></div>`;
                     }
                 }
                 if(choiceHeightBtn) choiceHeightBtn.addEventListener('click', () => { coneChoice = 'height'; choiceHeightBtn.classList.add('active'); choiceSlantBtn.classList.remove('active'); updateConeInputs(); });
@@ -2043,6 +2479,7 @@
             const shape = shapeSelect.value; const dims = getDims(); const unit = unitSelect.value; 
             const unitVol = unit === 'cm' ? 'cm³' : 'm³'; const unitArea = unit === 'cm' ? 'cm²' : 'm²';
             let vol = null, area = null;
+            const errorMsg = currentLang === 'si' ? '⚠️ ධන අගයන් ඇතුළත් කරන්න' : '⚠️ Enter positive values';
             
             if(shape === 'pyramid') { 
                 let b = dims[0], h = dims[1]; 
@@ -2050,7 +2487,7 @@
                     vol = (1/3) * Math.pow(b, 2) * h; 
                     let slantHeight = Math.sqrt(Math.pow(b/2, 2) + Math.pow(h, 2)); 
                     area = Math.pow(b, 2) + (2 * b * slantHeight); 
-                } else { volResult.innerText = '⚠️ Enter positive values'; areaResult.innerText = '⚠️ Enter positive values'; return; }
+                } else { volResult.innerText = errorMsg; areaResult.innerText = errorMsg; return; }
             }
             else if(shape === 'cone') { 
                 let r = dims[0], h = dims[1], l = dims[2]; 
@@ -2063,21 +2500,21 @@
                         if(coneChoice === 'height') pythagorasDiv.innerHTML = `📐 l = √(${r.toFixed(2)}² + ${h.toFixed(2)}²) = ${l.toFixed(3)}`; 
                         else pythagorasDiv.innerHTML = `📐 h = √(${l.toFixed(2)}² - ${r.toFixed(2)}²) = ${h.toFixed(3)}`; 
                     } 
-                } else { volResult.innerText = '⚠️ Enter positive values'; areaResult.innerText = '⚠️ Enter positive values'; return; }
+                } else { volResult.innerText = errorMsg; areaResult.innerText = errorMsg; return; }
             }
             else if(shape === 'cylinder') { 
                 let r = dims[0], h = dims[1]; 
                 if(r > 0 && h > 0) { 
                     vol = Math.PI * r * r * h; 
                     area = 2 * Math.PI * r * (r + h); 
-                } else { volResult.innerText = '⚠️ Enter positive values'; areaResult.innerText = '⚠️ Enter positive values'; return; }
+                } else { volResult.innerText = errorMsg; areaResult.innerText = errorMsg; return; }
             }
             else if(shape === 'sphere') { 
                 let r = dims[0]; 
                 if(r > 0) { 
                     vol = (4/3) * Math.PI * Math.pow(r, 3); 
                     area = 4 * Math.PI * Math.pow(r, 2); 
-                } else { volResult.innerText = '⚠️ Enter positive value'; areaResult.innerText = '⚠️ Enter positive value'; return; }
+                } else { volResult.innerText = errorMsg; areaResult.innerText = errorMsg; return; }
             }
             
             volResult.innerText = vol.toFixed(3).replace(/\.?0+$/, ''); 
@@ -2097,7 +2534,7 @@
         function evaluateProduct(expr) { let p = expr.replace(/π/g, Math.PI).replace(/[×*]/g, '*'); let f = p.split('*').map(s => parseFloat(s.trim())); if(f.some(isNaN)) return null; return f.reduce((a,b)=>a*b,1); }
         function parseFraction(expr) { expr = expr.trim(); if(expr.includes('/')) { let parts = expr.split('/'); if(parts.length !== 2) return null; let n = evaluateProduct(parts[0]), d = evaluateProduct(parts[1]); if(n===null || d===null || d===0) return null; return n/d; } return evaluateProduct(expr); }
         function parseAdvanced(expr) { expr = expr.trim(); let cbrt = expr.match(/^(?:∛|cbrt)\((.+)\)$/i); if(cbrt) { let v = parseAdvanced(cbrt[1]); return (v!==null && v>=0) ? Math.cbrt(v) : null; } let sqrt = expr.match(/^(?:√|sqrt)\((.+)\)$/i); if(sqrt) { let v = parseAdvanced(sqrt[1]); return (v!==null && v>=0) ? Math.sqrt(v) : null; } if(expr.includes('(')) { let inner = expr.replace(/\(([^()]+)\)/g, (m,p1) => { let v = parseAdvanced(p1); return v!==null ? v.toString() : m; }); if(inner.includes('/')) { let parts = inner.split('/'); if(parts.length===2) { let n = parseAdvanced(parts[0]), d = parseAdvanced(parts[1]); if(n!==null && d!==null && d!==0) return n/d; } } let prod = evaluateProduct(inner); if(prod!==null) return prod; return null; } return parseFraction(expr); }
-        function computeLog() { logError.innerText = ''; let raw = logExpr.value.trim(); if(!raw) { logError.innerText = 'Enter expression'; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; return; } try { let val = parseAdvanced(raw); if(val===null || isNaN(val)) throw new Error('Invalid expression'); if(val <= 0) throw new Error('Value must be positive'); let lg = Math.log10(val); logValueSpan.innerText = val.toFixed(6).replace(/\.?0+$/, ''); logResultSpan.innerText = lg.toFixed(6).replace(/\.?0+$/, ''); } catch(e) { logError.innerText = '❌ ' + e.message; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; } }
+        function computeLog() { logError.innerText = ''; let raw = logExpr.value.trim(); if(!raw) { logError.innerText = currentLang === 'si' ? 'ප්‍රකාශනයක් ඇතුළත් කරන්න' : 'Enter expression'; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; return; } try { let val = parseAdvanced(raw); if(val===null || isNaN(val)) throw new Error(currentLang === 'si' ? 'වලංගු නොවන ප්‍රකාශනය' : 'Invalid expression'); if(val <= 0) throw new Error(currentLang === 'si' ? 'අගය ධන විය යුතුය' : 'Value must be positive'); let lg = Math.log10(val); logValueSpan.innerText = val.toFixed(6).replace(/\.?0+$/, ''); logResultSpan.innerText = lg.toFixed(6).replace(/\.?0+$/, ''); } catch(e) { logError.innerText = '❌ ' + e.message; logValueSpan.innerText = '—'; logResultSpan.innerText = '—'; } }
         calcLogBtn.addEventListener('click', computeLog);
         document.querySelectorAll('.example-badge').forEach(b => { b.addEventListener('click', () => { logExpr.value = b.dataset.ex; computeLog(); }); });
         logExpr.value = ""; computeLog();
