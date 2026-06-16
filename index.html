@@ -170,12 +170,6 @@
         .nav-card.card-quiz { background: linear-gradient(135deg, #d1fae5, #a7f3d0); border-color: #10b981; }
         .nav-card.card-log { background: linear-gradient(135deg, #fef3c7, #fde68a); border-color: #f59e0b; }
 
-        .nav-card.card-area:hover { border-color: #f59e0b; }
-        .nav-card.card-volume:hover { border-color: #3b82f6; }
-        .nav-card.card-pythagoras:hover { border-color: #ec489a; }
-        .nav-card.card-quiz:hover { border-color: #10b981; }
-        .nav-card.card-log:hover { border-color: #f59e0b; }
-
         .quick-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -201,6 +195,40 @@
         .stat-box .label {
             font-size: 0.5rem;
             opacity: 0.9;
+        }
+
+        /* WhatsApp & Creator Info */
+        .creator-info {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-radius: 0.8rem;
+            border: 1px solid #10b981;
+            text-align: center;
+        }
+        .creator-info .name {
+            font-weight: 700;
+            color: #065f46;
+            font-size: 0.9rem;
+        }
+        .creator-info .whatsapp-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            background: #25D366;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            transition: all 0.3s;
+        }
+        .creator-info .whatsapp-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(37,211,102,0.3);
+        }
+        .creator-info .whatsapp-link i {
+            margin-right: 0.3rem;
         }
 
         /* Tabs & Panels */
@@ -368,7 +396,7 @@
                 <button class="tab" data-tab="log">🔢 Log 10</button>
             </div>
 
-            <!-- HOME TAB - ATTRACTIVE CARDS (NO BOTTOM LINKS) -->
+            <!-- HOME TAB - WITH CREATOR INFO & WHATSAPP -->
             <div id="homePanel" class="panel active">
                 <div class="home-container">
                     <div class="home-title">📚 Welcome to 元 Dee ACADEMY</div>
@@ -416,6 +444,14 @@
                         <div class="stat-box"><div class="number">4</div><div class="label">Solids</div></div>
                         <div class="stat-box"><div class="number">10</div><div class="label">Quiz Qs</div></div>
                         <div class="stat-box"><div class="number">20+</div><div class="label">Practice Qs</div></div>
+                    </div>
+
+                    <!-- CREATOR & WHATSAPP INFO -->
+                    <div class="creator-info">
+                        <div class="name">👨‍🏫 Created by: Shehan Deemantha</div>
+                        <a href="https://wa.me/94702132547" target="_blank" class="whatsapp-link">
+                            💬 Need help? Contact me on WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1290,4 +1326,3 @@
     </script>
 </body>
 </html>
-
